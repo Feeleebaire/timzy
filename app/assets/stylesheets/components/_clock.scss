@@ -1,0 +1,134 @@
+
+html, body {
+  min-height: 100%;
+}
+
+.clock {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border: 10px solid #2B414D;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  .top {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    background: #262626;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .right {
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #262626;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto 0;
+  }
+  .bottom {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    background: #262626;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
+  .left {
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #262626;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto 0;
+  }
+  .center {
+    height: 19px;
+    width: 19px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #00DDC2;
+    border-radius: 100%;
+  }
+
+  .hour {
+    width: 7px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    //animation: time 86400s infinite linear;
+    animation: time 60s infinite linear;
+    &:before {
+      position: absolute;
+      content: "";
+      background: #F4D35E;
+      height: 44px;
+      width: 8px;
+      top: 16px;
+      border-radius: 5px;
+    }
+  }
+  .minute {
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    //animation: time 3600s infinite linear;
+    animation: time 30s infinite linear;
+    &:before {
+      position: absolute;
+      content: "";
+      background: #262626;
+      height: 40px;
+      width: 1px;
+      top: 50px;
+    }
+  }
+  .second {
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    //animation: time 60s infinite linear;
+    animation: time 15s infinite linear;
+    &:before {
+      position: absolute;
+      content: "";
+      background: #65AFFF;
+      height: 30px;
+      width: 4px;
+      top: 28px;
+      border-radius: 5px;
+    }
+  }
+}
+
+@keyframes time {
+  to {
+    transform: rotate(360deg);
+  }
+}
