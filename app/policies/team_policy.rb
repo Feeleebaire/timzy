@@ -1,4 +1,4 @@
-class ProjectPolicy < ApplicationPolicy
+class TeamPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
@@ -31,7 +31,7 @@ class ProjectPolicy < ApplicationPolicy
   private
 
   def is_user_owner_or_admin?
-    record.user == user || record.website.team.admin == user
+    record.user == user || record.website.project.admin = user
   end
 
 end
