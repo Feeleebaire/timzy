@@ -10,10 +10,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220140610) do
+ActiveRecord::Schema.define(version: 20170220150109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "analytics", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_comments_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_likes_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "goal"
+    t.string   "kpi"
+    t.string   "category"
+    t.string   "url_targeted"
+    t.integer  "user_id"
+    t.integer  "website_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
+    t.index ["website_id"], name: "index_projects_on_website_id", using: :btree
+  end
+
+  create_table "teammates", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_teammates_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_teammates_on_user_id", using: :btree
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.integer  "admin_id"
+    t.index ["admin_id"], name: "index_teams_on_admin_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -35,4 +93,26 @@ ActiveRecord::Schema.define(version: 20170220140610) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "websites", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "analytic_id"
+    t.integer  "team_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["analytic_id"], name: "index_websites_on_analytic_id", using: :btree
+    t.index ["team_id"], name: "index_websites_on_team_id", using: :btree
+  end
+
+  add_foreign_key "comments", "projects"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "projects"
+  add_foreign_key "likes", "users"
+  add_foreign_key "projects", "users"
+  add_foreign_key "projects", "websites"
+  add_foreign_key "teammates", "teams"
+  add_foreign_key "teammates", "users"
+  add_foreign_key "teams", "users", column: "admin_id"
+  add_foreign_key "websites", "analytics"
+  add_foreign_key "websites", "teams"
 end
