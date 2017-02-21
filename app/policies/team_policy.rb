@@ -21,17 +21,17 @@ class TeamPolicy < ApplicationPolicy
   # current_user <=> user
   def update?
     # seul le createur d'un projet ou un admin peut le modifier
-    is_user_owner_or_admin?
+    is_user_admin?
   end
 
   def destroy?
-    is_user_owner_or_admin?
+    is_user_admin?
   end
 
   private
 
-  def is_user_owner_or_admin?
-    record.user == user || record.website.project.admin = user
+  def is_user_admin?
+    record.admin == user
   end
 
 end
