@@ -14,9 +14,7 @@ Rails.application.routes.draw do
 
   resources :teams do
     resources :teammates, only: [ :new, :create, :list ]
+    resources :websites
   end
-
-  
-  resources :websites
 
 end

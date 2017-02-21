@@ -9,22 +9,23 @@ class WebsitesController < ApplicationController
   end
 
   def new
+    @team = Team.find(params[:team_id])
     @website = Website.new
     authorize(@website)
   end
 
   def create
     @website = Website.new(website_params)
-    @website.user = current_user
+    @website.team = Team.find(params[:team_id])
     authorize(@website)
-
     if @website.save
-      redirect_to @website , notice: 'Your website was successfully created.'
-
+      redirect_to teams_path , notice: 'Your website was successfully created.'
     else
       render :new
     end
   end
+
+  private
 
   def edit
   end
@@ -46,10 +47,8 @@ class WebsitesController < ApplicationController
 private
 
   def website_params
-    params.require(:website).permit(:title, :description, :start_date, :end_date, :goal, :kpi, :url_targeted, :category, :user_id, :website_id)
+    params.require(:website).permit(:name, :url)
   end
-
-end
 
   def set_website
     @website = website.find(params[:id])
