@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  resources :projects do
-    resources :comments, only: [:create, :destroy]
 
-    #get "/like", to: "likes#create", as: "like"
-    #post "/comment", to: "comments#create"
-  end
-
-  devise_for :users, controllers: {
+ devise_for :users, controllers: {
         registrations: 'users/registrations'
       }
 
@@ -14,7 +8,12 @@ Rails.application.routes.draw do
 
   resources :teams do
     resources :teammates, only: [ :new, :create, :list ]
-    resources :websites
+    resources :websites do
+       resources :projects, only: [ :new, :create ] do
+          resources :comments, only: [ :new, :create, :destroy]
+        end
+      end
   end
 
+  resources :projects, only: [ :show, :edit, :update, :destroy]
 end

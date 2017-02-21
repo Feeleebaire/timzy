@@ -12,17 +12,21 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @website = Website.find(params[:website_id])
+    @team = Team.find(params[:team_id])
     authorize(@project)
   end
 
   def create
     @project = Project.new(project_params)
     @project.user = current_user
+    @website = Website.find(params[:website_id])
+    @team = Team.find(params[:team_id])
+    @project.website = @website
     authorize(@project)
 
     if @project.save
-      redirect_to @project , notice: 'Your project was successfully created.'
-
+      redirect_to team_website_path(@team, @website) , notice: 'Your project was successfully created.'
     else
       render :new
     end

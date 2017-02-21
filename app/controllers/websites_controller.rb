@@ -6,6 +6,7 @@ class WebsitesController < ApplicationController
   end
 
   def show
+    @projects = @website.projects
   end
 
   def new
@@ -51,7 +52,7 @@ private
   end
 
   def set_website
-    @website = website.find(params[:id])
+    @website = Website.find(params[:id])
     authorize(@website)
   end
 end
