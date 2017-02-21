@@ -4,4 +4,5 @@ class Website < ApplicationRecord
   #associations
   belongs_to :analytic
   belongs_to :team
+  has_many :projects
 end
