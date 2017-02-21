@@ -22,6 +22,9 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
+
+
+  <!-- LES COMMENTAIRES SUR LE PROJETS -->
   <div id="comments">
   <% if @project.comments.blank? %>
     Be the first to leave a comment for <%= @project.title %>
