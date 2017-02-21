@@ -1,3 +1,5 @@
+  <%= link_to '<< Back to timeline', projects_path %>
+
 <div class="container">
   <h1><%= @project.title %></h1>
 
@@ -12,7 +14,12 @@
 
   <br>
 
-  <%= link_to 'Edit', edit_project_path(@project) %> |
-  <%= link_to 'Back', projects_path %> |
-  <%= link_to 'Delete', project_path(@project), method: :delete %>
+  <% if policy(@project).update? %>
+    <%= link_to 'Edit', edit_project_path(@project) %> |
+  <% end %>
+
+  <% if policy(@project).destroy? %>
+    <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+
 </div>
