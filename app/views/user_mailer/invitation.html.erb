@@ -3,5 +3,5 @@
 <p>
   You've been invited to <%= @team.name %> team on Timzy.
 
-  Confirm by creating your account.
+  Confirm by <%= link_to "creating your account", new_user_registration_url(:email => @email)  %>.
 </p>
