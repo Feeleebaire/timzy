@@ -7,12 +7,28 @@
       <%= f.input :title  %>
       <%= f.input :description %>
       <%= f.input :category %>
-        <div class="input-group date" data-provide="datepicker">
-          <input type="text" name="project[start_date]" placeholder="Start date" class="form-control">
-          <div class="input-group-addon">
-              <span class="glyphicon glyphicon-th"></span>
+   <!-- - Start date form - -->
+      <div class="datepicker-container">
+        <div class="start-date date-flex-items">
+          <label> * Start date</label>
+          <div class="input-group date end-date" data-provide="datepicker">
+            <input type="text" name="project[start_date]" placeholder="dd/mm/yyyy" class="form-control">
+            <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+            </div>
           </div>
         </div>
+           <!-- - End date form - -->
+        <div class="end-date date-flex-items">
+          <label> End date</label>
+          <div class="input-group date start-date" data-provide="datepicker">
+            <input type="text" name="project[end_date]" placeholder="dd/mm/yyyy" class="form-control">
+            <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="form-actions">
