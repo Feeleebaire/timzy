@@ -1,0 +1,13 @@
+<% if @comment.errors.any? %>
+  // Render new review form with errors
+  $('#new_comment').html("<%= j render 'comments/form', project: @project, comment: @comment %>");
+<% else %>
+  // Create a paragraph for the new review. But hide it.
+  var new_comment = $("<%= j render 'comments/show', comment: @comment %>").hide();
+  // Add it to the DOM, at the end of the existing reviews. It's still hidden.
+  $('#comments').append(new_comment);
+  // Show the new review with an animation!
+  new_comment.slideDown();
+  // Reset the form
+  $('#new_comment').html("<%= j render 'comments/form', project: @project, comment: Comment.new %>");
+<% end %>
