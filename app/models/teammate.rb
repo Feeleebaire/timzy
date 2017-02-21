@@ -2,6 +2,8 @@ class Teammate < ApplicationRecord
   #associations
   belongs_to :user
   belongs_to :team
+  #validations
+  validates :email, presence: true, uniqueness: {scope: :team}
 
   private
 
