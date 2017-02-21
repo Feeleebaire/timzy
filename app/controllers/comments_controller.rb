@@ -4,6 +4,7 @@ def create
   @project = Project.find(params[:project_id])
   @comment = Comment.new(comment_params)
   @comment.project = @project
+  @comment.user = current_user
   authorize(@comment)
   if @comment.save
     redirect_to project_path(@project)
@@ -11,8 +12,6 @@ def create
     render 'projects/show'
   end
 end
-
-
 
 def destroy
   @comment.destroy
