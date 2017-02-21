@@ -15,4 +15,5 @@ class User < ApplicationRecord
   has_many :admin_id
   has_many :projects
   has_many :comments
+  has_many :likes
 end
