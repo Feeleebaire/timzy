@@ -25,8 +25,8 @@
   <% if @project.comments.blank? %>
     Be the first to leave a comment for <%= @project.name %>
   <% else %>
-    <% @project.comment.each do |review| %>
-      <%= render 'comment/show', comment: comment %>
+    <% @project.comments.each do |comment| %>
+      <%= render 'comments/show', comment: comment %>
     <% end %>
   <% end %>
 
