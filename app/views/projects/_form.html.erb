@@ -1,14 +1,42 @@
-<%= simple_form_for(@project) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :category %>
-    <%= f.input :start_date, type: "text", class: "form-control" %>
-  </div>
+  <%= simple_form_for(@project) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-inputs">
+      <%= f.input :title  %>
+      <%= f.input :description %>
+      <%= f.input :category, collection: ["Communication", "Development","Marketing", "Product", "Sales" ] %>
+
+   <!-- - Start date form - -->
+      <div class="datepicker-container">
+        <div class="start-date date-flex-items">
+          <label> * Start date</label>
+          <div class="input-group date end-date" data-provide="datepicker">
+            <input type="text" name="project[start_date]" placeholder="dd/mm/yyyy" class="form-control">
+            <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+            </div>
+          </div>
+        </div>
+           <!-- - End date form - -->
+        <div class="end-date date-flex-items">
+          <label> End date</label>
+          <div class="input-group date start-date" data-provide="datepicker">
+            <input type="text" name="project[end_date]" placeholder="dd/mm/yyyy" class="form-control">
+            <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+
+
+</div>
+
