@@ -17,10 +17,8 @@ class WebsitesController < ApplicationController
     @website = Website.new(website_params)
     @website.user = current_user
     authorize(@website)
-
     if @website.save
       redirect_to @website , notice: 'Your website was successfully created.'
-
     else
       render :new
     end
@@ -48,8 +46,6 @@ private
   def website_params
     params.require(:website).permit(:title, :description, :start_date, :end_date, :goal, :kpi, :url_targeted, :category, :user_id, :website_id)
   end
-
-end
 
   def set_website
     @website = website.find(params[:id])
