@@ -3,8 +3,6 @@ class Teammate < ApplicationRecord
   belongs_to :user
   belongs_to :team
 
-  after_create :send_invite_email
-
   private
 
   def send_invite_email

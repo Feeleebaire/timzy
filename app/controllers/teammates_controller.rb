@@ -9,6 +9,12 @@ class TeammatesController < ApplicationController
     @teammate = Teammate.new(teammate_params)
     @teammate.team = @team
     @teammate.save
+    user = User.find_by_email(@teammate.email)
+    if user
+      @teammate.update(user: user)
+    else
+      UserMailer.invitation(@teammate).deliver_now
+    end
     authorize @teammate
   end
 
