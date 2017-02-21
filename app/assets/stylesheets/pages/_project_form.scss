@@ -1,0 +1,40 @@
+// Flexbox for start and end date
+.datepicker-container{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30px;
+
+}
+
+  // individual flex-items for start and end date
+  .start-date{
+    padding-right: 10px;
+  }
+
+  .end-date{
+    padding-left: 10px;
+  }
+
+
+// Flexbox for goal and kpi fields
+
+.inline-box-goal-kpi{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+
+  // Flex- items
+  .kpi-goal-item{
+      flex: 1 1 auto;
+    }
+
+    // individual flex-items goal and kpi fields
+    .goal-form{
+      padding-right: 10px;
+    }
+
+    .kpi-form{
+       padding-left: 10px;
+    }
