@@ -1,18 +1,19 @@
 class LikesController < ApplicationController
-  def new
-    @like = Like.new
-  end
 
   def create
-    @like = Like.new(params[:like])
-    like.user = current_user
-    @like.project = Project.find(params[:project_id])
-    @project = like.project
+    @project = Project.find(params[:project_id])
+    @like = Like.new(user: current_user, project: @project)
+    authorize @like
     @like.save
+    redirect_to project_path(@project)
   end
 
-  private
+  def destroy
+  @like.destroy
+  redirect_to project_path(@project)
+  end
 
-  params.require(:like).permit(:user_id, :project_id)
+
+
 
 end

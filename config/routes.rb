@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :projects do
+    get "/like", to: "likes#create", as: "like"
+  end
   devise_for :users
   root to: 'pages#home'
 
