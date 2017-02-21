@@ -1,14 +1,25 @@
-<%= simple_form_for(@project) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :category %>
-    <%= f.input :start_date, type: "text", class: "form-control" %>
-  </div>
+  <%= simple_form_for(@project) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-inputs">
+      <%= f.input :title  %>
+      <%= f.input :description %>
+      <%= f.input :category %>
+        <div class="input-group date" data-provide="datepicker">
+          <input type="text" name="project[start_date]" placeholder="Start date" class="form-control">
+          <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+          </div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+
+
+</div>
+
