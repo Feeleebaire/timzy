@@ -5,6 +5,7 @@
 // External libraries
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datepicker";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -13,3 +14,6 @@
 @import "components/index";
 @import "pages/index";
 @import "vendor/index";
+
+.form-inputs.input-group.date.datepicker{
+    format: "dd/mm/yyyy";}

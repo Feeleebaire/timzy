@@ -1,0 +1,7 @@
+<h1>Hello</h1>
+
+<p>
+  You've been invited to <%= @team.name %> team on Timzy.
+
+  Confirm by <%= link_to "creating your account", new_user_registration_url(:email => @teammate.email)  %>.
+</p>

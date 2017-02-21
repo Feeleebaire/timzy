@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = policy_scope(Project) # Restaurant.all
+    @projects = policy_scope(Project) # project.all
   end
 
   def show
@@ -19,7 +19,8 @@ class ProjectsController < ApplicationController
     authorize(@project)
 
     if @project.save
-      redirect_to @project, notice: 'Your project was successfully created.'
+      redirect_to @project , notice: 'Your project was successfully created.'
+
     else
       render :new
     end
@@ -30,7 +31,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to @project, notice: 'Your project was successfully updated.'
+      redirect_to @project , notice: 'Your project was successfully edited.'
     else
       render :edit
     end

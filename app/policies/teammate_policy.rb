@@ -1,7 +1,7 @@
-class ProjectPolicy < ApplicationPolicy
+class TeammatePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope
     end
   end
 
@@ -31,7 +31,7 @@ class ProjectPolicy < ApplicationPolicy
   private
 
   def is_user_owner_or_admin?
-    record.user == user || record.website.team.admin == user
+    record.user == user || record.website.project.admin = user
   end
 
 end
