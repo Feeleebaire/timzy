@@ -1,18 +1,15 @@
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+<h1><%= @project.title %></h1>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+<br>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user.email %>
-</p>
+ <p><strong>Owner:</strong> <%= @project.user.first_name %>  <%= @project.user.last_name %></p>
+  <p><strong>Description:</strong> <%= @project.description %></p>
+  <p> <strong>Category:</strong> <%= @project.category %></p>
+  <p>  <strong>Start date:</strong> <%= @project.start_date %>  |  <strong>End date:</strong> <%= @project.end_date %></p>
+  <p><strong>Goal:</strong> <%= @project.goal %>  |  <strong>KPI:</strong> <%= @project.kpi %></p>
+  <p><strong>Targeted url:</strong> <%= @project.url_targeted %></p>
 
+<br>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %> |
