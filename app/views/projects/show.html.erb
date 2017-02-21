@@ -12,8 +12,7 @@
 
   <br>
 
-
-<div id="comments">
+  <div id="comments">
   <% if @project.comments.blank? %>
     Be the first to leave a comment for <%= @project.name %>
   <% else %>
@@ -22,6 +21,9 @@
     <% end %>
   <% end %>
 </div>
+
+
+<%= render 'reviews/form', project: @project, comment: @comment %>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
