@@ -14,6 +14,7 @@
 
   <br>
 
+
   <% if policy(@project).update? %>
     <%= link_to 'Edit', edit_project_path(@project) %> |
   <% end %>
@@ -21,19 +22,21 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-
+  <div id="comments">
   <% if @project.comments.blank? %>
-    Be the first to leave a comment for <%= @project.name %>
+    Be the first to leave a comment for <%= @project.title %>
   <% else %>
-    <% @project.comment.each do |review| %>
-      <%= render 'comment/show', comment: comment %>
+    <% @project.comments.each do |comment| %>
+      <%= render 'comments/show', comment: comment %>
     <% end %>
   <% end %>
 
 </div>
 
 
+<%= render 'comments/form', project: @project, comment: @comment %>
+
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %> |
 <%= link_to 'Delete', project_path(@project), method: :delete %> |
-<%= link_to 'Like', project_like_path(@project) %>
