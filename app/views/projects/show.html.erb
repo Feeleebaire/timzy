@@ -13,6 +13,17 @@
   <br>
 
 
+<div id="comments">
+  <% if @project.comments.blank? %>
+    Be the first to leave a comment for <%= @project.name %>
+  <% else %>
+    <% @project.comment.each do |review| %>
+      <%= render 'comment/show', comment: comment %>
+    <% end %>
+  <% end %>
+</div>
+
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %> |
 <%= link_to 'Delete', project_path(@project), method: :delete %> |
