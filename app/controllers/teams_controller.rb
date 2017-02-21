@@ -1,5 +1,7 @@
 class TeamsController < ApplicationController
-
+  def index
+    @teams = policy_scope(Team).order(:name)
+  end
 
   def show
     @team = Team.find(params[:id])
