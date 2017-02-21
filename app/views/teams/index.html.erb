@@ -4,7 +4,7 @@
   <h3> TEAM : <%= team.name %></h3>
   <br>
   <% team.websites.each do |website| %>
-    <p> Website: <%= website.name %></p>
+    <%= link_to website.name, team_website_path(team, website) %>
 
   <% end %>
   <%= link_to "Add a website", new_team_website_path(team) %>

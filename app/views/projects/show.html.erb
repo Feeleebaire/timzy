@@ -1,4 +1,4 @@
-  <%= link_to '<< Back to timeline', projects_path %>
+  <%= link_to '<< Back to timeline', team_website_path(@project.website.team, @project.website) %>
 
 <div class="container">
   <h1><%= @project.title %></h1>
