@@ -9,11 +9,9 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
+    <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <%= render 'shared/verticalnavbar' %>
-    <div class="container">
-      <%= yield %>
-    </div>
+    <%= yield %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>
