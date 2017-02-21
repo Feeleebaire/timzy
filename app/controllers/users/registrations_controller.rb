@@ -10,11 +10,10 @@ before_action :configure_sign_up_params, only: [:create]
   # POST /resource
   def create
     super
-    @email = user.email
-    @teammate = Teammate.where(email: @email)
-    @teammate ? user.team = @teammate.team : nil
-    raise
-    user.save
+    @email = @user.email
+    @teammate = Teammate.find_by_email(@email)
+    @user.save
+    @teammate.update(user: @user) if @teammate
   end
 
   # GET /resource/edit
