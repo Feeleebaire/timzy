@@ -1,22 +1,27 @@
+<div class="container">
+
 <% @projects.each do |project| %>
-<h1><%= project.title %></h1>
+  <h1><%= project.title %></h1>
 
-<br>
+  <br>
 
- <p><strong>Owner:</strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
-  <p><strong>Description:</strong> <%= project.description %></p>
-  <p> <strong>Category:</strong> <%= project.category %></p>
-  <p>  <strong>Start date:</strong> <%= project.start_date %>  |  <strong>End date:</strong> <%= project.end_date %></p>
-  <p><strong>Goal:</strong> <%= project.goal %>  |  <strong>KPI:</strong> <%= project.kpi %></p>
-  <p><strong>Targeted url:</strong> <%= project.url_targeted %></p>
+   <p><strong>Owner:</strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
+    <p><strong>Description:</strong> <%= project.description %></p>
+    <p> <strong>Category:</strong> <%= project.category %></p>
+    <p>  <strong>Start date:</strong> <%= project.start_date %>  |  <strong>End date:</strong> <%= project.end_date %></p>
+    <p><strong>Goal:</strong> <%= project.goal %>  |  <strong>KPI:</strong> <%= project.kpi %></p>
+    <p><strong>Targeted url:</strong> <%= project.url_targeted %></p>
 
-<br>
+  <br>
 
-<%= link_to 'Edit', edit_project_path(project) %> |
-<%= link_to 'Delete', project_path(project), method: :delete %>
+  <%= link_to 'Edit', edit_project_path(project) %> |
+  <%= link_to 'Delete', project_path(project), method: :delete %>
 
-<% end %>
+  <hr>
 
+  <% end %>
+
+</div>
 
 
 
