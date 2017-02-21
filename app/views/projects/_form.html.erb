@@ -1,5 +1,3 @@
-<div class="container">
-
   <%= simple_form_for(@project) do |f| %>
     <%= f.error_notification %>
 
@@ -8,8 +6,9 @@
       <%= f.input :description %>
       <%= f.input :category, collection: ["Communication", "Development","Marketing", "Product", "Sales" ] %>
 
-   <!-- - Start date form - -->
+   <!-- - Date fields flexbox - -->
       <div class="datepicker-container">
+      <!-- - Start date field - -->
         <div class="start-date date-flex-items">
           <label> * Start date</label>
           <div class="input-group date end-date" data-provide="datepicker">
@@ -19,7 +18,7 @@
             </div>
           </div>
         </div>
-           <!-- - End date form - -->
+      <!-- - End date field - -->
         <div class="end-date date-flex-items">
           <label> End date</label>
           <div class="input-group date start-date" data-provide="datepicker">
@@ -31,10 +30,12 @@
         </div>
       </div>
     </div>
+  <!-- - Goal/KPI fields flexbox - -->
     <div class="inline-box-goal-kpi">
       <div class="kpi-goal-item goal-form"> <%= f.input :goal %></div>
       <div class="kpi-goal-item kpi-form"><%= f.input :kpi %></div>
     </div>
+
       <%= f.input :url_targeted, label: "Targeted url" %>
 
 
@@ -45,5 +46,5 @@
   <% end %>
 
 
-</div>
+
 

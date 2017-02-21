@@ -1,6 +1,11 @@
-<h1>New Project</h1>
+<%= link_to '<< Back to project timeline', projects_path %>
 
-<%= render 'form', project: @project %>
+<div class="container">
 
-<%= link_to 'Back', projects_path %>
+  <h1>New Project</h1>
+  <br>
+
+  <%= render 'form', project: @project %>
+
+</div>
 
