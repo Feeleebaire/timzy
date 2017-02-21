@@ -15,7 +15,7 @@ class TeammatesController < ApplicationController
       UserMailer.invitation(@teammate).deliver_now
     end
     if @teammate.save
-      redirect_to root
+      redirect_to teams_path
     else
       render :new
     end

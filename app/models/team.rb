@@ -3,7 +3,7 @@ class Team < ApplicationRecord
   validates :name, presence: true
   #associations
   belongs_to :admin, :class_name => "User"
-  has_many :user, through: :teammates
+  has_many :teammates, dependent: :destroy
   has_many :users, through: :teammates
-  has_many :websites
+  has_many :websites, dependent: :destroy
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :teams, only: [:show, :create, :new] do
+  resources :teams do
     resources :teammates, only: [ :new, :create, :list ]
   end
 
