@@ -1,3 +1,5 @@
+  <%= link_to '<< Back to timeline', projects_path %>
+
 <div class="container">
   <h1><%= @project.title %></h1>
 
@@ -12,6 +14,14 @@
 
   <br>
 
+
+  <% if policy(@project).update? %>
+    <%= link_to 'Edit', edit_project_path(@project) %> |
+  <% end %>
+
+  <% if policy(@project).destroy? %>
+    <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
   <div id="comments">
   <% if @project.comments.blank? %>
     Be the first to leave a comment for <%= @project.title %>
@@ -20,6 +30,7 @@
       <%= render 'comments/show', comment: comment %>
     <% end %>
   <% end %>
+
 </div>
 
 

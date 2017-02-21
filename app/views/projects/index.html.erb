@@ -1,20 +1,23 @@
 <div class="container">
 
-<% @projects.each do |project| %>
-  <h1><%= project.title %></h1>
+  <% @projects.each do |project| %>
+    <h1><%= project.title %></h1>
 
-  <br>
+    <br>
 
-   <p><strong>Owner:</strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
-    <p> <strong>Category:</strong> <%= project.category %></p>
-    <p>  <strong>Start date:</strong> <%= project.start_date %>  |  <strong>End date:</strong> <%= project.end_date %></p>
+     <p><strong>Owner:</strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
+      <p> <strong>Category:</strong> <%= project.category %></p>
+      <p>  <strong>Start date:</strong> <%= project.start_date %>  |  <strong>End date:</strong> <%= project.end_date %></p>
 
-  <br>
-  <%= link_to 'Show all details', project_path(project) %> |
-  <%= link_to 'Edit', edit_project_path(project) %> |
-  <%= link_to 'Delete', project_path(project), method: :delete %>
-
-  <hr>
+    <br>
+    <%= link_to 'Show all details', project_path(project) %> |
+    <% if policy(project).update? %>
+       <%= link_to 'Edit', edit_project_path(project) %> |
+    <% end %>
+    <% if policy(project).destroy? %>
+        <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <hr>
 
   <% end %>
 
