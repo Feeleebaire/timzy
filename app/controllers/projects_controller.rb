@@ -19,7 +19,8 @@ class ProjectsController < ApplicationController
     authorize(@project)
 
     if @project.save
-      redirect_to @project
+      redirect_to @project , notice: 'Your project was successfully created.'
+
     else
       render :new
     end
@@ -30,7 +31,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to @project
+      redirect_to @project , notice: 'Your project was successfully edited.'
     else
       render :edit
     end
@@ -38,7 +39,7 @@ class ProjectsController < ApplicationController
 
    def destroy
     @project.destroy
-    redirect_to projects_url
+    redirect_to projects_url, notice: 'Your project was successfully destroyed.'
   end
 
 
