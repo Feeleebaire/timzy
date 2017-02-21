@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   resources :projects do
-    get "/like", to: "likes#create", as: "like"
-    post "/comment", to: "comments#create"
+    resources :comments, only: [:create, :destroy]
+
+    #get "/like", to: "likes#create", as: "like"
+    #post "/comment", to: "comments#create"
   end
   devise_for :users, controllers: {
         registrations: 'users/registrations'

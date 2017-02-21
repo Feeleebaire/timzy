@@ -6,7 +6,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @review = Review.new
+    @comment = Comment.new
+    #authorize(@project)
   end
 
   def new

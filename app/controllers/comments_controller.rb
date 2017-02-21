@@ -4,6 +4,7 @@ def create
   @project = Project.find(params[:project_id])
   @comment = Comment.new(comment_params)
   @comment.project = @project
+  authorize(@comment)
   if @comment.save
     redirect_to project_path(@project)
   else
@@ -19,7 +20,7 @@ def destroy
 end
 
 private
-def review_params
+def comment_params
     params.require(:comment).permit(:content)
 end
 
