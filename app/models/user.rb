@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   #validations
-  validates :first_name, :last_name, :role,  presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :role, presence: true
   #associations
   has_many :teams, class_name: "Team", :foreign_key =>"admin_id"
   has_many :teammates

@@ -1,0 +1,6 @@
+<%= simple_form_for [@team, @teammate] do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :email%>
+    <%= f.button :submit %>
+<% end %>

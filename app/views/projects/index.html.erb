@@ -1,1 +1,24 @@
+<div class="container">
+
+<% @projects.each do |project| %>
+  <h1><%= project.title %></h1>
+
+  <br>
+
+   <p><strong>Owner:</strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
+    <p> <strong>Category:</strong> <%= project.category %></p>
+    <p>  <strong>Start date:</strong> <%= project.start_date %>  |  <strong>End date:</strong> <%= project.end_date %></p>
+
+  <br>
+  <%= link_to 'Show all details', project_path(project) %> |
+  <%= link_to 'Edit', edit_project_path(project) %> |
+  <%= link_to 'Delete', project_path(project), method: :delete %>
+
+  <hr>
+
+  <% end %>
+
+</div>
+
+
 
