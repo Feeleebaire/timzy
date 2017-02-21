@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
     @team.admin = current_user
     authorize(@team)
     @team.save
-    redirect_to team_path(@team)
+    redirect_to new_team_teammate_path(@team)
   end
 
   private
