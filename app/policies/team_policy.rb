@@ -5,22 +5,25 @@ class TeamPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    is_user_team_member?
+  end
+
   def show?
-    true
+    is_user_team_member?
   end
 
   def new?
-    return true
+    true
   end
 
   def create?
-    return true
+    true
   end
 
   # @project  <=> record
   # current_user <=> user
   def update?
-    # seul le createur d'un projet ou un admin peut le modifier
     is_user_admin?
   end
 
@@ -32,6 +35,10 @@ class TeamPolicy < ApplicationPolicy
 
   def is_user_admin?
     record.admin == user
+  end
+
+  def is_user_team_member?
+    record.users.include? user
   end
 
 end
