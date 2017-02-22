@@ -1,7 +1,9 @@
 module GoogleApi
   class Connector
+    require 'signet/oauth_2/client'
 
-    #attr_accessor :client
+    attr_accessor :client
+
     def initialize(gscope)
       @client = Signet::OAuth2::Client.new(
         authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
@@ -18,9 +20,12 @@ module GoogleApi
     end
 
     def init_refresh_token(authorization_code)
-      @client.update!(code: authorization_code)
+      @client.update!(
+        code: authorization_code,
+        additional_parameters: {"include_granted_scopes" => "true", "access_type" => "offline"}
+      )
       # @client.fetch_access_token!['access_token'] gives you the access token
-      @client.fetch_access_token!['refresh_token']
+      return @client.fetch_access_token!['refresh_token']
     end
 
     def reauthorize!(refresh_token)

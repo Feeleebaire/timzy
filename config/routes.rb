@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     resources :projects, only: [ :new, :create ]
     member do
       get '/authorise', to: 'oauth#authorise'
-      get '/oauth2callback', to: 'oauth#callback'
     end
   end
+
+  get '/oauth2callback', to: 'oauth#callback'
 
 
   resources :projects, only: [ :show, :edit, :update, :destroy] do

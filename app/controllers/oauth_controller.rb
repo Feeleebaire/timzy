@@ -10,10 +10,12 @@ class OauthController < ApplicationController
   def callback
     @team = Team.find(session[:g_api_team_id])
     session[:g_api_team_id] = nil
+
     if params[:code]
       @client = GoogleApi::Connector.new("https://www.googleapis.com/auth/analytics.readonly")
       refresh_token = @client.init_refresh_token(params[:code])
-      @team.update(refresh_token: refresh_token)
+      @team.update(refresh_token: refresh_token) if refresh_token
+      binding.pry
       redirect_to team_path(@team)
     end
   end
