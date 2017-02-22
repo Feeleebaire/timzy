@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @projects = @team.projects
     authorize(@team)
   end
 
@@ -58,7 +59,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :admin_id)
+    params.require(:team).permit(:name, :url_targeted, :admin_id)
   end
 
   def set_team
