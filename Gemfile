@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem "pundit"
+gem "omniauth-google-oauth2"
 gem 'google-api-client', '~> 0.9'
 
 gem 'sass-rails'
