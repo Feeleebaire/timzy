@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   def show
     @comment = Comment.new
     authorize(@project)
+    @ga = GoogleApi::Analytics.new(@project.team)
   end
 
   def new
