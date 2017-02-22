@@ -23,21 +23,20 @@
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 
-
+  <hr>
   <!-- LES COMMENTAIRES SUR LE PROJETS -->
+  <h4>Comments</h4>
   <div id="comments">
-  <% if @project.comments.blank? %>
-    Be the first to leave a comment for <%= @project.title %>
-  <% else %>
-    <% @project.comments.each do |comment| %>
-      <%= render 'comments/show', comment: comment %>
+    <% if @project.comments.blank? %>
+      Be the first to leave a comment for <%= @project.title %>
+    <% else %>
+      <% @project.comments.each do |comment| %>
+        <%= render 'comments/show', comment: comment %>
+      <% end %>
     <% end %>
-  <% end %>
-
-</div>
+  </div>
 
 
 <%= render 'comments/form', project: @project, comment: @comment %>
 
-
-
+</div>
