@@ -3,4 +3,4 @@ class AddAnalyticsIdToTeams < ActiveRecord::Migration[5.0]
     add_column :teams, :url_targeted, :string
     add_reference :teams, :analytic, foreign_key: true
   end
-e
+end
