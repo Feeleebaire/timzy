@@ -1,7 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [ :show, :edit, :update, :destroy ]
   skip_after_action :verify_policy_scoped, only: :index
-  require 'services/google_api_connect'
   def index
     @teams = current_user.teams
   end
