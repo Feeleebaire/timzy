@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222095310) do
+ActiveRecord::Schema.define(version: 20170222152754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,12 +68,13 @@ ActiveRecord::Schema.define(version: 20170222095310) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "name"
     t.integer  "admin_id"
     t.string   "url_targeted"
     t.integer  "analytic_id"
+    t.string   "refresh_token"
     t.index ["admin_id"], name: "index_teams_on_admin_id", using: :btree
     t.index ["analytic_id"], name: "index_teams_on_analytic_id", using: :btree
   end
