@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220173521) do
+ActiveRecord::Schema.define(version: 20170222095310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20170220173521) do
     t.string   "category"
     t.string   "url_targeted"
     t.integer  "user_id"
-    t.integer  "website_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "team_id"
+    t.index ["team_id"], name: "index_projects_on_team_id", using: :btree
     t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
-    t.index ["website_id"], name: "index_projects_on_website_id", using: :btree
   end
 
   create_table "teammates", force: :cascade do |t|
@@ -68,11 +68,14 @@ ActiveRecord::Schema.define(version: 20170220173521) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "name"
     t.integer  "admin_id"
+    t.string   "url_targeted"
+    t.integer  "analytic_id"
     t.index ["admin_id"], name: "index_teams_on_admin_id", using: :btree
+    t.index ["analytic_id"], name: "index_teams_on_analytic_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,26 +98,14 @@ ActiveRecord::Schema.define(version: 20170220173521) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "websites", force: :cascade do |t|
-    t.string   "name"
-    t.string   "url"
-    t.integer  "analytic_id"
-    t.integer  "team_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["analytic_id"], name: "index_websites_on_analytic_id", using: :btree
-    t.index ["team_id"], name: "index_websites_on_team_id", using: :btree
-  end
-
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "projects"
   add_foreign_key "likes", "users"
+  add_foreign_key "projects", "teams"
   add_foreign_key "projects", "users"
-  add_foreign_key "projects", "websites"
   add_foreign_key "teammates", "teams"
   add_foreign_key "teammates", "users"
+  add_foreign_key "teams", "analytics"
   add_foreign_key "teams", "users", column: "admin_id"
-  add_foreign_key "websites", "analytics"
-  add_foreign_key "websites", "teams"
 end
