@@ -8,12 +8,13 @@ Rails.application.routes.draw do
 
   resources :teams do
     resources :teammates, only: [ :new, :create, :list ]
-    resources :websites do
-       resources :projects, only: [ :new, :create ] do
-          resources :comments, only: [ :new, :create, :destroy]
-        end
-      end
+    resources :projects, only: [ :new, :create ]
   end
 
-  resources :projects, only: [ :show, :edit, :update, :destroy]
+  resources :projects, only: [ :show, :edit, :update, :destroy] do
+       resources :comments, only: [ :new, :create, :destroy]
+  end
+
+  resources :comments, only: [ :index, :edit, :update, :destroy]
+
 end
