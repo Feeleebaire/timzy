@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   #validations
-  validates :name,:url_targeted, presence: true
+  validates :name, presence: true
+  validates :url_targeted, presence: true
   #associations
   belongs_to :admin, :class_name => "User"
   has_many :teammates, dependent: :destroy

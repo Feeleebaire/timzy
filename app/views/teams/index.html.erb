@@ -1,12 +1,12 @@
 <h1>My Teams</h1>
 
-<% @teams.each do |team| %>
-  <h3> TEAM : <%= team.name %></h3>
-  <br>
-  <% team.websites.each do |website| %>
-    <%= link_to website.name, team_website_path(team, website) %>
-
+  <% @teams.each do |team| %>
+    <h3> TEAM : <%= team.name %></h3>
+    <p><%= team.url_targeted %></p>
+    <br>
+    <p><%= link_to "See the team timeline", team_path(team) %>
+    </p>
   <% end %>
-  <%= link_to "Add a website", new_team_website_path(team) %>
-<% end %>
+
+<%= link_to "Add a new team", new_team_path %>
 
