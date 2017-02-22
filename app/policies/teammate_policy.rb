@@ -31,7 +31,7 @@ class TeammatePolicy < ApplicationPolicy
   private
 
   def is_user_owner_or_admin?
-    record.user == user || record.website.project.admin = user
+    record.user == user || record.project.admin = user
   end
 
 end
