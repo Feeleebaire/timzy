@@ -1,18 +1,19 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  skip_after_action :verify_policy_scoped, only: :index
 
   def index
-    @projects = policy_scope(Project) # project.all
+    @team = Team.find(params[:id])
+
   end
 
   def show
     @comment = Comment.new
-    #authorize(@project)
+    authorize(@project)
   end
 
   def new
     @project = Project.new
-    @website = Website.find(params[:website_id])
     @team = Team.find(params[:team_id])
     authorize(@project)
   end
@@ -20,13 +21,12 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user = current_user
-    @website = Website.find(params[:website_id])
     @team = Team.find(params[:team_id])
-    @project.website = @website
+    @project.team = @team
     authorize(@project)
 
     if @project.save
-      redirect_to team_website_path(@team, @website) , notice: 'Your project was successfully created.'
+      redirect_to team_path(@team) , notice: 'Your project was successfully created.'
     else
       render :new
     end
@@ -37,22 +37,23 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to @project , notice: 'Your project was successfully updated.'
+      redirect_to project_path(@project) , notice: 'Your project was successfully updated.'
     else
       render :edit
     end
   end
 
    def destroy
+    @team = Team.find(params[:team_id])
     @project.destroy
-    redirect_to projects_url, notice: 'Your project was successfully destroyed.'
+    redirect_to team_path(@team), notice: 'Your project was successfully destroyed.'
   end
 
 
 private
 
   def project_params
-    params.require(:project).permit(:title, :description, :start_date, :end_date, :goal, :kpi, :url_targeted, :category, :user_id, :website_id)
+    params.require(:project).permit(:title, :description, :start_date, :end_date, :goal, :kpi, :url_targeted, :category, :user_id, :team_id)
   end
 
 end

@@ -3,8 +3,6 @@
   <% @projects.each do |project| %>
     <h1><%= project.title %></h1>
 
-    <br>
-
      <p><strong>Owner:</strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
       <p> <strong>Category:</strong> <%= project.category %></p>
       <p>  <strong>Start date:</strong> <%= project.start_date %>  |  <strong>End date:</strong> <%= project.end_date %></p>
@@ -21,7 +19,7 @@
 
   <% end %>
 
-<%= link_to 'Create a project', new_team_website_project_path(params[:team_id], params[:id]) %>
+<%= link_to 'Create a project', new_team_project_path(@team) %>
 
 </div>
 

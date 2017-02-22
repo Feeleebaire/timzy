@@ -1,4 +1,4 @@
-  <%= link_to '<< Back to timeline', team_website_path(@project.website.team, @project.website) %>
+  <%= link_to '<< Back to timeline', team_path(@project.team) %>
 
 <div class="container">
   <h1><%= @project.title %></h1>
@@ -40,6 +40,4 @@
 <%= render 'comments/form', project: @project, comment: @comment %>
 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %> |
-<%= link_to 'Delete', project_path(@project), method: :delete %> |
+
