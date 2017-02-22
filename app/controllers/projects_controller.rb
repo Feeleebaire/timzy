@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
   end
 
    def destroy
-    @team = Team.find(params[:team_id])
+    @team = Project.find(params[:id]).team
     @project.destroy
     redirect_to team_path(@team), notice: 'Your project was successfully destroyed.'
   end

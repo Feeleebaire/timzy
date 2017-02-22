@@ -1,4 +1,4 @@
-<%= link_to '<< Back to project timeline', team_path %>
+<%= link_to '<< Back to project timeline', team_path(@project.team) %>
 
 <div class="container">
 
@@ -18,7 +18,7 @@
         <div class="start-date date-flex-items">
           <label> * Start date</label>
           <div class="input-group date end-date" data-provide="datepicker">
-            <input type="text" name="project[start_date]" placeholder="dd/mm/yyyy" class="form-control">
+            <input type="text" name="project[start_date]" value="<%= @project.start_date%>" placeholder="dd/mm/yyyy" class="form-control">
             <div class="input-group-addon">
             <span class="glyphicon glyphicon-th"></span>
             </div>
@@ -28,7 +28,7 @@
         <div class="end-date date-flex-items">
           <label> End date</label>
           <div class="input-group date start-date" data-provide="datepicker">
-            <input type="text" name="project[end_date]" placeholder="dd/mm/yyyy" class="form-control">
+            <input type="text" name="project[end_date]" value="<%= @project.end_date%>" placeholder="dd/mm/yyyy" class="form-control">
             <div class="input-group-addon">
             <span class="glyphicon glyphicon-th"></span>
             </div>
