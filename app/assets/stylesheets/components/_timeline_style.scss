@@ -18,19 +18,22 @@ html * {
   background-color: #e9f0f5;
 }
 
-#timeline a {
+#mother-timeline {
+  position: relative;
+}
+
+#mother-timeline a {
   color: #acb7c0;
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
 }
 
-#timeline img {
+#mother-timeline img {
   max-width: 100%;
 }
 
-#timeline h1, h2 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+#mother-timeline h1, h2 {
+ font-family: 'Heebo', sans-serif;
 }
 
 /* --------------------------------
@@ -56,6 +59,37 @@ Modules - reusable parts of our design
 Main components
 
 -------------------------------- */
+/*#btn-create-project{
+ display:block;
+  width:100px;
+  height:100px;
+  line-height:20px;
+  border-radius: 50%;
+  background: #2B414D;
+  box-shadow: 0 3px 0 #d7e4ed;
+  z-index: 50;
+  position: absolute;
+  position: relative;
+  top: 150px;
+  right: 50px;
+}
+
+#btn-create-project:hover{
+  box-shadow: 2px 4px 1px #D3E0E7;
+}
+
+#btn-create-project a{
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Heebo', sans-serif;
+  font-size: 15px;
+  position : relative;
+  top:20px;
+  left:20px;
+  }*/
+
+
 header {
   height: 50px;
   line-height: 50px;
@@ -65,8 +99,7 @@ header {
 header h1 {
   color: white;
   line-height: 50px;
-  font-size: 1.5rem;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 @media only screen and (min-width: 1170px) {
   header {
@@ -75,7 +108,7 @@ header h1 {
   }
   header h1 {
     font-size: 24px;
-    font-size: 1.75rem;
+    font-size: 2rem;
     line-height: 100px;
   }
 }
@@ -268,6 +301,8 @@ header h1 {
 }
 
 .cd-timeline-content .cd-timeline-infos {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:lighter;
   width: 80%;
 }
 
@@ -322,7 +357,7 @@ padding : 0 5px;
   }
   .cd-timeline-content p {
     font-size: 20px;
-    font-size: 1.10rem;
+    font-size: 1.30rem;
   }
   .cd-timeline-content .cd-date {
     font-size: 14px;

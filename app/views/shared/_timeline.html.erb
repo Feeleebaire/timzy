@@ -1,22 +1,18 @@
 
-<div id="timeline">
+<div id="mother-timeline">
 
-<header>
-  <h1><%= @team.name %> timeline</h1>
-</header>
+  <div id="btn-create-project"> <%= link_to 'Create a project', new_team_project_path(@team) %> </div>
 
-<!-- Still to do :
-- find out where modernizr is called
-- Replace dots icons
-- Display button to create new card on top of the page
-- link color to Category and create classes accordingly? (see hetml generator exercise)
--->
+  <header>
+    <h1><%= @team.name %> timeline</h1>
+  </header>
 
-<section id="cd-timeline" class="cd-container">
+  <!-- Still to do :
+  - find out where modernizr is called
+  - Display button to create new card on top of the page
+  -->
 
-
-<!-- Display cd-timeline-block according to previous methode -->
-
+  <section id="cd-timeline" class="cd-container">
 
  <% @projects.order("start_date desc").each do |project| %>
 
