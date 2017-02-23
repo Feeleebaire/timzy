@@ -19,7 +19,7 @@ class OauthController < ApplicationController
       # on affecte le refresh_token a l'admin (current_user)
       current_user.update(refresh_token: refresh_token) if refresh_token
       # raise
-      redirect_to  team_path(@team)
+      redirect_to edit_team_path(@team)
     end
   end
 end

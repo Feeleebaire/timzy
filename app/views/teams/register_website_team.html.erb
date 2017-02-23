@@ -20,3 +20,7 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<% @accounts.each do |account| %>
+<%= account.id %>
+<% end %>

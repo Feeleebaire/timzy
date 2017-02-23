@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   get '/oauth2callback', to: 'oauth#callback'
 
-
   resources :projects, only: [ :show, :edit, :update, :destroy] do
        resources :comments, only: [ :new, :create, :destroy]
   end
