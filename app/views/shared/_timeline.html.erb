@@ -6,16 +6,13 @@
 </header>
 
 <!-- Still to do :
-- clean-up classes and indentation
+- Make cards clickable instead of " Show all details"
 - find out where modernizr is called
-- check css vs scss
-- remove unused classes, replace dots icons
-- Start team talk on what's shown on cards > Owner for ex?
+- Replace dots icons
 - Display button to create new card on top of the page
 - link color to Category and create classes accordingly? (see hetml generator exercise)
-- Change date format
 - Display from closer in time (top) to later in time (bottom)
-- Make cards clickable instead of " Show all details"
+
 
 -->
 
@@ -33,10 +30,10 @@
 <!-- Buttons edit /destroy, shown or not according to user's access-->
          <div class="cd-icons">
           <% if policy(project).update? %>
-             <%= link_to edit_project_path(project) do %> <i class="fa fa-pencil" aria-hidden="true"> </i>
+             <%= link_to edit_project_path(project) do %>  <i class="fa fa-pencil" aria-hidden="true"> </i>
             <% end %>
+            |
           <% end %>
-          |
           <% if policy(project).destroy? %>
             <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' } do %>
             <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -46,9 +43,9 @@
 
         <div class="cd-timeline-title"><%= project.title %></div>
 
-        <p><strong>Owner: </strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
+        <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
 
-        <p> <strong>Category: </strong> <%= project.category %></p>
+        <p> <strong>Category : </strong>  <%= project.category %></p>
 
 <!-- Date display/ on card or on timeline, depends of device size -->
         <span class="cd-date"><%= project.start_date.strftime("%d %h %Y") %> </span>

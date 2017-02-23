@@ -253,6 +253,9 @@ header h1 {
   display: table;
   clear: both;
 }
+.cd-timeline-content:hover{
+  box-shadow: 2px 4px 1px #D3E0E7;
+}
 
 /*card title*/
 .cd-timeline-content .cd-timeline-title{
@@ -315,7 +318,7 @@ padding : 0 5px;
   }
   .cd-timeline-content .cd-date {
     font-size: 14px;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 }
 @media only screen and (min-width: 1170px) {
