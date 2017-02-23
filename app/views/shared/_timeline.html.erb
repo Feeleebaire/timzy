@@ -21,24 +21,24 @@
  <% @projects.each do |project| %>
 
    <div class="cd-timeline-block">
-<!-- Make card clickable to access the project show -->
       <div class="cd-timeline-img cd-sales">
       </div> <!-- close cd-timeline-img -->
-
+      <!-- Flexbox element to host cd-timeline-infos and cd-icons (obj : push cd-icons to right edge of the card) -->
       <div class="cd-timeline-content">
-<!-- Buttons edit /destroy, shown or not according to user's access-->
- <div class="cd-timeline-infos">
-        <%= link_to project_path(project) do %>
+        <!-- Buttons edit /destroy, shown or not according to user's access-->
+        <div class="cd-timeline-infos">
+          <!-- Make card clickable to access the project show -->
+          <%= link_to project_path(project) do %>
 
-          <div class="cd-timeline-title"><%= project.title %></div>
+            <div class="cd-timeline-title"><%= project.title %></div>
 
-          <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
+            <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
 
-          <p> <strong>Category : </strong>  <%= project.category %></p>
+            <p> <strong>Category : </strong>  <%= project.category %></p>
 
-  <!-- Date display/ on card or on timeline, depends of device size -->
-          <span class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></span>
-        <% end %> <!-- close link to make card clickable-->
+            <!-- Date display/ on card or on timeline, depends of device size -->
+            <span class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></span>
+          <% end %> <!-- close link to make card clickable-->
         </div>
 
          <div class="cd-icons">
@@ -55,13 +55,10 @@
         </div>  <!-- close cd-icons -->
 
       </div> <!-- close cd-timeline-content -->
-    </div><!-- close cd-timeline-block -->
+    </div> <!-- close cd-timeline-block -->
   <% end %>
 
 </section> <!-- close cd-timeline -->
 
 </div> <!-- id timeline -->
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="app/assets/javascripts/timeline_main.js"></script> <!-- Resource jQuery -->
 

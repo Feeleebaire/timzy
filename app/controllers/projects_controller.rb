@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
 
   def index
     @team = Team.find(params[:id])
-
   end
 
   def show
