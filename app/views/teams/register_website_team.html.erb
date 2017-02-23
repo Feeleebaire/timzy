@@ -1,0 +1,22 @@
+<h1> Add Google Analytics Account to <%= @team.name %> </h1>
+
+
+<%= simple_form_for(@team) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :accountid %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :webproprietyid %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :view_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
