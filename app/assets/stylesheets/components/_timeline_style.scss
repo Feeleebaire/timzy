@@ -153,15 +153,24 @@ header h1 {
   margin-left: -12px;
   margin-top: -12px;
 }
+
+/*COLORS FOR PROJECT CATEGORIES*/
+.cd-timeline-img.cd-communication {
+  background: #EE7738;
+}
+.cd-timeline-img.cd-development {
+  background: #00DDC2;
+}
 .cd-timeline-img.cd-marketing {
-  background: #65AFFF;
+  background: #CE4158;
 }
 .cd-timeline-img.cd-product {
-  background: #CE4158;
+  background: #65AFFF;
 }
 .cd-timeline-img.cd-sales {
   background: #F4D35E;
 }
+
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
     width: 60px;

@@ -6,14 +6,10 @@
 </header>
 
 <!-- Still to do :
-- Make cards clickable instead of " Show all details"
 - find out where modernizr is called
 - Replace dots icons
 - Display button to create new card on top of the page
 - link color to Category and create classes accordingly? (see hetml generator exercise)
-- Display from closer in time (top) to later in time (bottom)
-
-
 -->
 
 <section id="cd-timeline" class="cd-container">
@@ -25,7 +21,8 @@
  <% @projects.order("start_date desc").each do |project| %>
 
    <div class="cd-timeline-block">
-      <div class="cd-timeline-img cd-sales">
+      <div class="cd-timeline-img cd-<%= project.category.downcase %>">
+
       </div> <!-- close cd-timeline-img -->
       <!-- Flexbox element to host cd-timeline-infos and cd-icons (obj : push cd-icons to right edge of the card) -->
       <div class="cd-timeline-content">
@@ -38,7 +35,6 @@
 
             <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
 
-            <p> <strong>Category : </strong>  <%= project.category %></p>
 
             <!-- Date display/ on card or on timeline, depends of device size -->
             <span class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></span>
