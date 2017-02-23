@@ -13,7 +13,15 @@ class ProjectsController < ApplicationController
     @ga = GoogleApi::Analytics.new(@project.team.admin)
     @service = @ga.service
     @datas = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date")
-    #@datatable= @data.datatable
+    @array = @datas.rows
+    @graph = []
+    @array.each do |data|
+      hash = {}
+      hash[:x] = data[0]
+      hash[:y] = data[1]
+      @graph << hash
+    end
+
   end
 
   def new
