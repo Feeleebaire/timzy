@@ -2,13 +2,18 @@
 
 <%= render "form" %>
 
-<% @accounts.items.each do |account|%>
-<%= account.name %>
-<% end %>
-
 
 <%= simple_form_for @team do |f| %>
-<%= f.input :accountid, collection: @accounts.items %>
+  <%= f.input :accountid, collection: @accounts.items %>
+  <% unless @team.accountid.blank? %>
+    <%= f.input :webproprietyid, collection: @webprops.items %>
+  <% else %>
+    <%= f.input :webproprietyid, value: nil, as: :hidden %>
+  <% end %>
+  <% if !@team.accountid.blank? && !@team.webproprietyid.blank? %>
+    <%= f.input :view_id, collection: @views.items %>
+  <% else %>
+      <%= f.input :view_id, value: nil, as: :hidden %>
+  <% end %>
+  <%= f.submit %>
 <% end %>
-
-

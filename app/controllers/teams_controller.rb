@@ -34,13 +34,15 @@ class TeamsController < ApplicationController
     @ga = GoogleApi::Analytics.new(@team.admin)
     @service = @ga.service
     @accounts = @service.list_accounts
-    @accounts_id = []
+    @webprops = @service.list_web_properties(@team.accountid) unless @team.accountid.blank?
+    @views = @service.list_profiles(@team.accountid, @team.webproprietyid) if !@team.accountid.blank? && !@team.webproprietyid.blank?
     authorize(@team)
   end
 
   def update
+    authorize(@team)
     if @team.update(team_params)
-      redirect_to team_path(@team)
+      redirect_to edit_team_path(@team)
     else
       render :edit
     end
@@ -60,7 +62,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :url_targeted, :admin_id)
+    params.require(:team).permit(:name, :url_targeted, :admin_id, :accountid, :webproprietyid, :view_id)
   end
 
   def set_team
