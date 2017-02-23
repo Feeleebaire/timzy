@@ -18,7 +18,11 @@
 
 <section id="cd-timeline" class="cd-container">
 
- <% @projects.each do |project| %>
+
+<!-- Display cd-timeline-block according to previous methode -->
+
+
+ <% @projects.order("start_date desc").each do |project| %>
 
    <div class="cd-timeline-block">
       <div class="cd-timeline-img cd-sales">
@@ -61,4 +65,5 @@
 </section> <!-- close cd-timeline -->
 
 </div> <!-- id timeline -->
+
 

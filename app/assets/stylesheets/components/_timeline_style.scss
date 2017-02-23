@@ -273,19 +273,15 @@ header h1 {
 }
 .cd-timeline-content .cd-date {
   display: inline-block;
+  float: left;
+  padding: .8em 0;
+  opacity: .7;
 }
 
 /*card owner and category*/
 .cd-timeline-content p {
   margin: 1em 0;
   line-height: 1.6;}
-
-
-.cd-timeline-content .cd-date {
-  float: left;
-  padding: .8em 0;
-  opacity: .7;
-}
 
 .cd-timeline-content .cd-icons {
   opacity: .7;
@@ -339,7 +335,7 @@ padding : 0 5px;
   .cd-timeline-content .cd-date {
     position: absolute;
     width: 100%;
-    left: 122%;
+    left: 55%;
     top: 6px;
     font-size: 16px;
     font-size: 1.5rem;
@@ -359,7 +355,7 @@ padding : 0 5px;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
     left: auto;
-    right: 122%;
+    right: 55%;
     text-align: right;
   }
   .cssanimations .cd-timeline-content.is-hidden {
