@@ -11,6 +11,7 @@ gem 'redis'
 gem "pundit"
 gem "omniauth-google-oauth2"
 gem 'google-api-client', '~> 0.9'
+gem 'chart-js-rails'
 
 gem 'sass-rails'
 gem 'jquery-rails'
