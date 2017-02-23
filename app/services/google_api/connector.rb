@@ -22,7 +22,7 @@ module GoogleApi
     def init_refresh_token(authorization_code)
       @client.update!(
         code: authorization_code,
-        additional_parameters: {"include_granted_scopes" => "true", "access_type" => "offline"}
+        # additional_parameters: {"include_granted_scopes" => "true", "access_type" => "offline"}
       )
       # @client.fetch_access_token!['access_token'] gives you the access token
       return @client.fetch_access_token!['refresh_token']
