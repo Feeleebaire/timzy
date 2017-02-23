@@ -241,7 +241,8 @@ header h1 {
   }
 }
 .cd-timeline-content {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   margin-left: 60px;
   background: white;
   border-radius: 0.25em;
@@ -255,6 +256,10 @@ header h1 {
 }
 .cd-timeline-content:hover{
   box-shadow: 2px 4px 1px #D3E0E7;
+}
+
+.cd-timeline-content.cd-timeline-infos{
+    flex-grow: 1;
 }
 
 /*card title*/
@@ -273,8 +278,7 @@ header h1 {
 /*card owner and category*/
 .cd-timeline-content p {
   margin: 1em 0;
-  line-height: 1.6;
-}
+  line-height: 1.6;}
 
 
 .cd-timeline-content .cd-date {
@@ -284,7 +288,7 @@ header h1 {
 }
 
 .cd-timeline-content .cd-icons {
-  float: right;
+  align-self: flex-end;
   opacity: .7;
 }
 
@@ -333,7 +337,6 @@ padding : 0 5px;
     border-color: transparent;
     border-left-color: white;
   }
-
   .cd-timeline-content .cd-date {
     position: absolute;
     width: 100%;
