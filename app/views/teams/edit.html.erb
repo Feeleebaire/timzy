@@ -1,3 +1,14 @@
 <h1>Update your team</h1>
 
 <%= render "form" %>
+
+<% @accounts.items.each do |account|%>
+<%= account.name %>
+<% end %>
+
+
+<%= simple_form_for @team do |f| %>
+<%= f.input :accountid, collection: @accounts.items %>
+<% end %>
+
+

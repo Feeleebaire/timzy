@@ -32,8 +32,9 @@ class TeamsController < ApplicationController
 
   def edit
     @ga = GoogleApi::Analytics.new(@team.admin)
-    @service = @ga.service.list_account_summaries
-    @accounts = @ga.list_account_summaries
+    @service = @ga.service
+    @accounts = @service.list_accounts
+    @accounts_id = []
     authorize(@team)
   end
 
