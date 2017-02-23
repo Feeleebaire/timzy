@@ -11,6 +11,9 @@ class ProjectsController < ApplicationController
     @comment = Comment.new
     authorize(@project)
     @ga = GoogleApi::Analytics.new(@project.team.admin)
+    @service = @ga.service
+    @datas = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date")
+    #@datatable= @data.datatable
   end
 
   def new
@@ -25,7 +28,6 @@ class ProjectsController < ApplicationController
     @team = Team.find(params[:team_id])
     @project.team = @team
     authorize(@project)
-
     if @project.save
       redirect_to team_path(@team) , notice: 'Your project was successfully created.'
     else
