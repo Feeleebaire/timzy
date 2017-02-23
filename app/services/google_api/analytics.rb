@@ -6,6 +6,10 @@ module GoogleApi
       @service = init_service(user.refresh_token)
     end
 
+    def service
+      @service
+    end
+
     private
 
     def init_service(refresh_token)
