@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
     @team.teammates.build(user: current_user, email: current_user.email)
     if @team.save
       redirect_to authorise_team_path(@team)
-      #account_summaries = service.list_account_summaries
+      # account_summaries = service.list_account_summaries
       # @teammate = Teammate.new(user_id: current_user.id, team_id: @team.id, email: current_user.email)
       # redirect_to new_team_teammate_path(@team)
     else
@@ -31,12 +31,18 @@ class TeamsController < ApplicationController
   end
 
   def edit
+    @ga = GoogleApi::Analytics.new(@team.admin)
+    @service = @ga.service
+    @accounts = @service.list_accounts
+    @webprops = @service.list_web_properties(@team.accountid) unless @team.accountid.blank?
+    @views = @service.list_profiles(@team.accountid, @team.webproprietyid) if !@team.accountid.blank? && !@team.webproprietyid.blank?
     authorize(@team)
   end
 
   def update
+    authorize(@team)
     if @team.update(team_params)
-      redirect_to team_path(@team)
+      redirect_to edit_team_path(@team)
     else
       render :edit
     end
@@ -47,10 +53,16 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
+ # def register_website_team
+    #team = Team.find(params[:team_id])
+   # @service = GoogleApi::Analytics.new(current_user).init_service(team.admin.refresh_token)
+    #@accounts = @service.list_account_summaries
+ # end
+
   private
 
   def team_params
-    params.require(:team).permit(:name, :url_targeted, :admin_id)
+    params.require(:team).permit(:name, :url_targeted, :admin_id, :accountid, :webproprietyid, :view_id)
   end
 
   def set_team
