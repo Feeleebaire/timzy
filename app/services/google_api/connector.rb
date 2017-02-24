@@ -11,7 +11,7 @@ module GoogleApi
         client_id: ENV['OAUTH_CLIENT_ID'],
         client_secret: ENV['OAUTH_CLIENT_SECRET'],
         scope: gscope,
-        redirect_uri: 'http://localhost:3000/oauth2callback'
+        redirect_uri: ENV['REDIRECT_URI']
       )
     end
 
