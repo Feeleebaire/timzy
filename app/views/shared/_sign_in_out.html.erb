@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 
-    <div>
-      <%= link_to destroy_user_session_path, method: :delete, class: "sign-out-link" do %>
+    <div class="sign-out-link">
+      <%= link_to destroy_user_session_path, method: :delete do %>
         <%= t(".sign_out", default: "Log out") %>
       <% end %>
 
@@ -10,9 +10,9 @@
 
 <% else %>
 
-   <div>
+   <div class="sign-in-link">
     <!-- Login text link -->
-    <%= link_to new_user_session_path, class: "sign-in-link" do %>
+    <%= link_to new_user_session_path do %>
     <%= t(".sign_in", default: "Login") %>
     <% end %>
   </div>
