@@ -1,4 +1,35 @@
-/* -------------------------------------
- * CSS code specific to home page
- * (margin/padding adjustments)
- * ------------------------------------- */
+.sign-in-link, .sign-out-link{
+  position:absolute;
+  top:15px;
+  right: 30px;
+}
+
+
+.sign-in-link a{
+  color: white;
+  font-size : 20px;
+  font-family: "Heebo", sans-serif;
+  font-weight: normal;
+  padding-bottom: 40px;
+
+}
+
+.sign-in-link a:hover{
+  text-decoration : none;
+  color: #F4D35E;
+}
+
+
+.sign-out-link a{
+  color: white;
+  font-size : 20px;
+  font-family: "Heebo", sans-serif;
+  font-weight: normal;
+  padding-bottom: 40px;
+
+}
+
+.sign-out-link a:hover{
+  text-decoration : none;
+  color: #F4D35E;
+}
