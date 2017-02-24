@@ -44,12 +44,6 @@
 </div>
 
 
-<h1>TEST DATA</h1>
-
-
-<% @datas.rows.each do |data| %>
-  <%= data%>
-<% end %>
 
 
  <!-- LE GRAPH DU PROJETS -->
@@ -60,7 +54,7 @@
       new Chart($("#myChartproject"), {
           type: 'line',
           data: {
-              labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+              labels: ["August", "September", "October", "November", "December", "January"],
               datasets: [{
                   label: 'Unique Visitors',
                   data: <%= raw @graph.to_json %>,
