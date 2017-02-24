@@ -1,8 +1,7 @@
 <%= link_to '<< Back to project timeline', team_path(@project.team) %>
 
-<div class="container">
-
-  <h1>Update <%= @project_title %></h1>
+<div class="form-container">
+  <h1>Update your project <%= @project_title %></h1>
   <br>
     <%= simple_form_for(@project) do |f| %>
     <%= f.error_notification %>
@@ -48,6 +47,6 @@
       <%= f.button :submit %>
     </div>
   <% end %>
-
-
 </div>
+
+
