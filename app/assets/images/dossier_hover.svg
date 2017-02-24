@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>dossier_hover</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon_navbar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dossier_hover">
+            <path d="M0,24 C0,37.2337237 10.7663022,48 23.9999422,48 C37.2335822,48 48,37.2337237 48,23.9998845 C48.0001155,10.7662763 37.2335822,0 23.9999422,0 C10.7664178,0 0,10.7662763 0,24 Z" id="Shape" fill="#2B414D"></path>
+            <path d="M27.2830189,18.1499049 L27.2830189,10.5249841 L34.9245283,18.1499049 L27.2830189,18.1499049 Z M29.4440377,9 L15.0566038,9 C13.3708868,9 12,10.3694358 12,12.0499683 L12,36.4497146 C12,38.1302471 13.3708868,39.4996829 15.0566038,39.4996829 L33.3962264,39.4996829 C35.0819434,39.4996829 36.4528302,38.1302471 36.4528302,36.4497146 L36.4528302,15.9935773 L29.4440377,9 Z" id="Fill-891" fill="#456678"></path>
+        </g>
+    </g>
+</svg>

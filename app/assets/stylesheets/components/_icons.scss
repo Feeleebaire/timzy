@@ -1,86 +1,43 @@
-.icon-Connections .path1:before {
-  content: "\e909";
-  color: #000;
+#members {
+  background: asset-url("members.svg") no-repeat center;
 }
-.icon-Connections .path2:before {
-  content: "\e90a";
-  color: #fff;
-  margin-left: -1em;
+
+#members:hover {
+  background: asset-url("members_hover.svg") no-repeat center;
 }
-.icon-Connections .path3:before {
-  content: "\e90b";
-  color: #fff;
-  margin-left: -1em;
+
+#search {
+  background: asset-url("recherche.svg") no-repeat center;
 }
-.icon-Connections .path4:before {
-  content: "\e90c";
-  color: #fff;
-  margin-left: -1em;
+
+#search:hover {
+  background: asset-url("recherche_hover.svg") no-repeat center;
 }
-.icon-Connections .path5:before {
-  content: "\e90d";
-  color: #fff;
-  margin-left: -1em;
+
+#connection {
+  background: asset-url("Connections.svg") no-repeat center;
 }
-.icon-Connections .path6:before {
-  content: "\e90e";
-  color: #fff;
-  margin-left: -1em;
+
+#connection:hover {
+  background: asset-url("Connections_hover.svg") no-repeat center;
 }
-.icon-Connections .path7:before {
-  content: "\e90f";
-  color: #fff;
-  margin-left: -1em;
+
+#dossier {
+  background: asset-url("dossier.svg") no-repeat center;
 }
-.icon-dossier .path1:before {
-  content: "\e907";
-  color: #000;
+
+#dossier:hover {
+  background: asset-url("dossier_hover.svg") no-repeat center;
 }
-.icon-dossier .path2:before {
-  content: "\e908";
-  color: #fff;
-  margin-left: -1em;
+
+#logo_svg{
+  background: asset-url("logo_svg.svg") no-repeat center;
+  -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
 }
-.icon-Connections .path1:before {
-  content: "\e909";
-  color: #000;
-}
-.icon-Connections .path2:before {
-  content: "\e90a";
-  color: #fff;
-  margin-left: -1em;
-}
-.icon-Connections .path3:before {
-  content: "\e90b";
-  color: #fff;
-  margin-left: -1em;
-}
-.icon-Connections .path4:before {
-  content: "\e90c";
-  color: #fff;
-  margin-left: -1em;
-}
-.icon-Connections .path5:before {
-  content: "\e90d";
-  color: #fff;
-  margin-left: -1em;
-}
-.icon-Connections .path6:before {
-  content: "\e90e";
-  color: #fff;
-  margin-left: -1em;
-}
-.icon-Connections .path7:before {
-  content: "\e90f";
-  color: #fff;
-  margin-left: -1em;
-}
-.icon-recherche .path1:before {
-  content: "\e910";
-  color: #000;
-}
-.icon-recherche .path2:before {
-  content: "\e911";
-  color: #fff;
-  margin-left: -1em;
+
+#logo_svg:hover {
+  background: asset-url("logo_svg_hover.svg") no-repeat center;
+    -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
