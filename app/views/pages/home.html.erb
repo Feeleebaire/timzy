@@ -1,4 +1,6 @@
+<%= render "shared/sign_in_out" %>
 <div class="banner">
+
   <div class="banner-title">
     <h1>Timzy</h1>
   <div class="text-typed">
@@ -12,8 +14,11 @@
     <div class="second"></div>
     <div class="center"></div>
   </div>
+
   <div class="cta">
-  <a class="btn-cta">Sign up</a>
+    <%= link_to new_user_registration_path do %>
+    <div class="btn-cta">Sign up</div>
+    <%end%>
   </div>
   </div>
 </div>

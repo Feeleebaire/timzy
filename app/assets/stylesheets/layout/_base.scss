@@ -9,16 +9,17 @@
   border: 2px solid #CE4158;
 }
 
-
 .btn-cta:hover {
   border-radius: 4px;
-  background-color: #CE4158;
+  background-color: #C1424A;
   color: white;
   font-size: 24px;
   font-weight: bold;
-  border: 2px solid #CE4158;
+  border: 2px solid #C1424A;
 }
-
+.cta a:hover{
+  text-decoration: none;
+}
 
 .btn-create {
   padding: 10px 20px;
@@ -53,5 +54,7 @@
 }
 
 .form-container h1{
-  color: #00DDC2;
+  color: #65AFFF;
 }
+
+
