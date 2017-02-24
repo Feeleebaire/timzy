@@ -32,8 +32,12 @@
 
 #logo_svg{
   background: asset-url("logo_svg.svg") no-repeat center;
+  -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
 }
 
 #logo_svg:hover {
   background: asset-url("logo_svg_hover.svg") no-repeat center;
+    -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
