@@ -32,7 +32,6 @@
 
 
                 <!-- Date display/ on card or on timeline, depends of device size -->
-                <span class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></span>
               <% end %> <!-- close link to make card clickable-->
             </div>
 
@@ -47,7 +46,8 @@
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 <% end %>
               <% end %>
-            </div>  <!-- close cd-icons -->
+            </div>
+            <div class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></div>  <!-- close cd-icons -->
 
           </div> <!-- close cd-timeline-content -->
         </div> <!-- close cd-timeline-block -->
