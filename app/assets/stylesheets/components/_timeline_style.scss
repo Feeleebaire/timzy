@@ -198,6 +198,10 @@ font-size : 20px;
   background: #F4D35E;
 }
 
+.cd-timeline-content.bounce-in {
+  position: relative;
+}
+
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
     width: 60px;
@@ -373,7 +377,7 @@ padding : 0 5px;
   .cd-timeline-content .cd-date {
     position: absolute;
     width: 100%;
-    left: 55%;
+    left: 122%;
     top: 6px;
     font-size: 16px;
     font-size: 1.5rem;
@@ -393,7 +397,7 @@ padding : 0 5px;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
     left: auto;
-    right: 55%;
+    right: 122%;
     text-align: right;
   }
   .cssanimations .cd-timeline-content.is-hidden {
