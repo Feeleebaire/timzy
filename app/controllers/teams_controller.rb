@@ -8,6 +8,16 @@ class TeamsController < ApplicationController
   def show
     @projects = @team.projects
     authorize(@team)
+    @ga = GoogleApi::Analytics.new(@team.admin)
+    @service = @ga.service
+    @datas = @service.get_ga_data("ga:#{@team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date")
+    big_array = @datas.rows
+    @array_clean = big_array.map do |array|
+        array[1]
+    end
+    @array_date = big_array.map do |array|
+      array[0]
+    end
   end
 
   def new
