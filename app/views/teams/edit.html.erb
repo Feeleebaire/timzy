@@ -1,10 +1,14 @@
-<div class="form-container"></div>
-  <h1>Update your team</h1>
-
-  <%= render "form" %>
-
+<div class="form-container">
+  <h1>Setup your team</h1>
 
   <%= simple_form_for @team do |f| %>
+    <div class="form-inputs">
+      <%= f.input :name %>
+    </div>
+
+    <div class="form-inputs hidden">
+      <%= f.input :url_targeted %>
+    </div>
     <%= f.input :accountid, collection: @accounts.items %>
     <% unless @team.accountid.blank? %>
       <%= f.input :webproprietyid, collection: @webprops.items %>
@@ -19,3 +23,4 @@
     <%= f.submit %>
   <% end %>
 </end>
+</div>
