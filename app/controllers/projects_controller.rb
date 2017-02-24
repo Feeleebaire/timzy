@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     authorize(@project)
     @ga = GoogleApi::Analytics.new(@project.team.admin)
     @service = @ga.service
-    @datas = @service.get_ga_data("ga:#{@project.team.view_id}", "200daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @datas = @service.get_ga_data("ga:#{@project.team.view_id}", "250daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
     @array = @datas.rows
     @graph = []
     @array.each do |data|
