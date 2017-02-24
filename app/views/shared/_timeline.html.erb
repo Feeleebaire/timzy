@@ -6,9 +6,10 @@
   <header>
     <h1><%= @team.name %> timeline</h1>
   </header>
-   <div class="btn-create">
-  <%= link_to "Add a project", new_team_project_path(@team) %>
-  </div>
+
+  <%= link_to new_team_project_path(@team) do %>
+  <div class="btn-create">Add a project</div>
+  <%end%>
 
   <!-- Still to do :
   - find out where modernizr is called

@@ -5,12 +5,12 @@
   color: white;
   font-size: 24px;
   font-weight: bold;
+  font-family : 'Heebo', sans-serif;
   border: 2px solid #CE4158;
 }
 
 
 .btn-cta:hover {
-  padding: 10px 50px;
   border-radius: 4px;
   background-color: #CE4158;
   color: white;
@@ -21,21 +21,21 @@
 
 
 .btn-create {
-  padding: 10px 50px;
+  padding: 10px 20px;
   border-radius: 4px;
   background-color: #65AFFF;
   color: white;
   font-size: 24px;
   font-weight: bold;
+  font-family : 'Heebo', sans-serif;
   border: 2px solid #65AFFF;
 }
 
 .btn-create:hover{
-  padding: 10px 50px;
   border-radius: 4px;
-  background-color: #65AFFF;
+  background-color: #4099FF;
   color: white;
   font-size: 24px;
   font-weight: bold;
-  border: 2px solid #65AFFF;
+  border: 2px solid #4099FF;
 }
