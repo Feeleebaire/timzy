@@ -12,14 +12,16 @@
    <link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:300,400,700|Heebo:400,500,700' rel='stylesheet' type='text/css'>
   </head>
 
-  <body>
+  <body class="sidebar">
     <%= render 'shared/flashes' %>
 
-    <%= render 'shared/verticalnavbar' %>
-      <%= yield %>
+      <!-- <div class="flex-main-1"> -->
+        <%= render 'shared/verticalnavbar' %>
+     <!--   </div> -->
 
-    <%= javascript_include_tag 'application' %>
-    <%= yield(:after_js) %>
+          <%= yield %>
+          <%= javascript_include_tag 'application' %>
+          <%= yield(:after_js) %>
   </body>
 </html>
 
