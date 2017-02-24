@@ -14,10 +14,10 @@
 
   <body>
     <%= render 'shared/flashes' %>
+
     <%= render 'shared/verticalnavbar' %>
-    <div class="container">
       <%= yield %>
-    </div>
+
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js) %>
   </body>
