@@ -1,10 +1,27 @@
-<div class="home-title text-center">
-  <h1>Timezy</h1>
-  <p>Here. Big next Revolution for companies</p>
-</div>
+<%= render "shared/sign_in_out" %>
+<div class="banner">
+
+  <div class="banner-title">
+    <h1>Timzy</h1>
+  <div class="text-typed">
+    <br>
+    TEST
+    <br>
+  </div>
+  <br>
   <div class="clock">
     <div class="hour"></div>
     <div class="second"></div>
     <div class="center"></div>
   </div>
+
+  <div class="cta">
+    <%= link_to new_user_registration_path do %>
+    <div class="btn-cta">Sign up</div>
+    <%end%>
+  </div>
+  </div>
+</div>
+
+
 

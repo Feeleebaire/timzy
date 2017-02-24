@@ -4,13 +4,23 @@ class ProjectsController < ApplicationController
 
   def index
     @team = Team.find(params[:id])
-
   end
 
   def show
     @comment = Comment.new
     authorize(@project)
     @ga = GoogleApi::Analytics.new(@project.team.admin)
+    @service = @ga.service
+    @datas = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date")
+    @array = @datas.rows
+    @graph = []
+    @array.each do |data|
+      hash = {}
+      hash[:x] = data[0]
+      hash[:y] = data[1]
+      @graph << hash
+    end
+
   end
 
   def new
@@ -25,7 +35,6 @@ class ProjectsController < ApplicationController
     @team = Team.find(params[:team_id])
     @project.team = @team
     authorize(@project)
-
     if @project.save
       redirect_to team_path(@team) , notice: 'Your project was successfully created.'
     else

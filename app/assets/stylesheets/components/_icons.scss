@@ -1,0 +1,47 @@
+#members {
+  background: asset-url("members.svg") no-repeat center;
+}
+
+#members:hover {
+  background: asset-url("members_hover.svg") no-repeat center;
+  transition-duration: 0.2s;
+}
+
+#search {
+  background: asset-url("recherche.svg") no-repeat center;
+}
+
+#search:hover {
+  background: asset-url("recherche_hover.svg") no-repeat center;
+  transition-duration: 0.2s;
+}
+
+#connection {
+  background: asset-url("Connections.svg") no-repeat center;
+}
+
+#connection:hover {
+  background: asset-url("Connections_hover.svg") no-repeat center;
+  transition-duration: 0.2s;
+}
+
+#dossier {
+  background: asset-url("dossier.svg") no-repeat center;
+}
+
+#dossier:hover {
+  background: asset-url("dossier_hover.svg") no-repeat center;
+  transition-duration: 0.2s;
+}
+
+#logo_svg{
+  background: asset-url("logo_svg.svg") no-repeat center;
+  -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+#logo_svg:hover {
+  background: asset-url("logo_svg_hover.svg") no-repeat center;
+    -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}

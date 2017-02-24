@@ -14,26 +14,27 @@ html * {
   box-sizing: border-box;
 }
 
-body {
-  font-size: 100%;
-  font-family: "Droid Serif", serif;
-  color: #7f8c97;
+ body {
   background-color: #e9f0f5;
 }
 
-a {
+#mother-timeline {
+
+}
+
+#mother-timeline a {
   color: #acb7c0;
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
 }
 
-img {
+#mother-timeline img {
   max-width: 100%;
 }
 
-h1, h2 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+#mother-timeline h1, h2 {
+ font-family: 'Heebo', sans-serif;
+ margin: 0px;
 }
 
 /* --------------------------------
@@ -54,21 +55,23 @@ Modules - reusable parts of our design
   clear: both;
 }
 
+
 /* --------------------------------
 
 Main components
 
 -------------------------------- */
+
 header {
   height: 50px;
   line-height: 50px;
   text-align: center;
-  background: #303e49;
+  background: #2B414D;
 }
 header h1 {
   color: white;
-  font-size: 18px;
-  font-size: 1.125rem;
+  line-height: 50px;
+  font-size: 1.75rem;
 }
 @media only screen and (min-width: 1170px) {
   header {
@@ -77,8 +80,31 @@ header h1 {
   }
   header h1 {
     font-size: 24px;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    line-height: 100px;
   }
+}
+
+#mother-timeline .btn-create{
+float : right;
+margin : 25px 0;
+color: white;
+box-shadow: 0 3px 0 #d7e4ed;
+font-size : 20px;
+font-weight: normal;
+border: none;
+z-index: 50px;
+}
+
+#mother-timeline .btn-create:hover{
+box-shadow: 2px 4px 1px #D3E0E7;
+}
+
+#mother-timeline .btn-create a{
+display: inline-block;
+text-decoration:none;
+color: white;
+font-size : 20px;
 }
 
 #cd-timeline {
@@ -154,15 +180,24 @@ header h1 {
   margin-left: -12px;
   margin-top: -12px;
 }
-.cd-timeline-img.cd-picture {
-  background: #75ce66;
+
+/*COLORS FOR PROJECT CATEGORIES*/
+.cd-timeline-img.cd-communication {
+  background: #EE7738;
 }
-.cd-timeline-img.cd-movie {
-  background: #c03b44;
+.cd-timeline-img.cd-development {
+  background: #00DDC2;
 }
-.cd-timeline-img.cd-location {
-  background: #f0ca45;
+.cd-timeline-img.cd-marketing {
+  background: #CE4158;
 }
+.cd-timeline-img.cd-product {
+  background: #65AFFF;
+}
+.cd-timeline-img.cd-sales {
+  background: #F4D35E;
+}
+
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
     width: 60px;
@@ -242,7 +277,8 @@ header h1 {
   }
 }
 .cd-timeline-content {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   margin-left: 60px;
   background: white;
   border-radius: 0.25em;
@@ -254,35 +290,50 @@ header h1 {
   display: table;
   clear: both;
 }
-.cd-timeline-content h2 {
-  color: #303e49;
+.cd-timeline-content:hover{
+  box-shadow: 2px 4px 1px #D3E0E7;
 }
-.cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-  font-size: 13px;
-  font-size: 0.8125rem;
+
+.cd-timeline-content .cd-timeline-infos {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:lighter;
+  width: 80%;
 }
-.cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-  display: inline-block;
-}
-.cd-timeline-content p {
-  margin: 1em 0;
-  line-height: 1.6;
-}
-.cd-timeline-content .cd-read-more {
-  float: right;
-  padding: .8em 1em;
-  background: #acb7c0;
-  color: white;
-  border-radius: 0.25em;
-}
-.no-touch .cd-timeline-content .cd-read-more:hover {
-  background-color: #bac4cb;
+
+/*card title*/
+.cd-timeline-content .cd-timeline-title{
+    color: #303e49;
+  }
+
+.cd-timeline-content p, .cd-timeline-content .cd-date {
+  font-size: 20px;
+  font-size: 0.2rem;
 }
 .cd-timeline-content .cd-date {
+  display: inline-block;
   float: left;
   padding: .8em 0;
   opacity: .7;
 }
+
+/*card owner and category*/
+.cd-timeline-content p {
+  margin: 1em 0;
+  line-height: 1.6;}
+
+.cd-timeline-content .cd-icons {
+  opacity: .7;
+}
+
+.cd-timeline-content .cd-icons .fa {
+font-size: 18px;
+padding : 0 5px;
+}
+
+.cd-timeline-content .cd-icons .fa:hover {
+ color:#2B414D;
+}
+
 .cd-timeline-content::before {
   content: '';
   position: absolute;
@@ -299,12 +350,12 @@ header h1 {
     font-size: 1.25rem;
   }
   .cd-timeline-content p {
-    font-size: 16px;
-    font-size: 1rem;
+    font-size: 20px;
+    font-size: 1.30rem;
   }
-  .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+  .cd-timeline-content .cd-date {
     font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 1.2rem;
   }
 }
 @media only screen and (min-width: 1170px) {
@@ -319,16 +370,13 @@ header h1 {
     border-color: transparent;
     border-left-color: white;
   }
-  .cd-timeline-content .cd-read-more {
-    float: left;
-  }
   .cd-timeline-content .cd-date {
     position: absolute;
     width: 100%;
-    left: 122%;
+    left: 55%;
     top: 6px;
     font-size: 16px;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content {
     float: right;
@@ -345,7 +393,7 @@ header h1 {
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
     left: auto;
-    right: 122%;
+    right: 55%;
     text-align: right;
   }
   .cssanimations .cd-timeline-content.is-hidden {

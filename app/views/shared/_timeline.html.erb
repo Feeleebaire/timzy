@@ -1,48 +1,62 @@
 
+<div id="mother-timeline">
   <header>
     <h1><%= @team.name %> timeline</h1>
   </header>
+  <div class="container">
+  <%= link_to new_team_project_path(@team) do %>
+  <div class="btn-create">Add a project</div>
+  <%end%>
 
-<!-- Still to do :
-- clean-up classes and indentation
-- find out where modernizr is called
-- check css vs scss
-- remove unused classes, replace dots icons
-- Start team talk on what's shown on cards > Owner for ex?
-- Make title banner smaller
-- Display button to create new card on top of the page
-- link color to Category and create classes accordingly?
-- Change date format
-- Display from closer in time (top) to later in time (bottom)
-- Make cards clickable instead of " Show all details"
+  <!-- Still to do :
+  - find out where modernizr is called
+  - Display button to create new card on top of the page
+  -->
 
--->
+  <section id="cd-timeline" class="cd-container">
 
-<section id="cd-timeline" class="cd-container">
+ <% @projects.order("start_date desc").each do |project| %>
 
- <% @projects.each do |project| %>
- <div class="cd-timeline-block">
-    <div class="cd-timeline-img cd-picture">
-      </div> <!-- cd-timeline-img -->
+   <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-<%= project.category.downcase %>">
+
+      </div> <!-- close cd-timeline-img -->
+      <!-- Flexbox element to host cd-timeline-infos and cd-icons (obj : push cd-icons to right edge of the card) -->
       <div class="cd-timeline-content">
-        <h2><%= project.title %></h2>
-        <p><strong>Owner:</strong> <%= project.user.first_name %>  <%= project.user.last_name %></p>
-      <p> <strong>Category:</strong> <%= project.category %></p>
-      <%= link_to 'Show all details', project_path(project) %> |
-    <% if policy(project).update? %>
-       <%= link_to 'Edit', edit_project_path(project) %> |
-    <% end %>
-    <% if policy(project).destroy? %>
-        <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
+        <!-- Buttons edit /destroy, shown or not according to user's access-->
+        <div class="cd-timeline-infos">
+          <!-- Make card clickable to access the project show -->
+          <%= link_to project_path(project) do %>
 
-        <span class="cd-date"><%= project.start_date.strftime("%d %h %Y") %> </span>
-      </div> <!-- cd-timeline-content -->
-    <!-- cd-timeline-block -->
-    </div>
-    <% end %>
+            <div class="cd-timeline-title"><%= project.title %></div>
 
-  </section> <!-- cd-timeline -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="app/assets/javascripts/timeline_main.js"></script> <!-- Resource jQuery -->
+            <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
+
+
+            <!-- Date display/ on card or on timeline, depends of device size -->
+            <span class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></span>
+          <% end %> <!-- close link to make card clickable-->
+        </div>
+
+         <div class="cd-icons">
+          <% if policy(project).update? %>
+             <%= link_to edit_project_path(project) do %>  <i class="fa fa-pencil" aria-hidden="true"> </i>
+            <% end %>
+            |
+          <% end %>
+          <% if policy(project).destroy? %>
+            <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </div>  <!-- close cd-icons -->
+
+      </div> <!-- close cd-timeline-content -->
+    </div> <!-- close cd-timeline-block -->
+  <% end %>
+
+</section> <!-- close cd-timeline -->
+
+</div> <!-- id timeline -->
+</div>
 

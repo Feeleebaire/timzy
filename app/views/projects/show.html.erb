@@ -1,6 +1,6 @@
+<div class="container">
   <%= link_to '<< Back to timeline', team_path(@project.team) %>
 
-<div class="container">
   <h1><%= @project.title %></h1>
 
   <br>
@@ -22,7 +22,9 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-
+<div class="chart-project">
+<canvas id="myChartproject"></canvas>
+</div>
   <hr>
   <!-- LES COMMENTAIRES SUR LE PROJETS -->
   <h4>Comments</h4>
@@ -42,3 +44,55 @@
 </div>
 
 
+<h1>TEST DATA</h1>
+
+
+<% @datas.rows.each do |data| %>
+  <%= data%>
+<% end %>
+
+
+ <!-- LE GRAPH DU PROJETS -->
+
+<%= content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+      new Chart($("#myChartproject"), {
+          type: 'line',
+          data: {
+              labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+              datasets: [{
+                  label: 'Unique Visitors',
+                  data: <%= raw @graph.to_json %>,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255,99,132,1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
+              }
+          }
+      });
+    });
+  </script>
+<% end %>

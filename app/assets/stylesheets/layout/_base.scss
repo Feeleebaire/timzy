@@ -1,0 +1,60 @@
+.btn-cta {
+  padding: 10px 50px;
+  border-radius: 4px;
+  background-color: #CE4158;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  font-family : 'Heebo', sans-serif;
+  border: 2px solid #CE4158;
+}
+
+.btn-cta:hover {
+  border-radius: 4px;
+  background-color: #C1424A;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #C1424A;
+}
+.cta a:hover{
+  text-decoration: none;
+}
+
+.btn-create {
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #65AFFF;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  font-family : 'Heebo', sans-serif;
+  border: 2px solid #65AFFF;
+}
+
+.btn-create:hover{
+  border-radius: 4px;
+  background-color: #4099FF;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #4099FF;
+}
+
+// Forms are not responsive > code to-be-updated
+// Buttons for form to update too
+.form-container{
+  width: 40%;
+  background-color: white;
+  padding : 1px 25px 25px 25px;
+  border-radius: 4px;
+  margin-top: 20px;
+  position : absolute;
+  left : 30%;
+}
+
+.form-container h1{
+  color: #65AFFF;
+}
+
+
