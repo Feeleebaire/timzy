@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'ecoico';
+  src:url('../fonts/ecoico.eot');
+  src:url('../fonts/ecoico.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ecoico.woff') format('woff'),
+    url('../fonts/ecoico.ttf') format('truetype'),
+    url('../fonts/ecoico.svg#ecoico') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .cbp-vimenu {
   position: fixed;
   overflow: hidden;
