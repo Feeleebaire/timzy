@@ -1,8 +1,9 @@
 <div class="form-container">
+
   <h1>Setup your team</h1>
 
   <%= simple_form_for @team do |f| %>
-    <div class="form-inputs">
+    <div class="form-inputs hidden">
       <%= f.input :name %>
     </div>
 
@@ -23,4 +24,11 @@
     <%= f.submit %>
   <% end %>
 </end>
+<br>
+<br>
+<br>
+<% if @team.view_id %>
+<%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
+<% end %>
+
 </div>
