@@ -1,8 +1,10 @@
-<div class="container">
-  <div class="chart-project">
-    <canvas id="myChartindex"></canvas>
+ <div class="bloc">
+  <div class="fixed">
+    <div class="chart-project">
+      <canvas id="myChartindex"></canvas>
+      </div>
+    </div>
   </div>
-</div>
  <%= render 'shared/timeline' %>
 
  <!-- LE GRAPH DU PROJETS -->
@@ -12,21 +14,21 @@
     $(document).ready(function() {
       new Chart($("#myChartindex"), {
           type: 'bar',
+          responsive: true,
+          maintainAspectRatio: false,
           data: {
               labels: <%= raw @array_date.to_json %>,
               datasets: [{
                   label: 'Unique Visitors',
-                  backgroundColor:
-                      '#00DDC2',
-
-                  borderColor:
-                      '#00DDC2',
-
+                  backgroundColor:'#00DDC2',
+                  borderColor:'#00DDC2',
                   data: <%= raw @array_clean.to_json %>,
                   borderWidth: 1
               }]
           },
           options: {
+                responsive: true,
+                maintainAspectRatio: false,
               scales: {
                   yAxes: [{
                       ticks: {
