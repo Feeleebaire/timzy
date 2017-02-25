@@ -1,7 +1,9 @@
  body {
   background-color: #F7F6F5;
 }
-
+p {
+ font-weight: 300;
+}
 .sidebar{
   margin-left: 70px;
   width: calc(100vw - 70px);
@@ -13,7 +15,7 @@
   background-color: #CE4158;
   color: white;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
   font-family : 'Heebo', sans-serif;
   border: 2px solid #CE4158;
 }
