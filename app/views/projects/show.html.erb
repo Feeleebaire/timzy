@@ -1,7 +1,7 @@
 <div class="container">
   <%= link_to '<< Back to timeline', team_path(@project.team) %>
 
-  <h1><%= @project.title %></h1>
+  <h1><%= @project.title %> Overview</h1>
 
   <br>
 
@@ -22,7 +22,7 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-<div class="chart-project">
+<div class="chart-project-detail">
 <canvas id="myChartproject"></canvas>
 </div>
   <hr>
