@@ -1,4 +1,15 @@
-.chart-project{
-  width: 100%;
-  height: 40%;
+.chart-project {
+  height: 300px;
+}
+
+.bloc{
+  height: 300px;
+  margin-right: auto
+}
+
+.fixed {
+   position: fixed;
+   overflow-y: auto;
+   background-color: white;
+   width: 95%;
 }
