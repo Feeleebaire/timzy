@@ -11,11 +11,11 @@
           </div>
         <% if !user_signed_in? %>
             <%= link_to new_user_registration_path do %>
-            <div class="btn-cta">Sign up</div>
+            <div class="btn-cta-home">Sign up</div>
           <%end%>
         <% else %>
             <%= link_to new_team_path do %>
-            <div class="btn-cta">Create a team</div>
+            <div class="btn-cta-home">Create a team</div>
           <%end%>
         <% end %>
         </div>
@@ -28,6 +28,15 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="home-description">
+    <br>
+    <br>
+      <p> A simple tool to track all actions taken on your web projects and understand their impacts, within seconds ! </p>
     </div>
   </div>
 </div>
