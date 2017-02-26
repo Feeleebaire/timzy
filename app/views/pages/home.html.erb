@@ -1,27 +1,29 @@
 <%= render "shared/sign_in_out" %>
 <div class="bg-color">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-7 col-lg-6">
-        <div class="banner-title">
-          <h1>Timzy</h1>
+  <div class="section-first">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-lg-6">
+          <div class="banner-title">
+            <h1>Timzy</h1>
+          </div>
+        <% if !user_signed_in? %>
+            <%= link_to new_user_registration_path do %>
+            <div class="btn-cta">Sign up</div>
+          <%end%>
+        <% else %>
+            <%= link_to new_team_path do %>
+            <div class="btn-cta">Create a team</div>
+          <%end%>
+        <% end %>
         </div>
-      <% if !user_signed_in? %>
-          <%= link_to new_user_registration_path do %>
-          <div class="btn-cta">Sign up</div>
-        <%end%>
-      <% else %>
-          <%= link_to new_team_path do %>
-          <div class="btn-cta">Create a team</div>
-        <%end%>
-      <% end %>
-      </div>
-    <br>
-      <div class="col-xs-12 col-md-7 col-lg-6">
-        <div class="clock">
-          <div class="hour"></div>
-          <div class="second"></div>
-          <div class="center"></div>
+      <br>
+        <div class="col-xs-12 col-md-7 col-lg-6">
+          <div class="clock">
+            <div class="hour"></div>
+            <div class="second"></div>
+            <div class="center"></div>
+          </div>
         </div>
       </div>
     </div>
