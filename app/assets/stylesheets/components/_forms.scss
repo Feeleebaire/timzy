@@ -8,12 +8,33 @@
   margin-top: 20px;
   position : absolute;
   left : 10%;
+  .control-label{
+  font-weight: lighter;
+  font-family: "Open Sans", sans-serif;
+  }
+  .help-block{
+    font-style: italic;
+  }
+  .btn-default{
+    width : 50%;
+    background-color: #65AFFF;
+    padding: 10px 50px;
+    border-radius: 4px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    font-family : 'Heebo', sans-serif;
+    border-style: none;
+    text-align : center;
+    margin-top :10px;
+  }
 }
 
 .form-container h1{
   font-size: 25px;
   color: #4D5052;
   font-family: "Heebo", sans-serif;
+  margin-bottom: 15px;
 }
 
 
@@ -26,12 +47,19 @@
   border-radius: 4px;
   line-height: 25px;
   color: #4D5052;
-  font-weight: lighter;
   h2 {
     font-family: "Heebo", sans-serif;
     font-size: 25px;
     text-align: center;
+    margin-top: 20px;
     margin-bottom: 15px;
+  }
+  .control-label{
+  font-weight: lighter;
+  font-family: "Open Sans", sans-serif;
+  }
+  .help-block{
+    font-style: italic;
   }
   .btn-form {
     width : 100%;
@@ -43,6 +71,7 @@
     font-weight: bold;
     font-family : 'Heebo', sans-serif;
     margin-bottom : 20px;
+    border-style: none;
   }
 }
 

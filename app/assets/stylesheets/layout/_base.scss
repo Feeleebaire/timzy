@@ -9,7 +9,7 @@ p {
   width: calc(100vw - 70px);
 }
 
-.btn-cta {
+.btn-cta, .btn-cta-home {
   padding: 12px 35px;
   text-align: center;
   text-decoration: none;
@@ -24,7 +24,7 @@ p {
   border: 2px solid #CE4158;
 }
 
-.btn-cta:hover {
+.btn-cta:hover, .btn-cta-home:hover {
   padding: 12px 35px;
   text-align: center;
   text-decoration: none;
@@ -37,6 +37,10 @@ p {
   font-weight: 700;
   font-family : 'Heebo', sans-serif;
   border: 2px solid #CE4158;
+}
+
+.btn-cta-home {
+margin-top:40px;
 }
 
 .cta a:hover{
