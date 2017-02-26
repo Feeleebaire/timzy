@@ -43,9 +43,27 @@
  padding-top: 70px;
 }
 
-.home-description{
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
-  font-size: 20px;
-  line-height: 40px;
+.explain-content{
+  height: 350px;
+  background-color: white;
 }
+.illu-explain{
+  height: 220px;
+}
+.who-content{
+  height: 300px;
+  background-color: #F7F6F5;
+}
+
+#logowahou{
+ background: asset-url("logo_wahou.svg") no-repeat center;
+}
+
+
+.title-content h2{
+  padding: 20px;
+  color: #2B414D;
+  text-align: center;
+  font-weight: 900;
+  }
+
