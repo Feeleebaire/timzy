@@ -1,34 +1,50 @@
 <%= render "shared/sign_in_out" %>
-<div class="banner">
-
-  <div class="banner-title">
-    <h1>Timzy</h1>
-  <div class="text-typed">
-    <br>
-    NEXT PROJECT MANAGEMENT ANALYSIS REVOLUTION
-    <br>
-  </div>
-  <br>
-  <div class="clock">
-    <div class="hour"></div>
-    <div class="second"></div>
-    <div class="center"></div>
-  </div>
-  <% if !user_signed_in? %>
-      <div class="cta">
-        <%= link_to new_user_registration_path do %>
-          <div class="btn-cta">Sign up</div>
-        <%end%>
-      </div>
-    <% else %>
-        <div class="cta">
-          <%= link_to new_team_path do %>
+<div class="bg-color">
+  <div class="section-first">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-lg-6">
+          <div class="banner-title">
+            <h1>Timzy</h1>
+            <p>Amazing tool for all:
+            <span class="text-typed typed"></span></p>
+          </div>
+        <% if !user_signed_in? %>
+            <%= link_to new_user_registration_path do %>
+            <div class="btn-cta">Sign up</div>
+          <%end%>
+        <% else %>
+            <%= link_to new_team_path do %>
             <div class="btn-cta">Create a team</div>
           <%end%>
+        <% end %>
         </div>
-  <% end %>
+      <br>
+        <div class="col-xs-12 col-md-7 col-lg-6">
+          <div class="clock">
+            <div class="hour"></div>
+            <div class="second"></div>
+            <div class="center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- Typed form JS -->
+<%= content_for(:after_js) do %>
 
+  <script>
+  $(document).ready(function(){
+      $(".typed").typed({
+        strings: ["DEVELOPERS", "MARKETERS", "FOUNDERS", "GEEKS", "GROWTH HACKERS"],
+        startDelay: 2000,
+        typeSpeed: 90,
+        backSpeed: 90,
+        backDelay: 1000
+      });
+  });
+  </script>
+<% end %>
 

@@ -10,7 +10,11 @@ p {
 }
 
 .btn-cta {
-  padding: 10px 50px;
+  padding: 12px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
   border-radius: 4px;
   background-color: #CE4158;
   color: white;
@@ -21,14 +25,20 @@ p {
 }
 
 .btn-cta:hover {
+  padding: 12px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
   border-radius: 4px;
-  background-color: #C1424A;
+  background-color: #CE4158;
   color: white;
   font-size: 24px;
-  font-weight: bold;
-  border: 2px solid #C1424A;
-  text-decoration: none;
+  font-weight: 700;
+  font-family : 'Heebo', sans-serif;
+  border: 2px solid #CE4158;
 }
+
 .cta a:hover{
   text-decoration: none;
 }
