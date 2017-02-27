@@ -1,19 +1,28 @@
 <div class="container">
   <%= link_to '<< Back to timeline', team_path(@project.team) %>
 
+
+<!-- DESCRIPTION DU  PROJETS -->
+
   <h1><%= @project.title %> Overview</h1>
 
   <br>
-
-   <p><strong>Owner:</strong> <%= @project.user.first_name %>  <%= @project.user.last_name %></p>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <p><strong>Owner:</strong> <%= @project.user.first_name %>  <%= @project.user.last_name %></p>
     <p><strong>Description:</strong> <%= @project.description %></p>
     <p> <strong>Category:</strong> <%= @project.category %></p>
     <p>  <strong>Start date:</strong> <%= @project.start_date %>  |  <strong>End date:</strong> <%= @project.end_date %></p>
     <p><strong>Goal:</strong> <%= @project.goal %>  |  <strong>KPI:</strong> <%= @project.kpi %></p>
     <p><strong>Targeted url:</strong> <%= @project.url_targeted %></p>
-
+  </div>
+  <div class="col-xs-12 col-md-6 text-center">
+    <p>ICI LES PERFS</p>
+  </div>
+</div>
   <br>
 
+  <!-- LES POLICIES SUR LE PROJETS -->
 
   <% if policy(@project).update? %>
     <%= link_to 'Edit', edit_project_path(@project) %> |
@@ -22,8 +31,47 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
+  <!-- LA CHART CUSTOM METRIC DU PROJETS -->
+<h2>Custom metric</h2>
+
+<h2>Basics metrics</h2>
 <div class="chart-project-detail">
-<canvas id="myChartproject"></canvas>
+  <div class="text-center">
+    <h3>Sessions</h3>
+  </div>
+  <canvas id="myChartprojectsession"></canvas>
+</div>
+ <!-- LES CHARTS LINES BASICS METRIC DU PROJETS -->
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="text-center">
+      <h3>Pages views</h3>
+    </div>
+    <div class="chart-pageview">
+      <canvas id="myChartprojectpv"></canvas>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="text-center">
+      <h3>Unique Visitors</h3>
+    </div>
+    <div class="chart-session">
+      <canvas id="myChartprojectuv"></canvas>
+    </div>
+  </div>
+</div>
+ <!-- LES CHARTS DONUTS BASICS METRIC DU PROJETS -->
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="chart-bouncerate">
+      <canvas id="myChartprojectbr"></canvas>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="chart-newvsold">
+      <canvas id="myChartprojectnv"></canvas>
+    </div>
+  </div>
 </div>
   <hr>
   <!-- LES COMMENTAIRES SUR LE PROJETS -->
@@ -46,18 +94,18 @@
 
 
 
- <!-- LE GRAPH DU PROJETS -->
+ <!-- LE GRAPH CUSTOM METRIC DU PROJETS -->
 
 <%= content_for(:after_js) do %>
   <script>
     $(document).ready(function() {
-      new Chart($("#myChartproject"), {
+      new Chart($("#myChartprojectsession"), {
           type: 'line',
           data: {
               labels: ["August", "September", "October", "November", "December", "January"],
               datasets: [{
-                  label: 'Unique Visitors',
-                  data: <%= raw @graph.to_json %>,
+                  label: 'Sessions',
+                  data: <%= raw @graphsession.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
@@ -78,6 +126,8 @@
               }]
           },
           options: {
+              responsive: true,
+              maintainAspectRatio: false,
               scales: {
                   yAxes: [{
                       ticks: {
@@ -87,6 +137,140 @@
               }
           }
       });
+
+        new Chart($("#myChartprojectpv"), {
+        type: 'line',
+        data: {
+            labels: ["August", "September", "October", "November", "December", "January"],
+            datasets: [{
+                label: 'Pages vues',
+                data: <%= raw @graphpv.to_json %>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+        new Chart($("#myChartprojectuv"), {
+        type: 'line',
+        data: {
+            labels: ["August", "September", "October", "November", "December", "January"],
+            datasets: [{
+                label: 'Unique visitors',
+                data: <%= raw @graphuser.to_json %>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+        new Chart($("#myChartprojectbr"), {
+        type: 'doughnut',
+        data: {
+            labels: ["Bounce Rate"],
+            datasets: [{
+                label: 'Bounce Rate',
+                data: <%= raw @data_br.to_json %>,
+                backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+                hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation:{
+            animateScale:true
+        }
+        }
+    });
+        new Chart($("#myChartprojectnv"), {
+        type: 'doughnut',
+        data: {
+            labels: ["New visitors", "Visitors knows"],
+            datasets: [{
+                label: 'Bounce Rate',
+                data: <%= raw @data_nv.to_json %>,
+                backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+                hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation:{
+            animateScale:true
+        }
+        }
+    });
+
+
+
     });
   </script>
 <% end %>

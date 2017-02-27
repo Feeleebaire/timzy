@@ -11,16 +11,37 @@ class ProjectsController < ApplicationController
     authorize(@project)
     @ga = GoogleApi::Analytics.new(@project.team.admin)
     @service = @ga.service
-    @datas = @service.get_ga_data("ga:#{@project.team.view_id}", "250daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
-    @array = @datas.rows
-    @graph = []
-    @array.each do |data|
+    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @arraysession = @datasession.rows
+    @graphsession = []
+    @arraysession.each do |data|
       hash = {}
       hash[:x] = data[0]
       hash[:y] = data[1]
-      @graph << hash
+      @graphsession << hash
     end
-
+    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @arrayuser = @datasuser.rows
+    @graphuser = []
+    @arrayuser.each do |data|
+      hash = {}
+      hash[:x] = data[0]
+      hash[:y] = data[1]
+      @graphuser << hash
+    end
+    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @arraypv = @datapv.rows
+    @graphpv = []
+    @arraypv.each do |data|
+      hash = {}
+      hash[:x] = data[0]
+      hash[:y] = data[1]
+    @graphpv << hash
+    end
+    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath==/evaluation/prix-m2")
+    @data_br = [ @databr.rows.first.first.to_f, 100 - @databr.rows.first.first.to_f ]
+    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath==/evaluation/prix-m2")
+    @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
   end
 
   def new
@@ -34,6 +55,7 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     @team = Team.find(params[:team_id])
     @project.team = @team
+    @gakpi = GoogleApi::Analytics.new(@project.team.admin)
     authorize(@project)
     if @project.save
       redirect_to team_path(@team) , notice: 'Your project was successfully created.'
