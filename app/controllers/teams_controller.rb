@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_team, only: [ :show, :edit, :update, :destroy, :set_analytics, :save_analytics ]
   skip_after_action :verify_policy_scoped, only: :index
   def index
     @teams = current_user.teams
@@ -41,11 +41,6 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    @ga = GoogleApi::Analytics.new(@team.admin)
-    @service = @ga.service
-    @accounts = @service.list_accounts
-    @webprops = @service.list_web_properties(@team.accountid) unless @team.accountid.blank?
-    @views = @service.list_profiles(@team.accountid, @team.webproprietyid) if !@team.accountid.blank? && !@team.webproprietyid.blank?
     authorize(@team)
   end
 
@@ -63,12 +58,23 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
- # def register_website_team
-    #team = Team.find(params[:team_id])
-   # @service = GoogleApi::Analytics.new(current_user).init_service(team.admin.refresh_token)
-    #@accounts = @service.list_account_summaries
- # end
+  def set_analytics
+    authorize(@team)
+    @ga = GoogleApi::Analytics.new(@team.admin)
+    @service = @ga.service
+    @accounts = @service.list_accounts
+    @webprops = @service.list_web_properties(@team.accountid) unless @team.accountid.blank?
+    @views = @service.list_profiles(@team.accountid, @team.webproprietyid) if !@team.accountid.blank? && !@team.webproprietyid.blank?
+  end
 
+  def save_analytics
+    authorize(@team)
+    if @team.update(team_params)
+      redirect_to set_analytics_team_path(@team)
+    else
+      render :set_analytics
+    end
+  end
   private
 
   def team_params

@@ -1,17 +1,7 @@
 <div class="form-container">
 
-  <h1>Setup your team</h1>
 
-<%= render 'ga_form' %>
-<br>
-<br>
-<br>
-<% if !@team.accountid.blank? && !@team.webproprietyid.blank? && !@team.view_id.blank? %>
-<%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
-<% end %>
-
+<%= render 'form' %>
 
 
 </div>
-
-content

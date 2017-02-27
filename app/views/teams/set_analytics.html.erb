@@ -1,11 +1,6 @@
-  <%= simple_form_for( @team, remote: true ) do |f| %>
-    <div class="form-inputs hidden">
-      <%= f.input :name %>
-    </div>
+<h1>Setup your team</h1>
 
-    <div class="form-inputs hidden">
-      <%= f.input :url_targeted %>
-    </div>
+  <%= simple_form_for( @team, url: save_analytics_team_path(@team) ) do |f| %>
     <%= f.input :accountid, collection: @accounts.items %>
     <% unless @team.accountid.blank? %>
       <%= f.input :webproprietyid, collection: @webprops.items %>
@@ -19,3 +14,8 @@
     <% end %>
     <%= f.submit %>
   <% end %>
+
+<% if !@team.accountid.blank? && !@team.webproprietyid.blank? && !@team.view_id.blank? %>
+  <%= link_to 'Add Teammates', new_team_teammate_path(@team), class: "btn-cta" %>
+  <%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
+<% end %>

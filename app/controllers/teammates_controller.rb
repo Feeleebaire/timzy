@@ -6,20 +6,22 @@ class TeammatesController < ApplicationController
   end
 
   def create
-    @teammate = Teammate.new(teammate_params)
+    @teammate = Teammate.new
     @teammate.team = @team
+    @teammate.email = params[:teammate][:email]
+    puts params
     user = User.find_by_email(@teammate.email)
-    if user
-      @teammate.update(user: user)
-    else
-      UserMailer.invitation(@teammate).deliver_now
-    end
+    @teammate.update(user: user) if user
+    authorize @teammate
     if @teammate.save
-      redirect_to teams_path
+      UserMailer.invitation(@teammate).deliver_now unless user
+      respond_to do |format|
+        format.html { redirect_to  team_teammate_path(@team) }
+        format.js
+      end
     else
       render :new
     end
-    authorize @teammate
   end
 
   private
