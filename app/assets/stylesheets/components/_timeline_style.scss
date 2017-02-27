@@ -57,25 +57,25 @@ Main components
 -------------------------------- */
 
 header {
-  height: 50px;
-  line-height: 50px;
+  height: 30px;
+  line-height: 30px;
   text-align: center;
   background: #2B414D;
 }
 header h1 {
   color: white;
-  line-height: 50px;
+  line-height: 30px;
   font-size: 1.75rem;
 }
 @media only screen and (min-width: 1170px) {
   header {
-    height: 100px;
-    line-height: 100px;
+    height: 50px;
+    line-height: 50px;
   }
   header h1 {
     font-size: 24px;
     font-size: 2rem;
-    line-height: 100px;
+    line-height: 50px;
   }
 }
 
