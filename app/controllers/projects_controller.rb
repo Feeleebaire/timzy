@@ -55,6 +55,7 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     @team = Team.find(params[:team_id])
     @project.team = @team
+    @gakpi = GoogleApi::Analytics.new(@project.team.admin)
     authorize(@project)
     if @project.save
       redirect_to team_path(@team) , notice: 'Your project was successfully created.'
