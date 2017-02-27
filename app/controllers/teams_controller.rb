@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
 
   def show
     @projects = @team.projects
+    @selected_projects = @projects.search(params[:search]).order("start_date DESC")
     authorize(@team)
     @ga = GoogleApi::Analytics.new(@team.admin)
     @service = @ga.service
