@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     authorize(@project)
     @ga = GoogleApi::Analytics.new(@project.team.admin)
     @service = @ga.service
-    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "250daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
     @arraysession = @datasession.rows
     @graphsession = []
     @arraysession.each do |data|
@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphsession << hash
     end
-    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "250daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
     @arrayuser = @datasuser.rows
     @graphuser = []
     @arrayuser.each do |data|
