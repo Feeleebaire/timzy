@@ -6,8 +6,14 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @projects = @team.projects
-    @selected_projects = @projects.search(params[:search]).order("start_date DESC")
+    @team_projects = @team.projects
+    # display show according to research (or not)
+    if params[:search]
+      @projects = @team_projects.search(params[:search])
+    else
+      @projects = @team_projects.all
+    end
+
     authorize(@team)
     @ga = GoogleApi::Analytics.new(@team.admin)
     @service = @ga.service

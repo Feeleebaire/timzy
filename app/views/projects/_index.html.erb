@@ -3,14 +3,7 @@
       <%= text_field_tag :search, params[:search], placeholder: "Search a project" %>
       <%= submit_tag "Search", :name => nil %>
   <% end %>
-
-  <% if @selected_projects.present? %>
-    <% @selected_projects.each do |project| %>
-      <%= project.title %>
-    <% end %>
-  <% else %>
-    <p>There are no projects containing the term(s) <%= params[:search] %>.</p>
-  <% end %>
+  <%= @error_search_message %>
 
 </div>
 
