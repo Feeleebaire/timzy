@@ -88,8 +88,8 @@
           data: {
               labels: ["August", "September", "October", "November", "December", "January"],
               datasets: [{
-                  label: 'Custom Metric',
-                  data: <%= raw @graph.to_json %>,
+                  label: 'Sessions',
+                  data: <%= raw @graphsession.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
@@ -166,7 +166,7 @@
             labels: ["August", "September", "October", "November", "December", "January"],
             datasets: [{
                 label: 'Unique visitors',
-                data: <%= raw @graph.to_json %>,
+                data: <%= raw @graphuser.to_json %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
