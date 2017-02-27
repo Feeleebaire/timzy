@@ -3,65 +3,191 @@
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:300,400,700|Heebo:400,500,700' rel='stylesheet' type='text/css'>
   <style>
   body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
+    background-color: #2B414D;
   }
-
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
   h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
+    color: white;
+    font-size: 50px;
+    font-weight: 900;
+    font-family: 'Heebo';
+  }
+  p {
+    color: white;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Open Sans'
+  }
+  a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Open Sans'
+  }
+  a:hover {
+    color: #D0D0D0;
+  }
+  .clock {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  background: #2B414D;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border: 20px solid white;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 75px;
+  margin-right: 20px;
+  }
+  .top {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    background: #262626;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .right {
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #262626;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto 0;
+  }
+  .bottom {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    background: #262626;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
+  .left {
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #262626;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto 0;
+  }
+  .center {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #00DDC2;
+    border-radius: 100%;
   }
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  .hour {
+    width: 7px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    //animation: time 86400s infinite linear;
+    animation: time 60s infinite linear;
   }
+  .hour:before {
+      position: absolute;
+      content: "";
+      background: #F4D35E;
+      height: 86px;
+      width: 21px;
+      top: 34px;
+      right: -7px;
+      border-radius: 14px;
+  }
+  .minute {
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    //animation: time 3600s infinite linear;
+    animation: time 30s infinite linear;
+  }
+  .minute:before {
+      position: absolute;
+      content: "";
+      background: #262626;
+      height: 40px;
+      width: 1px;
+      top: 50px;
+  }
+  .second {
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    //animation: time 60s infinite linear;
+    animation: time 15s infinite linear;
+  }
+  .second:before {
+      position: absolute;
+      content: "";
+      background: #65AFFF;
+      height: 90px;
+      width: 8px;
+      top: 28px;
+      right: 0px;
+      border-radius: 5px;
+  }
+
+@keyframes time {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-message {
+  margin: 50px;
+}
+
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+<div class='error'>
+  <div class='error-message'>
+    <h1>The page you were looking for doesn't exist.</h1>
+    <p>You may have mistyped the address or the page may have moved.</p>
+    <a href="/">Back to Homepage</a>
   </div>
+  <div class="col-xs-12 col-md-7 col-lg-6">
+    <div class="clock">
+      <div class="hour"></div>
+      <div class="second"></div>
+      <div class="center"></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
