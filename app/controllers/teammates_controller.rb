@@ -1,6 +1,7 @@
 class TeammatesController < ApplicationController
   before_action :set_team, only: [ :new, :create ]
   def new
+    @teammates = @team.teammates
     @teammate = Teammate.new
     authorize @teammate
   end

@@ -1,7 +1,11 @@
 <div>
-  <h1>Add teammates</h1>
-
+  <%= link_to '<< See website data', team_path(@team) %>
+  <h1>Your teammates</h1>
+  <div id='teammates'>
+    <%= render "list" %>
+  </div>
   <div id='teammate-form'>
     <%= render "form" %>
   </div>
+
 </div>

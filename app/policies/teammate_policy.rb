@@ -10,7 +10,7 @@ class TeammatePolicy < ApplicationPolicy
   end
 
   def new?
-    return true
+    true
   end
 
   def create?
