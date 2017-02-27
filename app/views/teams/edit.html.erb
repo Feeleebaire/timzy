@@ -2,34 +2,16 @@
 
   <h1>Setup your team</h1>
 
-  <%= simple_form_for @team do |f| %>
-    <div class="form-inputs hidden">
-      <%= f.input :name %>
-    </div>
-
-    <div class="form-inputs hidden">
-      <%= f.input :url_targeted %>
-    </div>
-    <%= f.input :accountid, collection: @accounts.items %>
-    <% unless @team.accountid.blank? %>
-      <%= f.input :webproprietyid, collection: @webprops.items %>
-    <% else %>
-      <%= f.input :webproprietyid, value: nil, as: :hidden %>
-    <% end %>
-    <% if !@team.accountid.blank? && !@team.webproprietyid.blank? %>
-      <%= f.input :view_id, collection: @views.items %>
-    <% else %>
-        <%= f.input :view_id, value: nil, as: :hidden %>
-    <% end %>
-    <%= f.submit %>
-  <% end %>
+<%= render 'ga_form' %>
 <br>
 <br>
 <br>
-<% if @team.view_id %>
+<% if !@team.accountid.blank? && !@team.webproprietyid.blank? && !@team.view_id.blank? %>
 <%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
 <% end %>
 
 
 
 </div>
+
+content
