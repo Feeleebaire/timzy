@@ -4,8 +4,6 @@ Primary style
 
 -------------------------------- */
 
-
-
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -29,6 +27,10 @@ Primary style
 #mother-timeline h1, h2 {
  font-family: 'Heebo', sans-serif;
  margin: 0px;
+}
+
+#mother-timeline .container{
+  margin-top: 20px;
 }
 
 /* --------------------------------
@@ -61,6 +63,7 @@ header {
   line-height: 30px;
   text-align: center;
   background: #2B414D;
+  margin-bottom: 10px;
 }
 header h1 {
   color: white;
@@ -81,7 +84,6 @@ header h1 {
 
 #mother-timeline .btn-create{
 float : right;
-margin : 25px 0;
 color: white;
 box-shadow: 0 3px 0 #d7e4ed;
 font-size : 20px;
@@ -103,8 +105,8 @@ font-size : 20px;
 
 #cd-timeline {
   position: relative;
-  padding: 2em 0;
-  margin-top: 2em;
+  // padding: 2em 0;
+  margin-top: 1em;
   margin-bottom: 2em;
 }
 #cd-timeline::before {
@@ -192,7 +194,7 @@ font-size : 20px;
   background: #F4D35E;
 }
 
-.cd-timeline-content.bounce-in {
+.cd-timeline-content {
   position: relative;
 }
 
@@ -317,7 +319,9 @@ font-size : 20px;
 /*card owner and category*/
 .cd-timeline-content p {
   margin: 1em 0;
-  line-height: 1.6;}
+  line-height: 1.6;
+  position: relative;
+}
 
 .cd-timeline-content .cd-icons {
   opacity: .7;
@@ -361,6 +365,7 @@ padding : 0 5px;
     margin-left: 0;
     padding: 1.6em;
     width: 45%;
+    position: relative;
   }
   .cd-timeline-content::before {
     top: 24px;
