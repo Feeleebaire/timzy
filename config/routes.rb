@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :projects, only: [ :new, :create ]
     member do
       get '/authorise', to: 'oauth#authorise'
+      get 'set_analytics', to: 'teams#set_analytics'
+      patch 'save_analytics', to: 'teams#save_analytics'
     end
   end
 

@@ -31,6 +31,14 @@ class TeamPolicy < ApplicationPolicy
     is_user_admin?
   end
 
+  def set_analytics?
+    is_user_admin?
+  end
+
+  def save_analytics?
+    is_user_admin?
+  end
+
   private
 
   def is_user_admin?
