@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :teams do
-    resources :teammates, only: [ :new, :create, :list ]
+    resources :teammates, only: [ :new, :create ]
     resources :projects, only: [ :new, :create ]
     member do
       get '/authorise', to: 'oauth#authorise'

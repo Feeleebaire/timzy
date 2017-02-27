@@ -1,0 +1,9 @@
+<% @teammates.order("created_at").each do |teammate| %>
+  <% if !teammate.user.blank? %>
+    <p>
+      <%= teammate.user.first_name %> <%= teammate.user.last_name %> (<%= teammate.user.email %>)
+    </p>
+  <% else %>
+    <p>Invitation already sent to <%= teammate.email %></p>
+  <% end %>
+<% end %>

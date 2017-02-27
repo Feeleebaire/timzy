@@ -1,5 +1,5 @@
 <%= simple_form_for [@team, Teammate.new], remote: true do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :email, id: "teammate_email" %>
+  <%= f.input :email, id: "teammate_email", label: 'Add your teammate email and press Enter' %>
 <% end %>
