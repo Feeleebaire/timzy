@@ -1,6 +1,26 @@
+.project-topbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.team-selector{
+  margin: 10px 10px 0 10px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: "Heebo", sans-serif;
+}
+
+.team-selector a {
+    text-decoration:none;
+    color: #2B414D;
+}
+
+.dropdown-menu{
+  border: none;
+}
+
 .search{
   padding: 10px 10px 0 10px;
-
 }
 
 .search-form-field{
@@ -11,7 +31,8 @@
   border: solid;
   border-width: 1px;
   border-color: #C5CDD3;
-  text-indent: 3px;
+  text-indent: 5px;
+  outline: none;
 }
 
 .search-submit-btn{
