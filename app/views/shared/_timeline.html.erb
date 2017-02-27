@@ -6,7 +6,7 @@
 
 
 <!--   display message if research is matched (or not)-->
-   <div class="search-error-message">
+   <div class="search-message">
      <%  if params[:search] %>
       <% if @projects.empty?  %>
            <div>Sorry, there are no projects containing the term(s) "<%= params[:search]%>"...</div>
