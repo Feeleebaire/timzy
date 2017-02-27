@@ -1,6 +1,9 @@
 <div class="container">
   <%= link_to '<< Back to timeline', team_path(@project.team) %>
 
+
+<!-- DESCRIPTION DU  PROJETS -->
+
   <h1><%= @project.title %> Overview</h1>
 
   <br>
@@ -14,6 +17,7 @@
 
   <br>
 
+  <!-- LES POLICIES SUR LE PROJETS -->
 
   <% if policy(@project).update? %>
     <%= link_to 'Edit', edit_project_path(@project) %> |
@@ -22,8 +26,36 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
+
+  <!-- LA CHART CUSTOM METRIC DU PROJETS -->
 <div class="chart-project-detail">
-<canvas id="myChartproject"></canvas>
+  <canvas id="myChartproject"></canvas>
+</div>
+ <!-- LES CHARTS LINES BASICS METRIC DU PROJETS -->
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="chart-pageview">
+      <canvas id="myChartprojectpv"></canvas>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="chart-session">
+      <canvas id="myChartprojectuv"></canvas>
+    </div>
+  </div>
+</div>
+ <!-- LES CHARTS DONUTS BASICS METRIC DU PROJETS -->
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="chart-pageview">
+      <canvas id="myChartprojectpv"></canvas>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="chart-session">
+      <canvas id="myChartprojectuv"></canvas>
+    </div>
+  </div>
 </div>
   <hr>
   <!-- LES COMMENTAIRES SUR LE PROJETS -->
@@ -46,7 +78,7 @@
 
 
 
- <!-- LE GRAPH DU PROJETS -->
+ <!-- LE GRAPH CUSTOM METRIC DU PROJETS -->
 
 <%= content_for(:after_js) do %>
   <script>
@@ -56,7 +88,7 @@
           data: {
               labels: ["August", "September", "October", "November", "December", "January"],
               datasets: [{
-                  label: 'Unique Visitors',
+                  label: 'Custom Metric',
                   data: <%= raw @graph.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
@@ -78,6 +110,8 @@
               }]
           },
           options: {
+              responsive: true,
+              maintainAspectRatio: false,
               scales: {
                   yAxes: [{
                       ticks: {
@@ -87,6 +121,84 @@
               }
           }
       });
+
+        new Chart($("#myChartprojectpv"), {
+        type: 'line',
+        data: {
+            labels: ["August", "September", "October", "November", "December", "January"],
+            datasets: [{
+                label: 'Pages vues',
+                data: <%= raw @graphpv.to_json %>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+        new Chart($("#myChartprojectuv"), {
+        type: 'line',
+        data: {
+            labels: ["August", "September", "October", "November", "December", "January"],
+            datasets: [{
+                label: 'Unique visitors',
+                data: <%= raw @graph.to_json %>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+
     });
   </script>
 <% end %>

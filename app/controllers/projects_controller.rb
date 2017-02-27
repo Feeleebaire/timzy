@@ -20,7 +20,15 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graph << hash
     end
-
+    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @arraypv = @datapv.rows
+    @graphpv = []
+    @arraypv.each do |data|
+      hash = {}
+      hash[:x] = data[0]
+      hash[:y] = data[1]
+    @graphpv << hash
+    end
   end
 
   def new
