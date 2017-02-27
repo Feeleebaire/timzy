@@ -1,3 +1,19 @@
+<div>
+   <%= form_tag(team_path(@team), :method => "get") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search a project" %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+  <% if @selected_projects.present? %>
+    <% @selected_projects.each do |project| %>
+      <%= project.title %>
+    <% end %>
+  <% else %>
+    <p>There are no projects containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+
+</div>
+
  <div class="bloc">
   <div class="fixed">
     <div class="chart-project">
@@ -5,9 +21,11 @@
       </div>
     </div>
   </div>
+
  <%= render 'shared/timeline' %>
 
  <!-- LE GRAPH DU PROJETS -->
+
 
 <%= content_for(:after_js) do %>
   <script>
