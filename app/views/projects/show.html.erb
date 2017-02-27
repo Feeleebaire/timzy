@@ -47,13 +47,13 @@
  <!-- LES CHARTS DONUTS BASICS METRIC DU PROJETS -->
 <div class="row">
   <div class="col-xs-12 col-md-6">
-    <div class="chart-pageview">
-      <canvas id="myChartprojectpv"></canvas>
+    <div class="chart-bouncerate">
+      <canvas id="myChartprojectbr"></canvas>
     </div>
   </div>
   <div class="col-xs-12 col-md-6">
-    <div class="chart-session">
-      <canvas id="myChartprojectuv"></canvas>
+    <div class="chart-newvsold">
+      <canvas id="myChartprojectnv"></canvas>
     </div>
   </div>
 </div>
@@ -198,6 +198,62 @@
             }
         }
     });
+        new Chart($("#myChartprojectbr"), {
+        type: 'doughnut',
+        data: {
+            labels: ["Bounce Rate"],
+            datasets: [{
+                label: 'Bounce Rate',
+                data: <%= raw @data_br.to_json %>,
+                backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+                hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation:{
+            animateScale:true
+        }
+        }
+    });
+        new Chart($("#myChartprojectnv"), {
+        type: 'doughnut',
+        data: {
+            labels: ["New visitors", "Visitors knows"],
+            datasets: [{
+                label: 'Bounce Rate',
+                data: <%= raw @data_nv.to_json %>,
+                backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+                hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation:{
+            animateScale:true
+        }
+        }
+    });
+
+
 
     });
   </script>

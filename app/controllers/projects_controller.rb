@@ -29,6 +29,10 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
     @graphpv << hash
     end
+    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath==/evaluation/prix-m2")
+    @data_br = [ @databr.rows.first.first.to_f, 100 - @databr.rows.first.first.to_f ]
+    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath==/evaluation/prix-m2")
+    @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
   end
 
   def new
