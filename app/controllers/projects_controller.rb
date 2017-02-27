@@ -47,6 +47,10 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @team = Team.find(params[:team_id])
+    @ga = GoogleApi::Analytics.new(@team.admin)
+    @service = @ga.service
+    @kpi = @service.list_goals("#{@team.accountid}","#{@team.webproprietyid}", "#{@team.view_id}")
+
     authorize(@project)
   end
 
@@ -55,7 +59,6 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     @team = Team.find(params[:team_id])
     @project.team = @team
-    @gakpi = GoogleApi::Analytics.new(@project.team.admin)
     authorize(@project)
     if @project.save
       redirect_to team_path(@team) , notice: 'Your project was successfully created.'
