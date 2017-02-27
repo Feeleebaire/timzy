@@ -10,7 +10,6 @@ class TeammatesController < ApplicationController
     @teammate = Teammate.new
     @teammate.team = @team
     @teammate.email = params[:teammate][:email]
-    puts params
     user = User.find_by_email(@teammate.email)
     @teammate.update(user: user) if user
     authorize @teammate

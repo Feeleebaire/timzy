@@ -1,0 +1,35 @@
+<% if @team.accountid %>
+  $('#set-analytics-form').html('<%= j render "set_analytics_form" %>');
+  $('#team_webproprietyid').change(function () {
+    var accountId = $('#team_accountid').val();
+    var propId = $('#team_webproprietyid').val();
+    $.ajax({
+      type: "PATCH",
+      url: "<%= save_analytics_team_path(@team) %>",
+      data: {
+        accountid: accountId,
+        webproprietyid: propId,
+        success: function(data) {
+          console.log("WebproprietyId added");
+        }
+      }
+    });
+  });
+  $('#team_view_id').change(function () {
+    var accountId = $('#team_accountid').val();
+    var propId = $('#team_webproprietyid').val();
+    var viewId = $('#team_view_id').val();
+    $.ajax({
+      type: "PATCH",
+      url: "<%= save_analytics_team_path(@team) %>",
+      data: {
+        accountid: accountId,
+        webproprietyid: propId,
+        view_id: viewId,
+        success: function(data) {
+          console.log("ViewId added");
+        }
+      }
+    });
+  });
+<% end %>
