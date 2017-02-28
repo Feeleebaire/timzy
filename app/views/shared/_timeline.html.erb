@@ -27,22 +27,24 @@
       <div class="cd-timeline-block">
         <div class="cd-timeline-img cd-<%= project.category.downcase %>">
 
-        </div> <!-- close cd-timeline-img -->
-        <!-- Flexbox element to host cd-timeline-infos and cd-icons (obj : push cd-icons to right edge of the card) -->
-        <div class="cd-timeline-content">
-          <!-- Buttons edit /destroy, shown or not according to user's access-->
-          <div class="cd-timeline-infos">
-            <!-- Make card clickable to access the project show -->
-            <%= link_to project_path(project) do %>
+          </div> <!-- close cd-timeline-img -->
+          <!-- Flexbox element to host cd-timeline-infos and cd-icons (obj : push cd-icons to right edge of the card) -->
+          <div class="cd-timeline-content ">
+          <%= link_to "", project_path(project), class: "full_link_card click-loader" %>
+            <!-- Buttons edit /destroy, shown or not according to user's access-->
+            <div class="cd-timeline-infos">
+              <!-- Make card clickable to access the project show -->
+
 
               <div class="cd-timeline-title"><%= project.title %></div>
 
               <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
 
 
-              <!-- Date display/ on card or on timeline, depends of device size -->
-            <% end %> <!-- close link to make card clickable-->
-          </div>
+                <!-- Date display/ on card or on timeline, depends of device size -->
+            </div>
+             <!-- close link to make card clickable-->
+
 
           <div class="cd-icons">
             <% if policy(project).update? %>

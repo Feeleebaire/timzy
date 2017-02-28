@@ -23,3 +23,32 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+
+.full_link_card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 80px;
+  h1 {
+    color: white;
+    position: absolute;
+    top: 10%;
+  }
+}

@@ -36,7 +36,7 @@
 .bg-color {
   display: block;
   background-color: #2B414D;
-  height: 75vh;
+  height: 90vh;
 }
 
 .section-first{
@@ -65,5 +65,8 @@
   color: #2B414D;
   text-align: center;
   font-weight: 900;
-  }
+}
 
+#team_home{
+ background: asset-url("team_home.svg") no-repeat center;
+}
