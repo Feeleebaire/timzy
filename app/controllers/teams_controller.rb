@@ -10,7 +10,6 @@ class TeamsController < ApplicationController
     @team_projects = @team.projects
     # display show according to research (or not)
     @projects = @team_projects.all
-    binding.pry
     @projects = @projects.where('title ILIKE ? OR description ILIKE ?', params[:search], params[:search]) if !params[:search].blank?
     @projects = @projects.where(start_date: params[:startdate]..params[:enddate]) if !params[:startdate].blank? && !params[:enddate].blank?
 
