@@ -1,17 +1,5 @@
-<h1>Setup your team</h1>
-  <div id="set-analytics-form">
-    <%= render 'set_analytics_form' %>
-
-  </div>
-
-<div id='ga-cta' class="<%= 'hidden' if @team.view_id == nil %>">
-  <%= link_to 'Add Teammates', new_team_teammate_path(@team), class: "btn-cta" %>
-  <%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
-</div>
-
-<% content_for :after_js do %>
-<script>
-
+<% if @team.accountid %>
+  $('#set-analytics-form').html('<%= j render "set_analytics_form" %>');
   $('#team_accountid').change(function () {
     var accountId = $('#team_accountid').val();
     $.ajax({
@@ -23,8 +11,8 @@
     });
   });
   $('#team_webproprietyid').change(function () {
-    var propId = $('#team_webproprietyid').val();
     var accountId = $('#team_accountid').val();
+    var propId = $('#team_webproprietyid').val();
     $.ajax({
       type: "PATCH",
       url: "<%= save_analytics_team_path(@team) %>",
@@ -48,6 +36,7 @@
       }
     });
   });
-
-</script>
+<% end %>
+<% if @team.view_id %>
+  $('#ga-cta').removeClass('hidden');
 <% end %>

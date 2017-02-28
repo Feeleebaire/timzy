@@ -52,9 +52,15 @@ class TeamsController < ApplicationController
   end
 
   def update
+    @ga = GoogleApi::Analytics.new(@team.admin)
+    @service = @ga.service
+    @props = @service.list_web_properties(params[:accountid])
     authorize(@team)
     if @team.update(team_params)
-      redirect_to edit_team_path(@team)
+      respond_to do |format|
+        format.html { redirect_to edit_team_path(@team) }
+        format.js
+      end
     else
       render :edit
     end
@@ -70,16 +76,33 @@ class TeamsController < ApplicationController
     @ga = GoogleApi::Analytics.new(@team.admin)
     @service = @ga.service
     @accounts = @service.list_accounts
-    @webprops = @service.list_web_properties(@team.accountid) unless @team.accountid.blank?
-    @views = @service.list_profiles(@team.accountid, @team.webproprietyid) if !@team.accountid.blank? && !@team.webproprietyid.blank?
+    begin
+      @props = @service.list_web_properties(@team.accountid).items
+      @views = @service.list_profiles(@team.accountid, @team.webproprietyid).items
+    rescue
+      @props = []
+      @views = []
+    end
+    # @webprops = @service.list_web_properties(@team.accountid) unless @team.accountid.blank?
+    # @views = @service.list_profiles(@team.accountid, @team.webproprietyid) if !@team.accountid.blank? && !@team.webproprietyid.blank?
   end
 
   def save_analytics
-    authorize(@team)
-    if @team.update(team_params)
-      redirect_to set_analytics_team_path(@team)
-    else
-      render :set_analytics
+    @ga = GoogleApi::Analytics.new(@team.admin)
+    @service = @ga.service
+    @accounts = @service.list_accounts
+    if !params[:view_id].blank?
+      @team.update(accountid: params[:accountid], webproprietyid: params[:webproprietyid], view_id: params[:view_id])
+      @props = @service.list_web_properties(params[:accountid]).items
+      @views = @service.list_profiles(params[:accountid], params[:webproprietyid]).items
+    elsif !params[:webproprietyid].blank?
+      @team.update(accountid: params[:accountid], webproprietyid: params[:webproprietyid])
+      @props = @service.list_web_properties(params[:accountid]).items
+      @views = @service.list_profiles(params[:accountid], params[:webproprietyid]).items
+    elsif !params[:accountid].blank?
+      @team.update(accountid: params[:accountid])
+      @props = @service.list_web_properties(params[:accountid]).items
+      @views = []
     end
   end
   private
@@ -90,5 +113,6 @@ class TeamsController < ApplicationController
 
   def set_team
     @team = Team.find(params[:id])
+    authorize(@team)
   end
 end
