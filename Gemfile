@@ -12,6 +12,10 @@ gem "pundit"
 gem "omniauth-google-oauth2"
 gem 'google-api-client', '~> 0.9'
 gem 'chart-js-rails'
+gem 'carrierwave', '~> 0.11.2'
+gem 'cloudinary'
+
+
 
 gem 'sass-rails'
 gem 'jquery-rails'

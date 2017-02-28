@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :role, presence: true
+  validates :photo, presence: true
+  mount_uploader :photo, PhotoUploader
   #associations
   has_many :managed_teams, class_name: "Team", :foreign_key =>"admin_id"
   has_many :teammates

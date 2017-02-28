@@ -1,0 +1,150 @@
+$scale: 1.06;
+
+
+.card-img-top {
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow:0px 1px 1px -1px rgba(0,0,0,0.75);
+}
+
+.card-top {
+  background-color:#F7F6F5;
+  position: relative;
+  cursor: pointer;
+  transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
+  transition-delay: .15s;
+  border-radius: 7px;
+  box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 50px;
+  padding-bottom: 100px;
+
+
+
+
+
+
+    &:hover {
+      transform: scale($scale);
+
+
+
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: '';
+    }
+}
+}
+
+.description {
+  position: absolute;
+  z-index: 1000;
+  bottom: -10px;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity .6s ease-in-out;
+}
+
+// :root {
+//   display: flex;
+//   background: #222B39;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+.cards { display: flex }
+
+.add-team {
+  padding-left: 20px;
+  padding-bottom: 20px;
+
+}
+
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+
+
+.card-title {
+  padding-left: 10px;
+}
+
+
+.img-circle {
+  padding-left: 10px;
+}
+
+
+.btn-small {
+  margin-left: 30px;
+  margin-bottom: 30px;
+
+}
+
+
+.btn-create {
+  float: right;
+  padding: 10px 23px;
+  border-radius: 4px;
+  background-color: #65AFFF;
+  color: white;
+  font-size: 24px;
+  font-weight: normal;
+  font-family : 'Heebo', sans-serif;
+  border: 2px solid #65AFFF;
+  box-shadow: 0 3px 0 #d7e4ed;
+  text-decoration: none;
+}
+
+.btn-create:hover{
+  border-radius: 4px;
+  background-color: #4099FF;
+  color: white;
+  font-size: 24px;
+  font-weight: normal;
+  border: 2px solid #4099FF;
+  text-decoration: none;
+}
+
+h1 {
+  font-family : 'Heebo', sans-serif;
+  font-weight: bold;
+  color: #2B414D;
+
+}
+
+
+hr.style18 {
+  height: 3px;
+  border-style: solid;
+  border-color: #F7F6F5;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,12 +1,34 @@
+<div class="container">
+<br>
 <h1>My Teams</h1>
+<hr>
+<br>
+<% @teams.each do |team| %>
+<%= link_to team_path(team) do %>
+<div class="col-xs-12 col-md-4">
+  <div class="card-top">
+    <%= cl_image_tag team.photo, height: 300, width: 350, crop: :fill, :class =>"card-img-top";%>
+      <div class="card-block">
+      <h3 class="card-title"><%= team.name %></h3>
+      <hr>
+      <% team.users.each do |user| %>
+      <%= cl_image_tag user.photo, :class =>"img-circle" %>
+      <% end %>
+   </div>
+    </div>
+    </div>
+    <% end %>
+    <% end %>
 
-  <% @teams.each do |team| %>
-    <h3> TEAM : <%= team.name %></h3>
-    <p><%= team.url_targeted %></p>
-    <br>
-    <p><%= link_to "See the team timeline", team_path(team) %>
-    </p>
-  <% end %>
+<div class="btn">
+ <%= link_to "Create a new Team", new_team_path, class:"btn-create"  %>
+ </div>
+    </div>
 
-<%= link_to "Add a new team", new_team_path %>
+
+
+
+
+
+
 
