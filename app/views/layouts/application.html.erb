@@ -13,7 +13,15 @@
   </head>
 
   <body class="sidebar">
-    <%= render 'shared/flashes' %>
+    <div class="loader hidden">
+      <h1> We found your fucking FAT datas </h1>
+      <div class="clock">
+        <div class="hour"></div>
+        <div class="second"></div>
+        <div class="center"></div>
+      </div>
+    </div>
+      <%= render 'shared/flashes' %>
 
       <!-- <div class="flex-main-1"> -->
         <%= render 'shared/verticalnavbar' %>
