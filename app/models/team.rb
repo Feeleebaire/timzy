@@ -3,7 +3,6 @@ class Team < ApplicationRecord
   validates :name, presence: true
   validates :photo, presence: true
   mount_uploader :photo, PhotoUploader
-  # validates :url_targeted, presence: true
   #associations
   belongs_to :admin, :class_name => "User"
   has_many :teammates, dependent: :destroy
