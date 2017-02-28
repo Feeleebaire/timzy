@@ -9,7 +9,7 @@
             <p>Amazing tool for all:
             <span class="text-typed typed"></span></p>
           </div>
-        <% if !user_signed_in? && !current_user.teams.blank? %>
+        <% if !user_signed_in? %>
           <%= link_to new_user_registration_path do %>
             <div class="btn-cta-home">Sign up</div>
           <%end%>

@@ -6,4 +6,15 @@
   <li><a class="#"></a></li>
   <li><a href="#" id="dossier">Images</a></li>
   <li><a href="#" class="avatar-dash">Download</a></li>
+
+<% if user_signed_in? %>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    <li>    <%= image_tag "logout.svg", class: "logout-icon" %>   </li>
+  <% end %>
+<% end %>
+
 </ul>
+
+
+
+
