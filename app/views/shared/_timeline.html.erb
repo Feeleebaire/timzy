@@ -1,4 +1,4 @@
-<div id="mother-timeline">
+  <div id="mother-timeline">
   <div class="container">
 
 
@@ -14,52 +14,57 @@
      <% end %>
    </div>
 <!-- end of research message -->
+  <div class="on-top-for-btn">
+      <%= link_to new_team_project_path(@team) do %>
+        <div class="btn-create">Add a project</div>
+      <%end%>
+  </div>
 
-    <%= link_to new_team_project_path(@team) do %>
-      <div class="btn-create">Add a project</div>
-    <% end %>
 
-    <section id="cd-timeline" class="cd-container">
-      <% @projects.order("start_date desc").each do |project| %>
-        <div class="cd-timeline-block">
-          <div class="cd-timeline-img cd-<%= project.category.downcase %>">
+  <section id="cd-timeline" class="cd-container">
+
+    <% @projects.order("start_date desc").each do |project| %>
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-<%= project.category.downcase %>">
 
           </div> <!-- close cd-timeline-img -->
           <!-- Flexbox element to host cd-timeline-infos and cd-icons (obj : push cd-icons to right edge of the card) -->
-          <div class="cd-timeline-content">
+          <div class="cd-timeline-content ">
+          <%= link_to "", project_path(project), class: "full_link_card click-loader" %>
             <!-- Buttons edit /destroy, shown or not according to user's access-->
             <div class="cd-timeline-infos">
               <!-- Make card clickable to access the project show -->
-              <%= link_to project_path(project) do %>
 
-                <div class="cd-timeline-title"><%= project.title %></div>
 
-                <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
+              <div class="cd-timeline-title"><%= project.title %></div>
+
+              <p><strong>Owner : </strong>  <%= project.user.first_name %>  <%= project.user.last_name %></p>
 
 
                 <!-- Date display/ on card or on timeline, depends of device size -->
-              <% end %> <!-- close link to make card clickable-->
             </div>
+             <!-- close link to make card clickable-->
 
-            <div class="cd-icons">
-              <% if policy(project).update? %>
-                <%= link_to edit_project_path(project) do %>
-                  <i class="fa fa-pencil" aria-hidden="true"> </i>
-                <% end %>
+
+          <div class="cd-icons">
+            <% if policy(project).update? %>
+              <%= link_to edit_project_path(project) do %>
+                <i class="fa fa-pencil" aria-hidden="true"> </i>
               <% end %>
-              <% if policy(project).destroy? %>
-                <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                <% end %>
+            <% end %>
+            <% if policy(project).destroy? %>
+              <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
               <% end %>
-            </div>
-            <div class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></div>  <!-- close cd-icons -->
+            <% end %>
+          </div>
+          <div class="cd-date"><%= project.start_date.strftime("%d %h %Y") %></div>  <!-- close cd-icons -->
 
-          </div> <!-- close cd-timeline-content -->
-        </div> <!-- close cd-timeline-block -->
-      <% end %>
+        </div> <!-- close cd-timeline-content -->
+      </div> <!-- close cd-timeline-block -->
+    <% end %>
 
-    </section> <!-- close cd-timeline -->
+  </section> <!-- close cd-timeline -->
   </div> <!-- id timeline -->
 </div>
 

@@ -1,5 +1,5 @@
- body {
-  background-color: #F7F6F5;
+body {
+  background-color: white;
 }
 p {
  font-weight: 300;
@@ -7,6 +7,12 @@ p {
 .sidebar{
   margin-left: 70px;
   width: calc(100vw - 70px);
+}
+
+h1 {
+  font-family : 'Heebo', sans-serif;
+  font-weight: 900;
+  color: #2B414D;
 }
 
 .btn-cta, .btn-cta-home {

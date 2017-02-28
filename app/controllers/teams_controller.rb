@@ -113,7 +113,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :url_targeted, :photo, :admin_id, :accountid, :webproprietyid, :view_id)
+    params.require(:team).permit(:name, :photo, :admin_id, :accountid, :webproprietyid, :view_id)
   end
 
   def set_team
