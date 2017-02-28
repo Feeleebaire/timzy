@@ -1,5 +1,18 @@
 <% if @team.accountid %>
   $('#set-analytics-form').html('<%= j render "set_analytics_form" %>');
+  $('#team_accountid').change(function () {
+    var accountId = $('#team_accountid').val();
+    $.ajax({
+      type: "PATCH",
+      url: "<%= save_analytics_team_path(@team) %>",
+      data: {
+        accountid: accountId,
+        success: function(data) {
+          console.log("AccountId Added");
+        }
+      }
+    });
+  });
   $('#team_webproprietyid').change(function () {
     var accountId = $('#team_accountid').val();
     var propId = $('#team_webproprietyid').val();
@@ -32,4 +45,5 @@
       }
     });
   });
+
 <% end %>

@@ -76,8 +76,13 @@ class TeamsController < ApplicationController
     @ga = GoogleApi::Analytics.new(@team.admin)
     @service = @ga.service
     @accounts = @service.list_accounts
-    @props = []
-    @views = []
+    begin
+      @props = @service.list_web_properties(@team.accountid).items
+      @views = @service.list_profiles(@team.accountid, @team.webproprietyid).items
+    rescue
+      @props = []
+      @views = []
+    end
     # @webprops = @service.list_web_properties(@team.accountid) unless @team.accountid.blank?
     # @views = @service.list_profiles(@team.accountid, @team.webproprietyid) if !@team.accountid.blank? && !@team.webproprietyid.blank?
   end
@@ -88,8 +93,11 @@ class TeamsController < ApplicationController
     @accounts = @service.list_accounts
     if !params[:view_id].blank?
       @team.update(accountid: params[:accountid], webproprietyid: params[:webproprietyid], view_id: params[:view_id])
+      @props = @service.list_web_properties(params[:accountid]).items
+      @views = @service.list_profiles(params[:accountid], params[:webproprietyid]).items
     elsif !params[:webproprietyid].blank?
       @team.update(accountid: params[:accountid], webproprietyid: params[:webproprietyid])
+      @props = @service.list_web_properties(params[:accountid]).items
       @views = @service.list_profiles(params[:accountid], params[:webproprietyid]).items
     elsif !params[:accountid].blank?
       @team.update(accountid: params[:accountid])
