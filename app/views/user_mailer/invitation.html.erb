@@ -1,7 +1,11 @@
-<h1>Hello</h1>
+<h1>Hello future Timzer !</h1>
 
 <p>
-  You've been invited to <%= @team.name %> team on Timzy.
+  You've been invited to the team "<%= @team.name %>" on Timzy by <%= @team.admin.first_name.capitalize %> !
 
-  Confirm by <%= link_to "creating your account", new_user_registration_url(:email => @teammate.email)  %>.
+  Confirm by <%= link_to "creating your account", new_user_registration_url(:email => @teammate.email)  %> and brace yourself for a new easy world of project history and data.
+
+  <%= @team.admin.first_name.capitalize %> is waiting for you (and so we are) !
+
+
 </p>
