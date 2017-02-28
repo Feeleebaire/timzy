@@ -15,9 +15,11 @@ class TeamsController < ApplicationController
       @projects = @team_projects.all
     end
     authorize(@team)
+    @startdate = params[:startdate].blank? ? "30daysAgo" : params[:startdate]
+    @enddate = params[:enddate].blank? ? "yesterday" : params[:enddate]
     @ga = GoogleApi::Analytics.new(@team.admin)
     @service = @ga.service
-    @datas = @service.get_ga_data("ga:#{@team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date")
+    @datas = @service.get_ga_data("ga:#{@team.view_id}", "#{@startdate}", "#{@enddate}", "ga:users", dimensions: "ga:date")
     big_array = @datas.rows
     @array_clean = big_array.map do |array|
         array[1]
