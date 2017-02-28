@@ -16,9 +16,9 @@
       <div class="search form-inline">
      <!--    Search bar -->
         <%= form_tag(team_path(@team), :method => "get") do %>
-            <%= text_field_tag :startdate, params[:startdate], placeholder: "date de début",  class: "date form-control" %>
-            <%= text_field_tag :enddate, params[:enddate], placeholder: "date de fin",  class: "date form-control" %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search a project title or description", :id => nil, :class => "search-form-field" %>
+            <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control" %>
+            <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control" %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search a project title or description", :id => nil, :class => "form-control form-control-extended" %>
           <%= submit_tag "Search", :name => nil, :class => "search-submit-btn" %>
         <% end %>
       <!--  end search bar -->
