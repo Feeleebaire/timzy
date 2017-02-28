@@ -82,6 +82,9 @@ header h1 {
   }
 }
 
+.on-top-for-btn{
+  z-index: 1;
+}
 #mother-timeline .btn-create{
 float : right;
 color: white;
@@ -89,7 +92,7 @@ box-shadow: 0 3px 0 #d7e4ed;
 font-size : 20px;
 font-weight: normal;
 border: none;
-z-index: 50px;
+
 }
 
 #mother-timeline .btn-create:hover{
@@ -102,6 +105,7 @@ text-decoration:none;
 color: white;
 font-size : 20px;
 }
+
 
 #cd-timeline {
   position: relative;
