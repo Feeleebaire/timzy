@@ -1,19 +1,39 @@
-<ul class="cbp-vimenu">
-  <li><a href="/" id="logo_svg">Logo</a></li>
-  <li><a href="#" id="search">Archive</a></li>
-  <li><a href="#" id="members">Search</a></li>
-  <li><a href="#" id="connection">Pencil</a></li>
-  <li><a class="#"></a></li>
-  <li><a href="#" id="dossier">Images</a></li>
-  <li><a href="#" class="avatar-dash">Download</a></li>
+<div id="sidebar">
 
-<% if user_signed_in? %>
-  <%= link_to destroy_user_session_path, method: :delete do %>
-    <li>    <%= image_tag "logout.svg", class: "logout-icon" %>   </li>
-  <% end %>
-<% end %>
+  <div id="sidebar-top">
+      <%= link_to root_path do %>
+         <%= image_tag "logo_svg.svg", id: "size-logo" %>
+      <% end %>
 
-</ul>
+        <%= link_to root_path do %>
+         <%= image_tag "recherche.svg", class: "hover-icon" %>
+      <% end %>
+
+      <%= link_to root_path do %>
+         <%= image_tag "members.svg", class: "hover-icon", id: "members" %>
+      <% end %>
+
+      <%= link_to root_path do %>
+         <%= image_tag "Connections.svg", class: "hover-icon" %>
+      <% end %>
+
+      <%= link_to root_path do %>
+         <%= image_tag "dossier.svg", class: " hover-icon" %>
+      <% end %>
+  </div>
+
+  <div id="sidebar-bottom">
+
+    <!--   Add avatar link here-->
+
+    <% if user_signed_in? %>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <div>    <%= image_tag "logout.svg" %>   </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
 
 
 

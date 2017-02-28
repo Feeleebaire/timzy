@@ -1,6 +1,7 @@
 
-.cbp-vimenu {
+#sidebar {
   position: fixed;
+  text-align: center;
   overflow: hidden;
   width: 70px;
   top: 0;
@@ -8,66 +9,53 @@
   height: 100%;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 10px 10px 15px 10px;
   background: #2B414D;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
 
-.logout-icon{
-  position: absolute;
-  width: 55px;
+#sidebar-top{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 50%;
+}
+
+
+#sidebar-top{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 50%;
+}
+
+#sidebar-bottom{
+
+}
+
+#sidebar img{
+  transition: 0.3s ease;
+  width: 80%;
   height: auto;
-  padding-left: 20px;
-  bottom: 20px;
 }
 
-.cbp-vimenu li a {
-  display: block;
-  text-indent: -500em;
-  height: 5em;
-  line-height: 5em;
-  text-align: center;
-  position: relative;
-  -webkit-transition: background 0.1s ease-in-out;
-  -moz-transition: background 0.1s ease-in-out;
-  transition: background 0.1s ease-in-out;
+#sidebar img:hover{
+  width: 90%;
+  height: auto;
 }
 
-/* class for current item */
-.cbp-vimenu li.cbp-vicurrent a {
-  background: #fff;
-  color: #47a3da;
+#sidebar img.hover-icon:hover{
+  width: 90%;
+  height: auto;
+  opacity: 0.7;
 }
 
-.cbp-vimenu li a:before {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  text-indent: 0em;
-  position: absolute;
-  top: 0;
-  left: 0;
+#sidebar img#size-logo{
   width: 100%;
-  height: 100%;
-  font-size: 1.4em;
-  -webkit-font-smoothing: antialiased;
-}
-
-.cbp-vimenu li a.icon-logo:before {
-  content: "T";
-  font-weight: 700;
-  font-size: 300%;
-  font-family: 'Lato', Calibri, Arial, sans-serif;
-}
-
-
-/* Example for media query (depends on total height of menu) */
-@media screen and (max-height: 34.9375em) {
-
-  .cbp-vimenu {
-    font-size: 70%;
-  }
-
+  height: auto;
 }
 
 
