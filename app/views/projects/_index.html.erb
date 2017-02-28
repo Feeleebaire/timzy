@@ -1,19 +1,44 @@
 
- <div class="bloc">
+<div class="bloc">
   <div class="fixed">
-    <div class="search">
- <!--    Search bar -->
-     <%= form_tag(team_path(@team), :method => "get") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search a project title or description", :id => nil, :class => "search-form-field" %>
-        <%= submit_tag "Search", :name => nil, :class => "search-submit-btn" %>
-    <% end %>
-    </div> <!-- close Search bar -->
+
+    <div class="project-topbar">
+        <div class="team-selector dropdown">
+          <div class="dropdown-toggle" data-toggle="dropdown">
+            <%=link_to @team.name, team_path(@team)%><span class=" caret"></span>
+          </div>
+          <ul class="dropdown-menu">
+            <% @teams.each do |team| %>
+              <li><%= link_to team.name, team_path(team.id) %></li>
+            <% end %>
+          </ul>
+        </div>
+
+      <div class="search">
+     <!--    Search bar -->
+        <%= form_tag(team_path(@team), :method => "get") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search a project title or description", :id => nil, :class => "search-form-field" %>
+          <%= submit_tag "Search", :name => nil, :class => "search-submit-btn" %>
+        <% end %>
+      <!--  end search bar -->
+
+       <!-- Search datepicker -->
+
+
+       <!--  end search datepicker -->
+
+
+
+      </div> <!-- close Search bar -->
+
+    </div> <!-- close project topbar -->
 
     <div class="chart-project">
       <canvas id="myChartindex"></canvas>
-      </div>
     </div>
-  </div>
+
+  </div> <!-- close fixed -->
+</div> <!-- close bloc -->
 
  <%= render 'shared/timeline' %>
 
@@ -24,6 +49,7 @@
   <script>
     $(document).ready(function() {
       new Chart($("#myChartindex"), {
+
           type: 'bar',
           responsive: true,
           maintainAspectRatio: false,
@@ -45,7 +71,19 @@
                       ticks: {
                           beginAtZero:true
                       }
-                  }]
+                  }],
+
+// Experiment zone
+
+
+
+
+
+
+// end of experiment zone
+
+
+
               }
           }
       });

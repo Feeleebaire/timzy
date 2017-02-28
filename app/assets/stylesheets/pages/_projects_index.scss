@@ -1,0 +1,62 @@
+.project-topbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.team-selector{
+  margin: 10px 10px 0 10px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: "Heebo", sans-serif;
+}
+
+.team-selector a {
+    text-decoration:none;
+    color: #2B414D;
+}
+
+.dropdown-menu{
+  border: none;
+}
+
+.search{
+  padding: 5px 10px 0 10px;
+  margin: 10px 10px 0 10px;
+}
+
+.search-form-field{
+  height: 30px;
+  width: 350px;
+  border-radius: 3px;
+  font-size: 15px;
+  border: solid;
+  border-width: 1px;
+  border-color: #C5CDD3;
+  text-indent: 5px;
+  outline: none;
+}
+
+.search-submit-btn{
+  height: 30px;
+  width: auto;
+  padding: 0 10px;
+  border-radius: 3px;
+  background-color: #65AFFF;
+  font-size: 15px;
+  color: white;
+  border: solid;
+  border-width: 1px;
+  border-color: #65AFFF;
+  // box-shadow : 1px 2px 1px #D3E0E7;
+}
+
+.search-message{
+  font-size: 20px;
+  font-family: "Open Sans", sans-serif;
+  text-align : center;
+  margin : 40px 0;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}

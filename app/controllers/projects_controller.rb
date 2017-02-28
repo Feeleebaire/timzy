@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   skip_after_action :verify_policy_scoped, only: :index
+  require 'uri'
 
   def index
     @team = Team.find(params[:id])
@@ -9,9 +10,10 @@ class ProjectsController < ApplicationController
   def show
     @comment = Comment.new
     authorize(@project)
+    uri = URI::parse(@project.url_targeted)
     @ga = GoogleApi::Analytics.new(@project.team.admin)
     @service = @ga.service
-    @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:goal#{@project.kpi}Completions", dimensions: "ga:date")
+    @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:goal#{@project.kpi}completions", dimensions: "ga:date")
     @arraycustom = @datacustom.rows
     @graphcustom = []
     @arraycustom.each do |data|
@@ -20,7 +22,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphcustom << hash
     end
-    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "330daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath==/#{uri.path}")
     @arraysession = @datasession.rows
     @graphsession = []
     @arraysession.each do |data|
@@ -29,7 +31,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphsession << hash
     end
-    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/#{uri.path}")
     @arrayuser = @datasuser.rows
     @graphuser = []
     @arrayuser.each do |data|
@@ -38,7 +40,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphuser << hash
     end
-    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath==/evaluation/prix-m2")
+    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath==/programme/immobilier-neuf/nantes-44-g43619")
     @arraypv = @datapv.rows
     @graphpv = []
     @arraypv.each do |data|
@@ -47,9 +49,9 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
     @graphpv << hash
     end
-    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath==/evaluation/prix-m2")
+    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath==/programme/immobilier/acheteur/liste/44-nantes-44")
     @data_br = [ @databr.rows.first.first.to_f, 100 - @databr.rows.first.first.to_f ]
-    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath==/evaluation/prix-m2")
+    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath==/programme/immobilier-neuf/nantes-44-g43619")
     @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
   end
 

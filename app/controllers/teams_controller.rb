@@ -6,6 +6,7 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @teams = current_user.teams.reject{|n| n == @team}
     @team_projects = @team.projects
     # display show according to research (or not)
     if params[:search]
@@ -13,7 +14,6 @@ class TeamsController < ApplicationController
     else
       @projects = @team_projects.all
     end
-
     authorize(@team)
     @ga = GoogleApi::Analytics.new(@team.admin)
     @service = @ga.service
