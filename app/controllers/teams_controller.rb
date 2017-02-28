@@ -27,6 +27,10 @@ class TeamsController < ApplicationController
     @array_date = big_array.map do |array|
       array[0]
     end
+    @array_date_updated = []
+    @array_date.each do |date|
+      @array_date_updated << DateTime.parse(date).to_date.strftime("%0e-%m-%y")
+    end
   end
 
   def new

@@ -9,10 +9,10 @@
   <br>
 <div class="row">
   <div class="col-xs-12 col-md-6">
-    <p><strong>Owner:</strong> <%= @project.user.first_name %>  <%= @project.user.last_name %></p>
+    <p><strong>Creator:</strong> <%= @project.user.first_name %>  <%= @project.user.last_name %></p>
     <p><strong>Description:</strong> <%= @project.description %></p>
     <p> <strong>Category:</strong> <%= @project.category %></p>
-    <p>  <strong>Start date:</strong> <%= @project.start_date %>  |  <strong>End date:</strong> <%= @project.end_date %></p>
+    <p>  <strong>Start date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>  |  <strong>End date:</strong> <%= @project.end_date.strftime("%b %d, %Y") unless @project.end_date.nil? %></p>
     <p><strong>Goal:</strong> <%= @project.goal %>  |  <strong>KPI:</strong> <%= @project.kpi %></p>
     <p><strong>Targeted url:</strong> <%= @project.url_targeted %></p>
   </div>
@@ -32,37 +32,41 @@
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
-<h2>Goals metrics</h2>
-<div class="chart-project-custom">
-  <%= form_tag(project_path(@project), method: :get) do %>
-    <%= select_tag "kpi", options_for_select(@kpigoal.items.map { |item| [item.name, item.id] }, @kpi) %>
-    <%= hidden_field_tag "event", params[:event] %>
-    <div><%= submit_tag 'Refresh' %></div>
-  <% end -%>
-  <canvas id="myChartprojectcustomgoal"></canvas>
+<div class="<%= 'hidden' if @kpi.blank? %>">
+  <h2>Goals metrics</h2>
+  <div class="chart-project-custom">
+    <%= form_tag(project_path(@project), method: :get) do %>
+      <%= select_tag "kpi", options_for_select(@kpigoal.items.map { |item| [item.name, item.id] }, @kpi) %>
+      <%= hidden_field_tag "event", params[:event] %>
+      <div><%= submit_tag 'Refresh' %></div>
+    <% end -%>
+    <canvas id="myChartprojectcustomgoal"></canvas>
+  </div>
 </div>
 <!-- LA CHART CUSTOM METRIC DU PROJETS EVENT  -->
-<h2>Events metrics</h2>
-<div class="chart-project-custom">
-  <%= form_tag(project_path(@project), method: :get) do %>
-    <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)) %>
-    <%= hidden_field_tag "kpi", params[:kpi] %>
-    <div><%= submit_tag 'Refresh' %></div>
-  <% end -%>
-  <canvas id="myChartprojectcustomevent"></canvas>
+<div class="<%= 'hidden' if @kpievent.rows.blank? %>">
+  <h2>Events metrics</h2>
+  <div class="chart-project-custom">
+    <%= form_tag(project_path(@project), method: :get) do %>
+      <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)) unless @kpievent.rows.nil? %>
+      <%= hidden_field_tag "kpi", params[:kpi] %>
+      <div><%= submit_tag 'Refresh' %></div>
+    <% end -%>
+    <canvas id="myChartprojectcustomevent"></canvas>
+  </div>
 </div>
+<!-- LES CHARTS LINES BASICS METRIC DU PROJETS -->
 <h2>Basics metrics</h2>
 <div class="chart-project-detail">
   <div class="text-center">
-    <h3>Sessions</h3>
+    <!-- <h3>Sessions</h3> -->
   </div>
   <canvas id="myChartprojectsession"></canvas>
 </div>
- <!-- LES CHARTS LINES BASICS METRIC DU PROJETS -->
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="text-center">
-      <h3>Pages views</h3>
+      <!-- <h3>Page views</h3> -->
     </div>
     <div class="chart-pageview">
       <canvas id="myChartprojectpv"></canvas>
@@ -70,7 +74,7 @@
   </div>
   <div class="col-xs-12 col-md-6">
     <div class="text-center">
-      <h3>Unique Visitors</h3>
+      <!-- <h3>Unique Visitors</h3> -->
     </div>
     <div class="chart-session">
       <canvas id="myChartprojectuv"></canvas>
@@ -160,7 +164,7 @@
         data: {
             labels: ["August", "September", "October", "November", "December", "January"],
             datasets: [{
-                label: 'Pages vues',
+                label: 'Page Views',
                 data: <%= raw @graphpv.to_json %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -261,7 +265,7 @@
         new Chart($("#myChartprojectnv"), {
         type: 'doughnut',
         data: {
-            labels: ["New visitors", "Visitors knows"],
+            labels: ["New visitors", "Known visitors"],
             datasets: [{
                 label: 'Bounce Rate',
                 data: <%= raw @data_nv.to_json %>,
