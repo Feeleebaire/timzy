@@ -24,20 +24,12 @@
   margin: 10px 10px 0 10px;
 }
 
-.search-form-field{
-  height: 30px;
-  width: 350px;
-  border-radius: 3px;
-  font-size: 15px;
-  border: solid;
-  border-width: 1px;
-  border-color: #C5CDD3;
-  text-indent: 5px;
-  outline: none;
+.form-control-extended{
+   width: 350px !important;
 }
 
 .search-submit-btn{
-  height: 30px;
+  height: 36px;
   width: auto;
   padding: 0 10px;
   border-radius: 3px;
