@@ -18,7 +18,7 @@ $scale: 1.06;
   border-radius: 7px;
   box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin-bottom: 50px;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
 
 
 
@@ -83,6 +83,11 @@ hr {
 
 .img-circle {
   margin-left: 10px;
+  border: 1px solid #2B414D;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  height: 65px;
+  width: 65px;
+  margin-bottom: 12px;
 }
 
 
@@ -116,12 +121,6 @@ hr {
   cursor: pointer;
 }
 
-h1 {
-  font-family : 'Heebo', sans-serif;
-  font-weight: bold;
-  color: #2B414D;
-
-}
 
 
 hr.style18 {
@@ -138,13 +137,9 @@ hr.style18 {
 
 }
 
-
-
-
-
-
-
-
+.btn {
+  margin-top: 1px;
+}
 
 
 
