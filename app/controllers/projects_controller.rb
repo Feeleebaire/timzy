@@ -13,7 +13,17 @@ class ProjectsController < ApplicationController
     uri = URI::parse(@project.url_targeted)
     @ga = GoogleApi::Analytics.new(@project.team.admin)
     @service = @ga.service
-    @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:goal#{@project.kpi}completions", dimensions: "ga:date")
+    # SET GOALS KPI
+    @kpigoal = @service.list_goals("#{@project.team.accountid}","#{@project.team.webproprietyid}", "#{@project.team.view_id}")
+    @kpi = params[:kpi].blank? ? @project.kpi : params[:kpi]
+
+
+
+    # FAIT POUR KPI
+    @kpievent = @service.get_ga_data("ga:#{@project.team.view_id}", "360daysAgo", "yesterday", "ga:totalEvents", dimensions: "ga:eventAction")
+    @event = params[:event].blank? ? @kpievent.rows.first.first : params[:event]
+
+    @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:goal#{@kpi}completions", dimensions: "ga:date")
     @arraycustom = @datacustom.rows
     @graphcustom = []
     @arraycustom.each do |data|
@@ -22,7 +32,16 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphcustom << hash
     end
-    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "330daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath==/#{uri.path}")
+    @datacustomevent = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:totalEvents", dimensions: "ga:date", filters: "ga:eventAction==#{@event}")
+    @arraycustomevent = @datacustomevent.rows
+    @graphcustomevent = []
+    @arraycustomevent.each do |data|
+      hash = {}
+      hash[:x] = data[0]
+      hash[:y] = data[1]
+      @graphcustomevent << hash
+    end
+    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
     @arraysession = @datasession.rows
     @graphsession = []
     @arraysession.each do |data|
@@ -31,7 +50,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphsession << hash
     end
-    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/#{uri.path}")
+    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
     @arrayuser = @datasuser.rows
     @graphuser = []
     @arrayuser.each do |data|
@@ -40,7 +59,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphuser << hash
     end
-    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath==/programme/immobilier-neuf/nantes-44-g43619")
+    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
     @arraypv = @datapv.rows
     @graphpv = []
     @arraypv.each do |data|
@@ -49,9 +68,9 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
     @graphpv << hash
     end
-    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath==/programme/immobilier/acheteur/liste/44-nantes-44")
+    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath=@#{uri.path}")
     @data_br = [ @databr.rows.first.first.to_f, 100 - @databr.rows.first.first.to_f ]
-    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath==/programme/immobilier-neuf/nantes-44-g43619")
+    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath=@#{uri.path}")
     @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
   end
 
