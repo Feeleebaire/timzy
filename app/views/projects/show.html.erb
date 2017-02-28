@@ -31,10 +31,25 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-  <!-- LA CHART CUSTOM METRIC DU PROJETS -->
-<h2>Custom metric</h2>
+  <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
+<h2>Goals metrics</h2>
 <div class="chart-project-custom">
-  <canvas id="myChartprojectcustom"></canvas>
+  <%= form_tag(project_path(@project), method: :get) do %>
+    <%= select_tag "kpi", options_for_select(@kpigoal.items.map { |item| [item.name, item.id] }, @kpi) %>
+    <%= hidden_field_tag "event", params[:event] %>
+    <div><%= submit_tag 'Refresh' %></div>
+  <% end -%>
+  <canvas id="myChartprojectcustomgoal"></canvas>
+</div>
+<!-- LA CHART CUSTOM METRIC DU PROJETS EVENT  -->
+<h2>Events metrics</h2>
+<div class="chart-project-custom">
+  <%= form_tag(project_path(@project), method: :get) do %>
+    <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)) %>
+    <%= hidden_field_tag "kpi", params[:kpi] %>
+    <div><%= submit_tag 'Refresh' %></div>
+  <% end -%>
+  <canvas id="myChartprojectcustomevent"></canvas>
 </div>
 <h2>Basics metrics</h2>
 <div class="chart-project-detail">
@@ -271,13 +286,51 @@
         }
     });
 
-      new Chart($("#myChartprojectcustom"), {
+      new Chart($("#myChartprojectcustomgoal"), {
           type: 'line',
           data: {
               labels: ["August", "September", "October", "November", "December", "January"],
               datasets: [{
                   label: 'Custom',
                   data: <%= raw @graphcustom.to_json %>,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255,99,132,1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
+              }
+          }
+      });
+        new Chart($("#myChartprojectcustomevent"), {
+          type: 'line',
+          data: {
+              labels: ["August", "September", "October", "November", "December", "January"],
+              datasets: [{
+                  label: 'Custom',
+                  data: <%= raw @graphcustomevent.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
