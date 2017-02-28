@@ -59,14 +59,14 @@
 <h2>Basics metrics</h2>
 <div class="chart-project-detail">
   <div class="text-center">
-    <h3>Sessions</h3>
+    <!-- <h3>Sessions</h3> -->
   </div>
   <canvas id="myChartprojectsession"></canvas>
 </div>
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="text-center">
-      <h3>Pages views</h3>
+      <!-- <h3>Page views</h3> -->
     </div>
     <div class="chart-pageview">
       <canvas id="myChartprojectpv"></canvas>
@@ -74,7 +74,7 @@
   </div>
   <div class="col-xs-12 col-md-6">
     <div class="text-center">
-      <h3>Unique Visitors</h3>
+      <!-- <h3>Unique Visitors</h3> -->
     </div>
     <div class="chart-session">
       <canvas id="myChartprojectuv"></canvas>
@@ -164,7 +164,7 @@
         data: {
             labels: ["August", "September", "October", "November", "December", "January"],
             datasets: [{
-                label: 'Pages vues',
+                label: 'Page Views',
                 data: <%= raw @graphpv.to_json %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -265,7 +265,7 @@
         new Chart($("#myChartprojectnv"), {
         type: 'doughnut',
         data: {
-            labels: ["New visitors", "Visitors knows"],
+            labels: ["New visitors", "Known visitors"],
             datasets: [{
                 label: 'Bounce Rate',
                 data: <%= raw @data_nv.to_json %>,
