@@ -9,11 +9,11 @@ class TeamsController < ApplicationController
     @teams = current_user.teams.reject{|n| n == @team}
     @team_projects = @team.projects
     # display show according to research (or not)
-    if params[:search]
-      @projects = @team_projects.search(params[:search])
-    else
-      @projects = @team_projects.all
-    end
+    @projects = @team_projects.all
+    binding.pry
+    @projects = @projects.where('title ILIKE ? OR description ILIKE ?', params[:search], params[:search]) if !params[:search].blank?
+    @projects = @projects.where(start_date: params[:startdate]..params[:enddate]) if !params[:startdate].blank? && !params[:enddate].blank?
+
     authorize(@team)
     @startdate = params[:startdate].blank? ? "30daysAgo" : params[:startdate]
     @enddate = params[:enddate].blank? ? "yesterday" : params[:enddate]
