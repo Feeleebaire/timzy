@@ -1,6 +1,8 @@
 class Team < ApplicationRecord
   #validations
   validates :name, presence: true
+  validates :photo, presence: true
+  mount_uploader :photo, PhotoUploader
   # validates :url_targeted, presence: true
   #associations
   belongs_to :admin, :class_name => "User"
