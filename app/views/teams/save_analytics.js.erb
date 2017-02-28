@@ -6,10 +6,7 @@
       type: "PATCH",
       url: "<%= save_analytics_team_path(@team) %>",
       data: {
-        accountid: accountId,
-        success: function(data) {
-          console.log("AccountId Added");
-        }
+        accountid: accountId
       }
     });
   });
@@ -21,10 +18,7 @@
       url: "<%= save_analytics_team_path(@team) %>",
       data: {
         accountid: accountId,
-        webproprietyid: propId,
-        success: function(data) {
-          console.log("WebproprietyId added");
-        }
+        webproprietyid: propId
       }
     });
   });
@@ -38,12 +32,11 @@
       data: {
         accountid: accountId,
         webproprietyid: propId,
-        view_id: viewId,
-        success: function(data) {
-          console.log("ViewId added");
-        }
+        view_id: viewId
       }
     });
   });
-
+<% end %>
+<% if @team.view_id %>
+  $('#ga-cta').removeClass('hidden');
 <% end %>

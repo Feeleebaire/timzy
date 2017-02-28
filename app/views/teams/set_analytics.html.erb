@@ -4,11 +4,9 @@
 
   </div>
 
-<div id='ga-cta'>
-<% if !@team.accountid.blank? && !@team.webproprietyid.blank? && !@team.view_id.blank? %>
+<div id='ga-cta' class="<%= 'hidden' if @team.view_id == nil %>">
   <%= link_to 'Add Teammates', new_team_teammate_path(@team), class: "btn-cta" %>
   <%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
-<% end %>
 </div>
 
 <% content_for :after_js do %>
@@ -20,23 +18,19 @@
       type: "PATCH",
       url: "<%= save_analytics_team_path(@team) %>",
       data: {
-        accountid: accountId,
-        success: function(data) {
-          console.log("AccountId Added");
-        }
+        accountid: accountId
       }
     });
   });
   $('#team_webproprietyid').change(function () {
     var propId = $('#team_webproprietyid').val();
+    var accountId = $('#team_accountid').val();
     $.ajax({
       type: "PATCH",
       url: "<%= save_analytics_team_path(@team) %>",
       data: {
-        webproprietyid: propId,
-        success: function(data) {
-          console.log("WebproprietyId added");
-        }
+        accountid: accountId,
+        webproprietyid: propId
       }
     });
   });
@@ -50,10 +44,7 @@
       data: {
         accountid: accountId,
         webproprietyid: propId,
-        view_id: viewId,
-        success: function(data) {
-          console.log("ViewId added");
-        }
+        view_id: viewId
       }
     });
   });
