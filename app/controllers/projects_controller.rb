@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphcustom << hash
     end
-    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "330daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath==/#{uri.path}")
+    @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath=~#{uri.path}*")
     @arraysession = @datasession.rows
     @graphsession = []
     @arraysession.each do |data|
@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphsession << hash
     end
-    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath==/#{uri.path}")
+    @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:users", dimensions: "ga:date", filters: "ga:pagePath=~#{uri.path}*")
     @arrayuser = @datasuser.rows
     @graphuser = []
     @arrayuser.each do |data|
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
       @graphuser << hash
     end
-    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath==/programme/immobilier-neuf/nantes-44-g43619")
+    @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath=~#{uri.path}*")
     @arraypv = @datapv.rows
     @graphpv = []
     @arraypv.each do |data|
@@ -49,9 +49,9 @@ class ProjectsController < ApplicationController
       hash[:y] = data[1]
     @graphpv << hash
     end
-    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath==/programme/immobilier/acheteur/liste/44-nantes-44")
+    @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:bounceRate", filters: "ga:pagePath=@#{uri.path}")
     @data_br = [ @databr.rows.first.first.to_f, 100 - @databr.rows.first.first.to_f ]
-    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath==/programme/immobilier-neuf/nantes-44-g43619")
+    @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "30daysAgo", "yesterday", "ga:percentNewSessions", filters: "ga:pagePath=@#{uri.path}")
     @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
   end
 
