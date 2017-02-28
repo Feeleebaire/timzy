@@ -3,10 +3,6 @@ class ProjectsController < ApplicationController
   skip_after_action :verify_policy_scoped, only: :index
   require 'uri'
 
-  def index
-    @team = Team.find(params[:id])
-  end
-
   def show
     @comment = Comment.new
     authorize(@project)
