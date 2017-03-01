@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   end
 
   get '/oauth2callback', to: 'oauth#callback'
+  get '/feed', to: 'notifications#index'
+
 
   resources :projects, only: [ :show, :edit, :update, :destroy] do
        resources :comments, only: [ :new, :create, :destroy]
