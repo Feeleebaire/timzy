@@ -108,6 +108,11 @@ class ProjectsController < ApplicationController
 
     @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
 
+    ##PERFORMANCE SHOW ##
+    @goodstartdate = @project.start_date.strftime("%Y-%m-%0e")
+    @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@goodstartdate}", "#{@goodstartdate}", "ga:goal#{@kpi}completions")
+    @todayperf = @service.get_ga_data("ga:#{@project.team.view_id}", "today", "today", "ga:goal#{@kpi}completions")
+    @perfproject = (((@todayperf.rows.first.first.to_i - @startdateperf.rows.first.first.to_i ).fdiv(@startdateperf.rows.first.first.to_i)) * 100).round(2)
 
   end
 #POPIN CREATION DE PROJECT REMPLACE CE CODE
@@ -132,7 +137,7 @@ class ProjectsController < ApplicationController
       @ga = GoogleApi::Analytics.new(@team.admin)
       @service = @ga.service
       @kpi = @service.list_goals("#{@team.accountid}","#{@team.webproprietyid}", "#{@team.view_id}")
-      render :new
+      render :_new
     end
   end
 

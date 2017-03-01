@@ -1,0 +1,47 @@
+.project-search-to-right {
+  float: right;
+}
+.project-presentation {
+  background: white;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.project-perf {
+  background: white;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.owner {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  color: #CCCCCC;
+  font-size: 20px;
+}
+
+.create-comment {
+  margin-bottom: 150px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+}
+
+.comment-content {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  color: #667C8B;
+  font-size: 20px;
+
+}
+
+.img-comment {
+  margin-left: 10px;
+  border: 1px solid #2B414D;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  height: 45px;
+  width: 45px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+}

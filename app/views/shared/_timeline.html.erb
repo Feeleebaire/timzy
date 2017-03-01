@@ -1,7 +1,5 @@
-  <div id="mother-timeline">
+<div id="mother-timeline">
   <div class="container">
-
-
 <!--   display message if research is matched (or not)-->
    <div class="search-message">
      <%  if params[:search] %>
@@ -27,6 +25,11 @@
       </div>
       <div class="modal-body">
         <%= render "projects/new" %>
+      <% if @project.save %>
+        <% redirect_to team_path(@team) %>
+      #<% else %>
+      <% render :partial => 'projects/new' %>
+      <% end %>
       </div>
     </div>
   </div>
@@ -74,8 +77,11 @@
   </section> <!-- close cd-timeline -->
   </div> <!-- id timeline -->
 </div>
-
-
+<script>
+$(document).on("click", "a[href='projects#create']", function () {
+   $("#Modalproject").modal("show")
+})
+</script>
 
 
 
