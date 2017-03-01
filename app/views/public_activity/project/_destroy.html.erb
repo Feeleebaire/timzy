@@ -1,4 +1,8 @@
- <p><%= a.updated_at.strftime('%-d %B %Y %H:%M:%S') %> :</p>
-<p>A project was deleted</p>
+<%= link_to project_path(a.trackable_id) do  %>
+  <div class="feed-card">
 
+    <div class="feed-context"><%= a.updated_at.strftime('%-d %B %Y %H:%M:%S') %> :</div>
+     <div class="feed-details">A project was deleted</div>
 
+  </div>
+<% end %>

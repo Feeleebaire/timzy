@@ -1,3 +1,8 @@
-<p><%= a.created_at.strftime('%-d %B %Y %H:%M:%S') %> @ <%= activity.trackable.project.team.name %> : </p>
-<p><%= activity.trackable.user.first_name %> reacted to <%= activity.trackable.project.title%> : "<%= activity.trackable.content%>" </p>
+<%= link_to project_path(a.trackable.project.id) do  %>
+  <div class="feed-card">
 
+    <div class="feed-context"><%= a.created_at.strftime('%-d %B %Y %H:%M:%S') %> @ <%= activity.trackable.project.team.name %> : </div>
+    <div class="feed-details"><%= activity.trackable.user.first_name %> reacted to <%= activity.trackable.project.title%> : "<%= activity.trackable.content%>" </div>
+
+  </div>
+<% end %>
