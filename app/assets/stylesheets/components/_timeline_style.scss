@@ -58,6 +58,8 @@ Main components
 
 -------------------------------- */
 
+// Related css code (on same page) on project_index page and chart.scss
+
 header {
   height: 30px;
   line-height: 30px;
@@ -88,11 +90,12 @@ header h1 {
 #mother-timeline .btn-create{
 float : right;
 color: white;
-box-shadow: 0 3px 0 #d7e4ed;
+// box-shadow: 0 3px 0 #d7e4ed;
 font-size : 20px;
 font-weight: normal;
 border: none;
-
+z-index:1;
+position:relative;
 }
 
 #mother-timeline .btn-create:hover{
@@ -301,7 +304,7 @@ font-size : 20px;
 .cd-timeline-content .cd-timeline-infos {
   font-family: 'Open Sans', sans-serif;
   font-weight:lighter;
-  width: 80%;
+  width: 95%;
 }
 
 /*card title*/
@@ -329,6 +332,7 @@ font-size : 20px;
 
 .cd-timeline-content .cd-icons {
   opacity: .7;
+  z-index: 1;
 }
 
 .cd-timeline-content .cd-icons .fa {

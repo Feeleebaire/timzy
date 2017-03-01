@@ -1,3 +1,5 @@
+// Related css code (on same page) on project_index page and timeline_style.scss
+
 .chart-project {
   height: 200px;
 }
@@ -6,6 +8,8 @@
   height: 250px;
   margin-right: auto;
   margin-bottom: 20px;
+  z-index: 2;
+  position: relative;
 }
 
 .fixed {

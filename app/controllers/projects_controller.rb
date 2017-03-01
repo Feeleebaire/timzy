@@ -15,8 +15,13 @@ class ProjectsController < ApplicationController
     @kpigoal = @service.list_goals("#{@project.team.accountid}","#{@project.team.webproprietyid}", "#{@project.team.view_id}")
     @kpi = params[:kpi].blank? ? @project.kpi : params[:kpi]
 
+
     if !@kpi.blank?
-      @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:date")
+      if uri.path.blank?
+        @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:date")
+      else
+        @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
+      end
       @arraycustom = @datacustom.rows
       @graphcustom = []
       @arraycustom.each do |data|
@@ -28,12 +33,20 @@ class ProjectsController < ApplicationController
       @custom_dates = set_dates_for_graph(@arraycustom)
     end
 
-    # SET EVENT KPI
-    @kpievent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:eventAction")
 
+    # SET EVENT KPI
+    if uri.path.blank?
+      @kpievent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:eventAction")
+    else
+      @kpievent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:eventAction", filters: "ga:pagePath=@#{uri.path}")
+    end
     if !@kpievent.rows.blank?
       @event = params[:event].blank? ? @kpievent.rows.first.first : params[:event]
-      @datacustomevent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:date", filters: "ga:eventAction==#{@event}")
+      if uri.path.blank?
+      @datacustomevent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:date", filters: "ga:eventAction==#{@event}" )
+      else
+      @datacustomevent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:date", filters: "ga:eventAction==#{@event} ga:pagePath=@#{uri.path}" )
+      end
       @arraycustomevent = @datacustomevent.rows
       @graphcustomevent = []
       @arraycustomevent.each do |data|
@@ -53,6 +66,7 @@ class ProjectsController < ApplicationController
       @databr = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:bounceRate")
       @datanv = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:percentNewSessions")
     else
+      @datacustomevent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:date", filters: "ga:eventAction==#{@event} ga:pagePath=@#{uri.path}" )
       @datasession = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:sessions", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
       @datasuser = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:users", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
       @datapv = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:pageviews", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
@@ -96,15 +110,15 @@ class ProjectsController < ApplicationController
 
 
   end
-
-  def new
-    @project = Project.new
-    @team = Team.find(params[:team_id])
-    @ga = GoogleApi::Analytics.new(@team.admin)
-    @service = @ga.service
-    @kpi = @service.list_goals("#{@team.accountid}","#{@team.webproprietyid}", "#{@team.view_id}")
-    authorize(@project)
-  end
+#POPIN CREATION DE PROJECT REMPLACE CE CODE
+  # def new
+  #   @project = Project.new
+  #   @team = Team.find(params[:team_id])
+  #   @ga = GoogleApi::Analytics.new(@team.admin)
+  #   @service = @ga.service
+  #   @kpi = @service.list_goals("#{@team.accountid}","#{@team.webproprietyid}", "#{@team.view_id}")
+  #   authorize(@project)
+  # end
 
   def create
     @project = Project.new(project_params)
