@@ -300,7 +300,7 @@
         }
         }
     });
-
+    if (<%= !@graphcustom.nil? %>) {
       new Chart($("#myChartprojectcustomgoal"), {
           type: 'line',
           data: {
@@ -339,6 +339,8 @@
               }
           }
       });
+    }
+
         new Chart($("#myChartprojectcustomevent"), {
           type: 'line',
           data: {
