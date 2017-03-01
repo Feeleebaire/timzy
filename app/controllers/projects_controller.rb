@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :vote]
   skip_after_action :verify_policy_scoped, only: :index
   require 'uri'
 
@@ -153,6 +153,13 @@ class ProjectsController < ApplicationController
     redirect_to team_path(@team), notice: 'Your project was successfully destroyed.'
   end
 
+  def vote
+    if current_user.voted_for? @project
+      current_user.unvote_for? @project
+    else
+      current_user.up_votes @project
+    end
+  end
 
 private
 
