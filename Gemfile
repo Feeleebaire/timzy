@@ -14,7 +14,9 @@ gem 'google-api-client', '~> 0.9'
 gem 'chart-js-rails'
 gem 'carrierwave', '~> 0.11.2'
 gem 'cloudinary'
+gem 'public_activity'
 gem 'acts_as_votable'
+
 
 
 gem 'sass-rails'
