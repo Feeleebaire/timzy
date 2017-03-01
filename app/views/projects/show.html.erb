@@ -368,10 +368,12 @@
       });
       $('#kpi').change( function() {
         $('#kpi-form').submit();
+        $('.loader').removeClass('hidden');
       });
 
       $('#select-event').change( function() {
         $('#event-form').submit();
+        $('.loader').removeClass('hidden');
       });
     });
   </script>
