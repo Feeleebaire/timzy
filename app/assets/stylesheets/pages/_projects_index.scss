@@ -24,12 +24,17 @@
   margin: 10px 10px 0 10px;
 }
 
+.search-bar {
+  border-radius: 4px;
+  height: 40px;
+}
+
 .form-control-extended{
-   width: 350px !important;
+  width: 350px !important;
 }
 
 .search-submit-btn{
-  height: 36px;
+  height: 40px;
   width: auto;
   padding: 0 10px;
   border-radius: 3px;
@@ -43,12 +48,19 @@
 }
 
 .search-message{
-  font-size: 20px;
+  font-size: 15px;
   font-family: "Open Sans", sans-serif;
-  text-align : center;
-  margin : 40px 0;
+  font-weight: 100;
 }
 
 ::-webkit-input-placeholder {
-   font-style: italic;
+   font-style: normal;
 }
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none;
+  border-color: #456678;
+}
+
+
