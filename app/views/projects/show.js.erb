@@ -1,3 +1,4 @@
+$('.loader').addClass('hidden');
 $('#myChartprojectcustomgoal').empty();
 
 new Chart($("#myChartprojectcustomgoal"), {
@@ -79,10 +80,3 @@ new Chart($("#myChartprojectcustomevent"), {
               }
           }
       });
-$('#kpi').change( function() {
-        $('#kpi-form').submit();
-      });
-
-$('#event').change( function() {
-  $('#event-form').submit();
-});
