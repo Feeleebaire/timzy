@@ -301,7 +301,7 @@ font-size : 20px;
 .cd-timeline-content .cd-timeline-infos {
   font-family: 'Open Sans', sans-serif;
   font-weight:lighter;
-  width: 80%;
+  width: 95%;
 }
 
 /*card title*/
@@ -329,6 +329,7 @@ font-size : 20px;
 
 .cd-timeline-content .cd-icons {
   opacity: .7;
+  z-index: 1;
 }
 
 .cd-timeline-content .cd-icons .fa {
