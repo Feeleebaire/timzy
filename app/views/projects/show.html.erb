@@ -37,7 +37,7 @@
           <%= form_tag(project_path(@project), :method => "get") do %>
               <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control search-message search-bar" %>
               <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control search-message search-bar" %>
-            <%= submit_tag "Search", :name => nil, :class => "search-submit-btn" %>
+            <%= submit_tag "Filter", :name => nil, :class => "search-submit-btn" %>
           <% end %>
     </div>
   </div>
@@ -46,7 +46,8 @@
   <div class="chart-project-custom">
     <%= form_tag(project_path(@project), method: :get, remote: true, id:'kpi-form') do %>
       <%= select_tag "kpi", options_for_select(@kpigoal.items.map { |item| [item.name, item.id] }, @kpi) %>
-      <%= hidden_field_tag "event", params[:event] %>
+      <%= hidden_field_tag :startdate, params[:startdate] %>
+      <%= hidden_field_tag :enddate, params[:enddate] %>
     <% end -%>
     <canvas id="myChartprojectcustomgoal"></canvas>
   </div>
@@ -58,7 +59,8 @@
     <%= form_tag(project_path(@project), method: :get, remote: true, id:'event-form') do %>
       <% unless @kpievent.rows.nil? %>
         <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)), id: "select-event" %>
-        <%= hidden_field_tag "kpi", params[:kpi] %>
+        <%= hidden_field_tag :startdate, params[:startdate] %>
+        <%= hidden_field_tag :enddate, params[:enddate] %>
       <% end %>
     <% end -%>
     <canvas id="myChartprojectcustomevent"></canvas>
@@ -385,6 +387,9 @@
         $('.loader').removeClass('hidden');
       });
 
+      $('.search-submit-btn').click( function() {
+        $('.loader').removeClass('hidden');
+      });
 
     });
   </script>
