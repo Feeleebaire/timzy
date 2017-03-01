@@ -1,7 +1,11 @@
 class Project < ApplicationRecord
+<<<<<<< HEAD
   include PublicActivity::Model
   tracked
 
+=======
+  acts_as_votable
+>>>>>>> master
   #validations
   validates :title, :description, :start_date, :category, presence: true
   #associations

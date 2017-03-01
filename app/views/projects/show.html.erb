@@ -4,7 +4,7 @@
 
 <!-- DESCRIPTION DU  PROJETS -->
 
-  <h1><%= @project.title %> Overview</h1>
+  <h1><%= @project.title %> Overview</h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button" %>
   <br>
 <div class="row">
   <div class="col-xs-12 col-md-6">
@@ -31,12 +31,23 @@
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
+  <div class="project-search-to-right">
+    <div class="search form-inline">
+       <!--    Search bar -->
+          <%= form_tag(project_path(@project), :method => "get") do %>
+              <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control search-message search-bar" %>
+              <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control search-message search-bar" %>
+            <%= submit_tag "Filter", :name => nil, :class => "search-submit-btn" %>
+          <% end %>
+    </div>
+  </div>
 <div class="<%= 'hidden' if @kpi.blank? %>">
   <h2>Goals metrics</h2>
   <div class="chart-project-custom">
     <%= form_tag(project_path(@project), method: :get, remote: true, id:'kpi-form') do %>
       <%= select_tag "kpi", options_for_select(@kpigoal.items.map { |item| [item.name, item.id] }, @kpi) %>
-      <%= hidden_field_tag "event", params[:event] %>
+      <%= hidden_field_tag :startdate, params[:startdate] %>
+      <%= hidden_field_tag :enddate, params[:enddate] %>
     <% end -%>
     <canvas id="myChartprojectcustomgoal"></canvas>
   </div>
@@ -48,7 +59,8 @@
     <%= form_tag(project_path(@project), method: :get, remote: true, id:'event-form') do %>
       <% unless @kpievent.rows.nil? %>
         <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)), id: "select-event" %>
-        <%= hidden_field_tag "kpi", params[:kpi] %>
+        <%= hidden_field_tag :startdate, params[:startdate] %>
+        <%= hidden_field_tag :enddate, params[:enddate] %>
       <% end %>
     <% end -%>
     <canvas id="myChartprojectcustomevent"></canvas>
@@ -122,7 +134,7 @@
       new Chart($("#myChartprojectsession"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @session_dates.to_json %>,
               datasets: [{
                   label: 'Sessions',
                   data: <%= raw @graphsession.to_json %>,
@@ -161,7 +173,7 @@
         new Chart($("#myChartprojectpv"), {
         type: 'line',
         data: {
-            labels: ["August", "September", "October", "November", "December", "January"],
+            labels: <%= raw @pv_dates.to_json %>,
             datasets: [{
                 label: 'Page Views',
                 data: <%= raw @graphpv.to_json %>,
@@ -199,7 +211,7 @@
         new Chart($("#myChartprojectuv"), {
         type: 'line',
         data: {
-            labels: ["August", "September", "October", "November", "December", "January"],
+            labels: <%= raw @user_dates.to_json %>,
             datasets: [{
                 label: 'Unique visitors',
                 data: <%= raw @graphuser.to_json %>,
@@ -288,11 +300,11 @@
         }
         }
     });
-
+    if (<%= !@graphcustom.nil? %>) {
       new Chart($("#myChartprojectcustomgoal"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @custom_dates.to_json %>,
               datasets: [{
                   label: 'Custom',
                   data: <%= raw @graphcustom.to_json %>,
@@ -327,10 +339,12 @@
               }
           }
       });
+    }
+    if (<%= !@graphcustomevent.nil? %>) {
         new Chart($("#myChartprojectcustomevent"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @customevent_dates.to_json %>,
               datasets: [{
                   label: 'Custom',
                   data: <%= raw @graphcustomevent.to_json %>,
@@ -365,6 +379,8 @@
               }
           }
       });
+    }
+
       $('#kpi').change( function() {
         $('#kpi-form').submit();
         $('.loader').removeClass('hidden');
@@ -373,6 +389,19 @@
       $('#select-event').change( function() {
         $('#event-form').submit();
         $('.loader').removeClass('hidden');
+      });
+
+      $('.search-submit-btn').click( function() {
+        $('.loader').removeClass('hidden');
+      });
+
+      $('#like-button').click(function() {
+        if ($('#like-button').html() === "Like") {
+          $('#like-button').html('Dislike');
+        }
+        else {
+          $('#like-button').html('Like');
+        }
       });
     });
   </script>
