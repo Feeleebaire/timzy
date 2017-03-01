@@ -4,7 +4,7 @@ $('#myChartprojectcustomgoal').empty();
 new Chart($("#myChartprojectcustomgoal"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @custom_dates.to_json %>,
               datasets: [{
                   label: 'Custom',
                   data: <%= raw @graphcustom.to_json %>,
@@ -45,7 +45,7 @@ $('#myChartprojectcustomevent').empty();
 new Chart($("#myChartprojectcustomevent"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @customevent_dates.to_json %>,
               datasets: [{
                   label: 'Custom',
                   data: <%= raw @graphcustomevent.to_json %>,
