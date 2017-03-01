@@ -1,3 +1,5 @@
+// Related css code (on same page) on chart.scss page and timeline_style.scss
+
 .project-topbar{
   display: flex;
   justify-content: space-between;
@@ -11,8 +13,8 @@
 }
 
 .team-selector a {
-    text-decoration:none;
-    color: #2B414D;
+  text-decoration:none;
+  color: #2B414D;
 }
 
 .dropdown-menu{
@@ -24,12 +26,17 @@
   margin: 10px 10px 0 10px;
 }
 
+.search-bar {
+  border-radius: 4px;
+  height: 40px;
+}
+
 .form-control-extended{
-   width: 350px !important;
+  width: 350px !important;
 }
 
 .search-submit-btn{
-  height: 36px;
+  height: 40px;
   width: auto;
   padding: 0 10px;
   border-radius: 3px;
@@ -43,12 +50,23 @@
 }
 
 .search-message{
-  font-size: 20px;
+  font-size: 15px;
   font-family: "Open Sans", sans-serif;
-  text-align : center;
-  margin : 40px 0;
+  font-weight: 100;
 }
 
 ::-webkit-input-placeholder {
-   font-style: italic;
+   font-style: normal;
 }
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none;
+  border-color: #456678;
+}
+
+.project-search-to-right {
+  float: right;
+}
+
+

@@ -1,0 +1,30 @@
+.datepicker-dropdown.datepicker-orient-bottom:after{
+ top: -5px;
+}
+.datepicker-dropdown.datepicker-orient-left:after{
+ left: 75px;
+}
+.datepicker-dropdown.datepicker-orient-bottom:before{
+  top: -6px;
+}
+.datepicker-dropdown.datepicker-orient-left:before{
+ left: 74px;
+}
+
+.datepicker table tr td.today {
+ color: #2B414D;
+    background-color: #F4D35E;
+    border-color: #F4D35E;
+}
+
+.datepicker table tr td.today:hover {
+    color: #2B414D;
+    background-color: #F4D35E;
+    border-color: #F4D35E;
+}
+
+.datepicker {
+  color: #2B414D;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+}

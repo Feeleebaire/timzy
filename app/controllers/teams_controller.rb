@@ -6,6 +6,10 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @project = Project.new
+    @ga = GoogleApi::Analytics.new(@team.admin)
+    @service = @ga.service
+    @kpi = @service.list_goals("#{@team.accountid}","#{@team.webproprietyid}", "#{@team.view_id}")
     @teams = current_user.teams.reject{|n| n == @team}
     @team_projects = @team.projects
     # display show according to research (or not)
