@@ -35,10 +35,9 @@
 <div class="<%= 'hidden' if @kpi.blank? %>">
   <h2>Goals metrics</h2>
   <div class="chart-project-custom">
-    <%= form_tag(project_path(@project), method: :get) do %>
+    <%= form_tag(project_path(@project), method: :get, remote: true, id:'kpi-form') do %>
       <%= select_tag "kpi", options_for_select(@kpigoal.items.map { |item| [item.name, item.id] }, @kpi) %>
       <%= hidden_field_tag "event", params[:event] %>
-      <div><%= submit_tag 'Refresh' %></div>
     <% end -%>
     <canvas id="myChartprojectcustomgoal"></canvas>
   </div>
@@ -47,10 +46,11 @@
 <div class="<%= 'hidden' if @kpievent.rows.blank? %>">
   <h2>Events metrics</h2>
   <div class="chart-project-custom">
-    <%= form_tag(project_path(@project), method: :get) do %>
-      <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)) unless @kpievent.rows.nil? %>
-      <%= hidden_field_tag "kpi", params[:kpi] %>
-      <div><%= submit_tag 'Refresh' %></div>
+    <%= form_tag(project_path(@project), method: :get, remote: true, id:'event-form') do %>
+      <% unless @kpievent.rows.nil? %>
+        <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)), id: "select-event" %>
+        <%= hidden_field_tag "kpi", params[:kpi] %>
+      <% end %>
     <% end -%>
     <canvas id="myChartprojectcustomevent"></canvas>
   </div>
@@ -366,7 +366,13 @@
               }
           }
       });
+      $('#kpi').change( function() {
+        $('#kpi-form').submit();
+      });
 
+      $('#select-event').change( function() {
+        $('#event-form').submit();
+      });
     });
   </script>
 <% end %>

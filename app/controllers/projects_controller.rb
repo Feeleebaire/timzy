@@ -86,6 +86,8 @@ class ProjectsController < ApplicationController
     @data_br = [ @databr.rows.first.first.to_f, 100 - @databr.rows.first.first.to_f ]
 
     @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
+
+
   end
 
   def new
