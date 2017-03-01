@@ -90,14 +90,14 @@ class ProjectsController < ApplicationController
 
   end
 
-  def new
-    @project = Project.new
-    @team = Team.find(params[:team_id])
-    @ga = GoogleApi::Analytics.new(@team.admin)
-    @service = @ga.service
-    @kpi = @service.list_goals("#{@team.accountid}","#{@team.webproprietyid}", "#{@team.view_id}")
-    authorize(@project)
-  end
+  # def new
+  #   @project = Project.new
+  #   @team = Team.find(params[:team_id])
+  #   @ga = GoogleApi::Analytics.new(@team.admin)
+  #   @service = @ga.service
+  #   @kpi = @service.list_goals("#{@team.accountid}","#{@team.webproprietyid}", "#{@team.view_id}")
+  #   authorize(@project)
+  # end
 
   def create
     @project = Project.new(project_params)
