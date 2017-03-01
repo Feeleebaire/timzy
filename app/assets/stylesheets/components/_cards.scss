@@ -1,4 +1,4 @@
-$scale: 1.04;
+$scale: 1.03;
 
 
 .card-img-top {
@@ -167,8 +167,10 @@ hr.style18 {
 
 
 
+
     &:hover {
       transform: scale($scale);
+      text-decoration: none;
 
 
 
@@ -183,8 +185,16 @@ hr.style18 {
 }
 }
 
-.info  {
+.info h4 {
   padding-left: 10px;
+  color: #2B414D;
+  font-family: 'Heebo', sans-serif;
+  font-weight: normal;
+}
+
+.info p {
+  padding-left: 10px;
+  color: #2B414D;
 }
 
 .card-title-1 {
@@ -192,6 +202,9 @@ float: right;
 margin-right: 5px;
 }
 
+.col-xs-12 {
+  margin-bottom: 40px;
+}
 
 
 
