@@ -1,7 +1,6 @@
 <%= simple_form_for [@team, @project] do |f| %>
-  <%= f.error_notification %>
-
   <div class="form-inputs">
+    <%= f.error_notification %>
     <%= f.input :title  %>
     <%= f.input :description %>
     <%= f.input :category, collection: ["Communication", "Development","Marketing", "Product", "Sales" ] %>
@@ -32,4 +31,3 @@
     <%= f.button :submit %>
   </div>
 <% end %>
-

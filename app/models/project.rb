@@ -1,6 +1,9 @@
 class Project < ApplicationRecord
   #validations
-  validates :title, :description, :start_date, :category, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :start_date, presence: true
+  validates :category, presence: true
   #associations
   belongs_to :user
   belongs_to :team

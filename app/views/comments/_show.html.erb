@@ -1,2 +1,4 @@
-<p><strong><%= comment.user.first_name %></strong></p>
-<p><%= comment.content %></p>
+<div class="project-comments">
+<h4><%= cl_image_tag comment.user.photo, class: "img-comment" %>
+<%= comment.user.first_name %>: <span class= "comment-content">"<%= comment.content %>"</span></h4>
+</div>

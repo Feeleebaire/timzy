@@ -1,28 +1,32 @@
 <div class="container">
   <%= link_to '<< Back to timeline', team_path(@project.team) %>
-
-
 <!-- DESCRIPTION DU  PROJETS -->
-
-  <h1><%= @project.title %> Overview</h1>
-  <br>
+<span class= text-center>
+  <h1><%= @project.title %></h1>
+</span>
+  <div class="project-photo-user">
+    <h3><%= cl_image_tag @project.user.photo, height: 65, width: 65, :class =>"img-circle" %> <%= @project.user.first_name %> <%= @project.user.last_name %> <span class = "owner">(Creator)</span></h3>
+  </div>
+<!-- PRESENTATION PROJET -->
 <div class="row">
   <div class="col-xs-12 col-md-6">
-    <p><strong>Creator:</strong> <%= @project.user.first_name %>  <%= @project.user.last_name %></p>
-    <p><strong>Description:</strong> <%= @project.description %></p>
-    <p> <strong>Category:</strong> <%= @project.category %></p>
-    <p>  <strong>Start date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>  |  <strong>End date:</strong> <%= @project.end_date.strftime("%b %d, %Y") unless @project.end_date.nil? %></p>
-    <p><strong>Goal:</strong> <%= @project.goal %>  |  <strong>KPI:</strong> <%= @project.kpi %></p>
-    <p><strong>Targeted url:</strong> <%= @project.url_targeted %></p>
+    <div class="project-presentation">
+      <p><strong>Description:</strong> <%= @project.description %></p>
+      <p> <strong>Category:</strong> <%= @project.category %></p>
+      <p>  <strong>Start date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
+      <p><strong>Goal:</strong> <%= @project.goal %>  |  <strong>KPI:</strong> <%= @project.kpi %></p>
+      <p><strong>Targeted url:</strong> <%= @project.url_targeted %></p>
+    </div>
   </div>
+  <!-- PRESENTATION PERFORMANCES -->
   <div class="col-xs-12 col-md-6 text-center">
-    <p>ICI LES PERFS</p>
+    <div class="project-perf">
+      <p><%= @perfproject %>%</p>
+    </div>
   </div>
 </div>
-  <br>
-
+<br>
   <!-- LES POLICIES SUR LE PROJETS -->
-
   <% if policy(@project).update? %>
     <%= link_to 'Edit', edit_project_path(@project) %> |
   <% end %>
@@ -30,6 +34,7 @@
   <% if policy(@project).destroy? %>
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
+  <hr>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
   <div class="project-search-to-right">
     <div class="search form-inline">
@@ -107,14 +112,10 @@
 </div>
   <hr>
   <!-- LES COMMENTAIRES SUR LE PROJETS -->
-  <h4>Comments</h4>
+  <h4>Comments about project: <%= @project.title %></h4>
   <div id="comments">
-    <% if @project.comments.blank? %>
-      Be the first to leave a comment for <%= @project.title %>
-    <% else %>
-      <% @project.comments.each do |comment| %>
-        <%= render 'comments/show', comment: comment %>
-      <% end %>
+    <% @project.comments.each do |comment| %>
+      <%= render 'comments/show', comment: comment %>
     <% end %>
   </div>
 

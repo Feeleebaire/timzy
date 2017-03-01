@@ -1,4 +1,6 @@
-<%= simple_form_for([ project, comment ], remote: true) do |form| %>
-  <%= form.input :content, as: :text %>
-  <%= form.button :submit %>
-<% end %>
+<div class="create-comment">
+  <%= simple_form_for([ project, comment ], remote: true) do |form| %>
+    <%= form.input :content, as: :text, placeholder: "Comment project" %>
+    <%= form.button :submit, class: "btn-create" %>
+  <% end %>
+</div>
