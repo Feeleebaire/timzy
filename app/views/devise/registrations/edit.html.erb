@@ -1,6 +1,5 @@
 <div class="container">
 <h1>My Profile</h1>
-<hr>
 <div class="profil-container">
   <div class="row">
     <div class="col-xs-12 col-md-6 ">
@@ -45,24 +44,29 @@
     </div>
     </div>
    </div>
+   <hr>
    <div class="row">
    <h2>My Teams</h2>
+   <br>
    <br>
    <div class="col-xs-12">
 
    <% @user.teams.each do |team| %>
+   <%= link_to team_path(team) do %>
    <ul class= "list-inline">
    <div class="list-teams">
    <li>
-    <h3 class="card-title"><%= team.name %></h3>
-   <%= cl_image_tag team.photo, height: 125, width: 225, crop: :fill, :class =>"card-img-top";%>
+    <h3 class="card-title-1"><%= team.name %></h3>
+   <%= cl_image_tag team.photo, height: 130, width: 225, crop: :fill, :class =>"card-img-top";%>
    <% team.users.each do |user| %>
       <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
    </li>
    </ul>
    <% end %>
    <% end %>
+   <% end %>
    </div>
+      </div>
       </div>
       </div>
       <end>
