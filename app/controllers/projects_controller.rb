@@ -89,7 +89,7 @@ class ProjectsController < ApplicationController
 
 
   end
-
+#POPIN CREATION DE PROJECT REMPLACE CE CODE
   # def new
   #   @project = Project.new
   #   @team = Team.find(params[:team_id])
