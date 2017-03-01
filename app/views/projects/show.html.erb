@@ -2,12 +2,12 @@
   <%= link_to '<< Back to timeline', team_path(@project.team) %>
 <!-- DESCRIPTION DU  PROJETS -->
 <span class= text-center>
-  <h1><%= @project.title %></h1>
+  <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button" %>
 </span>
   <div class="project-photo-user">
     <h3><%= cl_image_tag @project.user.photo, height: 65, width: 65, :class =>"img-circle" %> <%= @project.user.first_name %> <%= @project.user.last_name %> <span class = "owner">(Creator)</span></h3>
   </div>
-<!-- PRESENTATION PROJET -->
+
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="project-presentation">
@@ -341,7 +341,7 @@
           }
       });
     }
-
+    if (<%= !@graphcustomevent.nil? %>) {
         new Chart($("#myChartprojectcustomevent"), {
           type: 'line',
           data: {
@@ -380,6 +380,8 @@
               }
           }
       });
+    }
+
       $('#kpi').change( function() {
         $('#kpi-form').submit();
         $('.loader').removeClass('hidden');
@@ -394,6 +396,14 @@
         $('.loader').removeClass('hidden');
       });
 
+      $('#like-button').click(function() {
+        if ($('#like-button').html() === "Like") {
+          $('#like-button').html('Dislike');
+        }
+        else {
+          $('#like-button').html('Like');
+        }
+      });
     });
   </script>
 <% end %>

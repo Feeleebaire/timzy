@@ -1,6 +1,3 @@
-$scale: 1.06;
-
-
 .card-img-top {
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
@@ -14,7 +11,7 @@ $scale: 1.06;
   position: relative;
   cursor: pointer;
   transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
-  transition-delay: .15s;
+  transition-delay: 0s;
   border-radius: 7px;
   box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin-bottom: 50px;
@@ -26,7 +23,7 @@ $scale: 1.06;
 
 
     &:hover {
-      transform: scale($scale);
+      transform: scale(1.02);
 
 
 
@@ -83,7 +80,7 @@ hr {
 
 .img-circle {
   margin-left: 10px;
-  border: 1px solid #2B414D;
+  border: 1px solid #F7F7F7;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
   height: 65px;
   width: 65px;
@@ -109,8 +106,70 @@ hr.style18 {
   margin-top: 1px;
 }
 
+.profil-container {
+  // display: flex;
+  justify-content: space-around;
+  align-items:  center;
+}
+
+.photo-profil {
+  margin-top: 60px;
+  margin-left: 130px;
+}
+
+.list-teams {
+  background-color:#F7F6F5;
+  position: relative;
+  cursor: pointer;
+  transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
+  transition-delay: 0s;
+  border-radius: 7px;
+  margin-bottom: 0px;
 
 
+
+
+
+
+
+
+    &:hover {
+      transform: scale(1.005);
+      text-decoration: none;
+
+
+
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: '';
+    }
+}
+}
+
+.info h4 {
+  padding-left: 10px;
+  color: #2B414D;
+  font-family: 'Heebo', sans-serif;
+  font-weight: normal;
+}
+
+.info p {
+  padding-left: 10px;
+  color: #2B414D;
+}
+
+.card-title-1 {
+float: right;
+margin-right: 5px;
+}
+
+.col-xs-12 {
+  margin-bottom: 40px;
+}
 
 
 
