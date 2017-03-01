@@ -32,6 +32,10 @@ class ProjectPolicy < ApplicationPolicy
     is_user_owner_or_admin?
   end
 
+  def vote?
+    show?
+  end
+
   private
 
   def is_user_team_member?
