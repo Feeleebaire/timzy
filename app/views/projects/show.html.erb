@@ -31,6 +31,14 @@
     <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
+  <div class="search form-inline">
+     <!--    Search bar -->
+        <%= form_tag(team_path(@project.team), :method => "get") do %>
+            <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control search-message search-bar" %>
+            <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control search-message search-bar" %>
+          <%= submit_tag "Search", :name => nil, :class => "search-submit-btn" %>
+        <% end %>
+  </div>
 <div class="<%= 'hidden' if @kpi.blank? %>">
   <h2>Goals metrics</h2>
   <div class="chart-project-custom">
@@ -122,7 +130,7 @@
       new Chart($("#myChartprojectsession"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @session_dates.to_json %>,
               datasets: [{
                   label: 'Sessions',
                   data: <%= raw @graphsession.to_json %>,
@@ -161,7 +169,7 @@
         new Chart($("#myChartprojectpv"), {
         type: 'line',
         data: {
-            labels: ["August", "September", "October", "November", "December", "January"],
+            labels: <%= raw @pv_dates.to_json %>,
             datasets: [{
                 label: 'Page Views',
                 data: <%= raw @graphpv.to_json %>,
@@ -199,7 +207,7 @@
         new Chart($("#myChartprojectuv"), {
         type: 'line',
         data: {
-            labels: ["August", "September", "October", "November", "December", "January"],
+            labels: <%= raw @user_dates.to_json %>,
             datasets: [{
                 label: 'Unique visitors',
                 data: <%= raw @graphuser.to_json %>,
@@ -292,7 +300,7 @@
       new Chart($("#myChartprojectcustomgoal"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @custom_dates.to_json %>,
               datasets: [{
                   label: 'Custom',
                   data: <%= raw @graphcustom.to_json %>,
@@ -330,7 +338,7 @@
         new Chart($("#myChartprojectcustomevent"), {
           type: 'line',
           data: {
-              labels: ["August", "September", "October", "November", "December", "January"],
+              labels: <%= raw @customevent_dates.to_json %>,
               datasets: [{
                   label: 'Custom',
                   data: <%= raw @graphcustomevent.to_json %>,
