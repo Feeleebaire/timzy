@@ -47,9 +47,10 @@
   <h2>Events metrics</h2>
   <div class="chart-project-custom">
     <%= form_tag(project_path(@project), method: :get, remote: true, id:'event-form') do %>
-      <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)) unless @kpievent.rows.nil? %>
-      <%= hidden_field_tag "kpi", params[:kpi] %>
-      <div><%= submit_tag 'Refresh' %></div>
+      <% unless @kpievent.rows.nil? %>
+        <%= select_tag "event", options_for_select(@kpievent.rows.map(&:first)), id: "select-event" %>
+        <%= hidden_field_tag "kpi", params[:kpi] %>
+      <% end %>
     <% end -%>
     <canvas id="myChartprojectcustomevent"></canvas>
   </div>
@@ -369,7 +370,7 @@
         $('#kpi-form').submit();
       });
 
-      $('#event').change( function() {
+      $('#select-event').change( function() {
         $('#event-form').submit();
       });
     });
