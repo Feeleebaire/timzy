@@ -4,7 +4,7 @@
 
 <!-- DESCRIPTION DU  PROJETS -->
 
-  <h1><%= @project.title %> Overview</h1>
+  <h1><%= @project.title %> Overview</h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button" %>
   <br>
 <div class="row">
   <div class="col-xs-12 col-md-6">
@@ -340,7 +340,7 @@
           }
       });
     }
-
+    if (<%= !@graphcustomevent.nil? %>) {
         new Chart($("#myChartprojectcustomevent"), {
           type: 'line',
           data: {
@@ -379,6 +379,8 @@
               }
           }
       });
+    }
+
       $('#kpi').change( function() {
         $('#kpi-form').submit();
         $('.loader').removeClass('hidden');
@@ -393,6 +395,14 @@
         $('.loader').removeClass('hidden');
       });
 
+      $('#like-button').click(function() {
+        if ($('#like-button').html() === "Like") {
+          $('#like-button').html('Dislike');
+        }
+        else {
+          $('#like-button').html('Like');
+        }
+      });
     });
   </script>
 <% end %>

@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  include PublicActivity::Model
+  tracked
   #validations
   validates :content, presence: true
   #associations
