@@ -35,32 +35,8 @@
           </div>
         <% end %>
     </div>
-  </div>
-
-
       <br>
       <br>
-      <div class="row">
-       <h2>My Teams</h2>
-       <hr>
-        <div class="col-xs-12">
-           <% @user.teams.each do |team| %>
-             <%= link_to team_path(team) do %>
-               <ul class= "list-inline">
-               <div class="list-teams">
-               <li>
-                <h3 class="card-title-1"><%= team.name %></h3>
-               <%= cl_image_tag team.photo, height: 130, width: 225, crop: :fill, :class =>"card-img-top";%>
-               <% team.users.each do |user| %>
-                  <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
-                </li>
-                </div>
-               </ul>
-               <% end %>
-             <% end %>
-           <% end %>
-        </div>
-    </div>
 
   </div>
 </div>
