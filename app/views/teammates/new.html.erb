@@ -3,18 +3,22 @@
   <%= link_to team_path(@team), class: "previous-button" do %>
       <i class="fa fa-chevron-left" aria-hidden="true"></i>
   <% end %>
-  <h1><%= @team.name %></h1>
-  <br>
-  <h3>Add Teammates</h3>
-  <br>
-<div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class="analytics-form">
+        <h2><%= @team.name %></h2>
+        <br>
+        <h3>Add Teammates</h3>
+        <br>
 
 
-  <div id='teammates'>
-    <%= render "list" %>
+        <div id='teammates'>
+          <%= render "list" %>
+        </div>
+        <div id='teammate-form'>
+          <%= render "form" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id='teammate-form'>
-    <%= render "form" %>
-  </div>
-
 </div>
