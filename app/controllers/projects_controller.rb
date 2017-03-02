@@ -110,10 +110,14 @@ class ProjectsController < ApplicationController
 
     ##PERFORMANCE SHOW ##
     @goodstartdate = @project.start_date.strftime("%Y-%m-%0e")
-    @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@goodstartdate}", "#{@goodstartdate}", "ga:goal#{@kpi}completions")
-    @todayperf = @service.get_ga_data("ga:#{@project.team.view_id}", "today", "today", "ga:goal#{@kpi}completions")
+    @differencetemps = (Date.today - @project.start_date.to_date).round
+    @comparaisondate = (@project.start_date.to_date - @differencetemps).strftime("%Y-%m-%0e")
+    @differencetempsok = @differencetemps.to_s
+    #date de début de projet
+    @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@comparaisondate}", "#{@goodstartdate}", "ga:goal#{@kpi}completions")
+    #date d'aujourd'hui
+    @todayperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@differencetempsok}daysAgo", "today", "ga:goal#{@kpi}completions")
     @perfproject = (((@todayperf.rows.first.first.to_i - @startdateperf.rows.first.first.to_i ).fdiv(@startdateperf.rows.first.first.to_i)) * 100).round(2)
-
   end
 #POPIN CREATION DE PROJECT REMPLACE CE CODE
   # def new
