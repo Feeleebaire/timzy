@@ -183,19 +183,19 @@ font-size : 20px;
 
 /*COLORS FOR PROJECT CATEGORIES*/
 .cd-timeline-img.cd-communication {
-  background: #EE7738;
+  background: #EE7738 asset-url("communication.svg") no-repeat center;
 }
 .cd-timeline-img.cd-development {
-  background: #00DDC2;
+  background: #00DDC2 asset-url("development.svg") no-repeat center;
 }
 .cd-timeline-img.cd-marketing {
-  background: #CE4158;
+  background: #CE4158 asset-url("marketing.svg") no-repeat center;
 }
 .cd-timeline-img.cd-product {
-  background: #65AFFF;
+  background: #65AFFF asset-url("design.svg") no-repeat center;
 }
 .cd-timeline-img.cd-sales {
-  background: #F4D35E;
+  background: #F4D35E asset-url("sales.svg") no-repeat center;
 }
 
 .cd-timeline-content {
