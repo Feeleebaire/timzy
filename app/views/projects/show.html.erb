@@ -10,13 +10,14 @@
   </span>
 </div>
 <div class="show-container">
-    <div class="project-photo-user project-presentation">
-      <h3><%= cl_image_tag @project.user.photo, height: 65, width: 65, :class =>"img-circle" %> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></h3>
+    <div class="project-photo-user project-presentation text-center">
+      <h3><%= cl_image_tag @project.user.photo, height: 50, width: 50, crop: :fill, class: "img-circle" %> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></h3>
     </div>
   </div>
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="project-presentation">
+      <h3 class="text-center">Details</h3>
       <p><strong>Description:</strong> <%= @project.description %></p>
       <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
     </div>
@@ -26,13 +27,12 @@
     <div class="project-presentation">
       <div class="perf-prez"></div>
         <% unless @perfproject.blank? %>
-          <p>Performances:</p>
+          <h3 class="text-center">Performances</h3>
           <span class = "chiffre-perf"><p><%= @perfproject %>%</p></span>
         <% end %>
       </div>
     </div>
   </div>
-<br>
   <!-- LES POLICIES SUR LE PROJETS -->
     <% if policy(@project).update? %>
       <%= link_to edit_project_path(@project), class: "project-actions" do %>
