@@ -1,0 +1,100 @@
+.project-search-to-right {
+  float: right;
+}
+.project-presentation {
+  padding: 10px;
+}
+
+.project-perf {
+  background: white;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.owner {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  color: #CCCCCC;
+  font-size: 20px;
+}
+
+.create-comment {
+  margin-bottom: 150px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+}
+
+.comment-content {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  color: #667C8B;
+  font-size: 20px;
+
+}
+
+.img-comment {
+  border: 1px solid #2B414D;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.like-project {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  color: #CCCCCC;
+  font-size: 15px;
+}
+.cd-category-img {
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+.cd-category-img img {
+  width: 24px;
+  height: 24px;
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -12px;
+}
+
+/*COLORS FOR PROJECT CATEGORIES*/
+.cd-category-img.cd-communication {
+  background: #EE7738 asset-url("communication.svg") no-repeat center;
+}
+.cd-category-img.cd-development {
+  background: #00DDC2 asset-url("development.svg") no-repeat center;
+}
+.cd-category-img.cd-marketing {
+  background: #CE4158 asset-url("marketing.svg") no-repeat center;
+}
+.cd-category-img.cd-product {
+  background: #65AFFF asset-url("design.svg") no-repeat center;
+}
+.cdcategory-img.cd-sales {
+  background: #F4D35E asset-url("sales.svg") no-repeat center;
+}
+
+@media only screen and (min-width: 1170px) {
+  .cd-category-img {
+    width: 60px;
+    height: 60px;
+    position: center !important;
+    text-align: center;
+    margin: auto;
+    margin-top: 12px;
+  }
+}
+
+
+.chiffre-perf {
+  font-size: 90px;
+  color: #00DDC2;
+}

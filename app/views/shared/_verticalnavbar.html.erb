@@ -5,10 +5,6 @@
          <%= image_tag "logo_svg.svg", id: "size-logo" %>
       <% end %>
 
-        <%= link_to root_path do %>
-         <%= image_tag "recherche.svg", class: "hover-icon" %>
-      <% end %>
-
       <%= link_to teams_path do %>
          <%= image_tag "members.svg", class: "hover-icon", id: "members" %>
       <% end %>
@@ -27,8 +23,11 @@
     <!--   Add avatar link here-->
 
     <% if user_signed_in? %>
+      <%= link_to edit_user_registration_path do %>
+        <div> <%= cl_image_tag current_user.photo, height: 80, width: 80, crop: :fill, class: "avatar-square" %> </div>
+      <% end %>
       <%= link_to destroy_user_session_path, method: :delete do %>
-        <div>    <%= image_tag "logout.svg" %>   </div>
+        <div> <%= image_tag "logout.svg" %> </div>
       <% end %>
     <% end %>
   </div>

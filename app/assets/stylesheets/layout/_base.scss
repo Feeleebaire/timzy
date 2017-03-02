@@ -15,6 +15,11 @@ h1 {
   color: #2B414D;
 }
 
+h3 {
+  font-family : 'Heebo', sans-serif;
+  color: #2B414D;
+}
+
 .btn-cta, .btn-cta-home {
   padding: 12px 35px;
   text-align: center;
@@ -53,26 +58,39 @@ margin-top:40px;
   text-decoration: none;
 }
 
+
 .btn-create {
-  padding: 10px 20px;
+
+  padding: 10px 23px;
   border-radius: 4px;
   background-color: #65AFFF;
   color: white;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: normal;
   font-family : 'Heebo', sans-serif;
   border: 2px solid #65AFFF;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 19px;
 }
 
 .btn-create:hover{
   border-radius: 4px;
   background-color: #4099FF;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: normal;
   border: 2px solid #4099FF;
+  text-decoration: none;
+  cursor: pointer;
 }
 
+.btn.btn-default:visited {
+  background: #4099FF;
+}
 
+.btn.btn-default:active{
+  background: #4099FF;
+}
 
 
