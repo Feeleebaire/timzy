@@ -1,0 +1,12 @@
+<!--   display message if research is matched (or not)-->
+   <div class="search-message text-center">
+     <%  if params[:search] %>
+      <% if @projects.empty?  %>
+           <div>Sorry, there are no projects containing the term(s) "<%= params[:search]%>"...</div>
+           <div><%= link_to "Go back to all projects", team_path(@team) %> or make a new search</div>
+        <% else %>
+          <div>We found <%= @projects.count %> project(s) matching your research for the term(s) "<%= params[:search]%>"</div>
+      <% end %>
+     <% end %>
+   </div>
+<!-- end of research message -->
