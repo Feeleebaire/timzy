@@ -32,6 +32,7 @@
   </div>
 </div>
   <!-- LES POLICIES SUR LE PROJETS -->
+  <div>
     <% if policy(@project).update? %>
       <%= link_to edit_project_path(@project), class: "project-actions" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -43,18 +44,19 @@
         <i class="fa fa-trash" aria-hidden="true"></i>
       <% end %>
     <% end %>
-  <hr>
-  <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
-  <div class="project-search-to-right">
-    <div class="search form-inline">
-       <!--    Search bar -->
-          <%= form_tag(project_path(@project), :method => "get") do %>
-              <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control search-message search-bar" %>
-              <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control search-message search-bar" %>
-            <%= submit_tag "Filter", :name => nil, :class => "search-submit-btn" %>
-          <% end %>
+    <div class="project-search-to-right">
+      <div class="form-inline">
+         <!--    Search bar -->
+            <%= form_tag(project_path(@project), :method => "get") do %>
+                <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control search-message search-bar" %>
+                <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control search-message search-bar" %>
+              <%= submit_tag "Filter", :name => nil, :class => "search-submit-btn" %>
+            <% end %>
+      </div>
     </div>
   </div>
+  <hr>
+  <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
 <div class="<%= 'hidden' if @kpi.blank? %>">
   <h2>Goals metrics</h2>
   <div class="chart-project-custom">
@@ -63,6 +65,7 @@
       <%= hidden_field_tag :startdate, params[:startdate] %>
       <%= hidden_field_tag :enddate, params[:enddate] %>
     <% end -%>
+    <h3></h3>
     <canvas id="myChartprojectcustomgoal"></canvas>
   </div>
 </div>
@@ -84,14 +87,14 @@
 <h2>Basics metrics</h2>
 <div class="chart-project-detail">
   <div class="text-center">
-    <!-- <h3>Sessions</h3> -->
+    <h3>Sessions</h3>
   </div>
   <canvas id="myChartprojectsession"></canvas>
 </div>
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="text-center">
-      <!-- <h3>Page views</h3> -->
+      <h3>Page views</h3>
     </div>
     <div class="chart-pageview">
       <canvas id="myChartprojectpv"></canvas>
@@ -99,7 +102,7 @@
   </div>
   <div class="col-xs-12 col-md-6">
     <div class="text-center">
-      <!-- <h3>Unique Visitors</h3> -->
+      <h3>Unique Visitors</h3>
     </div>
     <div class="chart-session">
       <canvas id="myChartprojectuv"></canvas>
@@ -164,6 +167,9 @@
               }]
           },
           options: {
+              legend: {
+                display: false
+              },
               responsive: true,
               maintainAspectRatio: false,
               scales: {
@@ -210,6 +216,9 @@
             }]
         },
         options: {
+            legend: {
+              display: false
+            },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -255,6 +264,9 @@
             }]
         },
         options: {
+            legend: {
+              display: false
+            },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -355,6 +367,9 @@
               }]
           },
           options: {
+              legend: {
+                display: false
+              },
               responsive: true,
               maintainAspectRatio: false,
               scales: {
@@ -402,6 +417,9 @@
               }]
           },
           options: {
+              legend: {
+                display: false
+              },
               responsive: true,
               maintainAspectRatio: false,
               scales: {
