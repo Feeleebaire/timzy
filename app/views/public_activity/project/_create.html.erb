@@ -4,7 +4,7 @@
       <div class="feed-avatar"> <%= cl_image_tag activity.trackable.user.photo, height: 50, width: 50, crop: :fill, class: "avatar-rounded" %></div>
     </div>
     <div class="feed-content">
-      <div class="feed-context"><%= a.created_at.strftime('%-d %B %Y %H:%M:%S') %> @ <%= activity.trackable.team.name %> : </div>
+      <div class="feed-context"> <i class="fa fa-calendar"> </i> <%= a.created_at.strftime('%-d %B %Y %H:%M:%S') %> <strong>@ <%= activity.trackable.team.name %></strong> : </div>
        <div class="feed-details"><%= activity.trackable.title %> was added by <%= activity.trackable.user.first_name %> </div>
     </div>
   </div>
