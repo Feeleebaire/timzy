@@ -1,6 +1,8 @@
-<div>
-  <%= link_to '<< See website data', team_path(@team) %>
-  <h1>Your teammates</h1>
+<div class='container'>
+  <h1><%= @team.name %></h1>
+  <br>
+  <h3>Add Teammates</h3>
+  <br>
   <div id='teammates'>
     <%= render "list" %>
   </div>

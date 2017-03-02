@@ -62,15 +62,14 @@
     <h3 class="card-title-1"><%= team.name %></h3>
    <%= cl_image_tag team.photo, height: 130, width: 225, crop: :fill, :class =>"card-img-top";%>
    <% team.users.each do |user| %>
-      <%= image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
+      <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
     </li>
+    </div>
    </ul>
    <% end %>
    <% end %>
    <% end %>
    </div>
+   </div>
       </div>
-      </div>
-      </div>
-      </div>
- </div>
+

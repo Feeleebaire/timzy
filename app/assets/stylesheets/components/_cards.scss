@@ -25,6 +25,8 @@ $scale: 1.03;
 
 
 
+
+
     &:hover {
       transform: scale($scale);
 
@@ -205,6 +207,37 @@ margin-right: 5px;
 
 .col-xs-12 {
   margin-bottom: 40px;
+}
+
+.add-button {
+ z-index: 101;
+  position: absolute;
+  text-decoration: none;
+  top: 5px;
+  right: 5px;
+}
+
+.fa-plus-circle {
+  margin-left: 0x;
+  color: #2B414D;
+}
+
+.fa-plus-circle:hover {
+  text-decoration: none;
+}
+
+.card-teammates {
+  position: relative;
+}
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity:0;
+  z-index: 100;
 }
 
 
