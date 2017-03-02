@@ -98,3 +98,28 @@
   font-size: 90px;
   color: #00DDC2;
 }
+
+.project-actions {
+  text-decoration: none;
+  color: #2B414D;
+  &:hover {
+    text-decoration: none;
+    color: #2B414D;
+    opacity: 0.8;
+  }
+}
+
+.previous-button {
+  font-size: 30px;
+  text-decoration: none;
+  color: #2B414D;
+  &:hover {
+    text-decoration: none;
+    color: #2B414D;
+    opacity: 0.8;
+  }
+}
+
+.project-header {
+  margin: -35px 0;
+}

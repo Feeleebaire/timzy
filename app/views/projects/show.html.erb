@@ -1,9 +1,14 @@
 <div class="container">
-  <%= link_to '<< Back to timeline', team_path(@project.team) %>
+  <%= link_to team_path(@project.team), class: "previous-button" do %>
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  <% end %>
 <!-- DESCRIPTION DU  PROJETS -->
-<span class= text-center>
-  <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button", class:"hidden" %>
-</span>
+<div class="project-header">
+  <div class= "cd-category-img cd-<%= @project.category.downcase %>"></div>
+  <span class= text-center>
+    <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button", class:"hidden" %>
+  </span>
+</div>
 <div class="show-container">
     <div class="project-photo-user project-presentation">
       <h3><%= cl_image_tag @project.user.photo, height: 65, width: 65, :class =>"img-circle" %> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></h3>
@@ -11,7 +16,6 @@
   </div>
 <div class="row">
   <div class="col-xs-12 col-md-6">
-      <div class= "cd-category-img cd-<%= @project.category.downcase %>"></div>
     <div class="project-presentation">
       <p><strong>Description:</strong> <%= @project.description %></p>
       <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
@@ -21,20 +25,26 @@
   <div class="col-xs-12 col-md-6 text-center">
     <div class="project-presentation">
       <div class="perf-prez"></div>
-        <p>Performances:</p>
-        <span class = "chiffre-perf"><p><%= @perfproject %>%</p></span>
+        <% unless @perfproject.blank? %>
+          <p>Performances:</p>
+          <span class = "chiffre-perf"><p><%= @perfproject %>%</p></span>
+        <% end %>
       </div>
     </div>
   </div>
 <br>
   <!-- LES POLICIES SUR LE PROJETS -->
-  <% if policy(@project).update? %>
-    <%= link_to 'Edit', edit_project_path(@project) %> |
-  <% end %>
-
-  <% if policy(@project).destroy? %>
-    <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
+    <% if policy(@project).update? %>
+      <%= link_to edit_project_path(@project), class: "project-actions" do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+    |
+    <% if policy(@project).destroy? %>
+      <%= link_to project_path(@project), method: "delete", class: "project-actions" do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
   <hr>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
   <div class="project-search-to-right">
