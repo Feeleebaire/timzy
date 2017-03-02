@@ -21,8 +21,6 @@
           <%= text_field_tag :search, params[:search], placeholder: "Search a project title or description", :id => nil, :class => "form-control form-control-extended search-bar search-message" %>
           <%= submit_tag "Search", :name => nil, :class => "search-submit-btn" %>
         <% end %>
-
-
       </div> <!-- close Search bar -->
 
     </div> <!-- close project topbar -->
@@ -34,12 +32,9 @@
   </div> <!-- close fixed -->
 </div> <!-- close bloc -->
 
-
  <%= render 'shared/timeline' %>
 
-
  <!-- LE GRAPH DU PROJETS -->
-
 
 <%= content_for(:after_js) do %>
   <script>
