@@ -1,35 +1,49 @@
 <div class="container">
-  <%= link_to '<< Back to timeline', team_path(@project.team) %>
-
-
+  <%= link_to team_path(@project.team), class: "previous-button" do %>
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  <% end %>
 <!-- DESCRIPTION DU  PROJETS -->
-
-  <h1><%= @project.title %> Overview</h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button" %>
-  <br>
+<div class="project-header">
+  <div class= "cd-category-img cd-<%= @project.category.downcase %>"></div>
+  <span class= text-center>
+    <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button", class:"hidden" %>
+  </span>
+</div>
+<div class="show-container">
 <div class="row">
   <div class="col-xs-12 col-md-6">
-    <p><strong>Creator:</strong> <%= @project.user.first_name %>  <%= @project.user.last_name %></p>
-    <p><strong>Description:</strong> <%= @project.description %></p>
-    <p> <strong>Category:</strong> <%= @project.category %></p>
-    <p>  <strong>Start date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>  |  <strong>End date:</strong> <%= @project.end_date.strftime("%b %d, %Y") unless @project.end_date.nil? %></p>
-    <p><strong>Goal:</strong> <%= @project.goal %>  |  <strong>KPI:</strong> <%= @project.kpi %></p>
-    <p><strong>Targeted url:</strong> <%= @project.url_targeted %></p>
+    <div class="project-presentation">
+      <h3 class="text-center">Details</h3>
+        <p><%= cl_image_tag @project.user.photo, height: 50, width: 50, class: "img-comment"%> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></p>
+      <p><strong>Description:</strong> <%= @project.description %></p>
+      <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
+    </div>
   </div>
-  <div class="col-xs-12 col-md-6 text-center">
-    <p>ICI LES PERFS</p>
+  <!-- PRESENTATION PERFORMANCES -->
+  <div class="col-xs-12 col-md-6 text-center border-line-left">
+    <div class="project-presentation">
+      <div class="perf-prez"></div>
+
+          <h3 class="text-center">Performances</h3>
+          <span class = "chiffre-perf"><p><%= @perfproject %>%</p></span>
+
+      </div>
+    </div>
   </div>
 </div>
-  <br>
-
   <!-- LES POLICIES SUR LE PROJETS -->
-
-  <% if policy(@project).update? %>
-    <%= link_to 'Edit', edit_project_path(@project) %> |
-  <% end %>
-
-  <% if policy(@project).destroy? %>
-    <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
+    <% if policy(@project).update? %>
+      <%= link_to edit_project_path(@project), class: "project-actions" do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+    |
+    <% if policy(@project).destroy? %>
+      <%= link_to project_path(@project), method: "delete", class: "project-actions" do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+  <hr>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
   <div class="project-search-to-right">
     <div class="search form-inline">
@@ -107,14 +121,10 @@
 </div>
   <hr>
   <!-- LES COMMENTAIRES SUR LE PROJETS -->
-  <h4>Comments</h4>
+  <h4>Comments about project: <%= @project.title %></h4>
   <div id="comments">
-    <% if @project.comments.blank? %>
-      Be the first to leave a comment for <%= @project.title %>
-    <% else %>
-      <% @project.comments.each do |comment| %>
-        <%= render 'comments/show', comment: comment %>
-      <% end %>
+    <% @project.comments.each do |comment| %>
+      <%= render 'comments/show', comment: comment %>
     <% end %>
   </div>
 
@@ -122,9 +132,6 @@
 <%= render 'comments/form', project: @project, comment: @comment %>
 
 </div>
-
-
-
 
  <!-- LE GRAPH CUSTOM METRIC DU PROJETS -->
 
@@ -136,7 +143,6 @@
           data: {
               labels: <%= raw @session_dates.to_json %>,
               datasets: [{
-                  label: 'Sessions',
                   data: <%= raw @graphsession.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
@@ -161,9 +167,17 @@
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }
@@ -175,7 +189,6 @@
         data: {
             labels: <%= raw @pv_dates.to_json %>,
             datasets: [{
-                label: 'Page Views',
                 data: <%= raw @graphpv.to_json %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -200,12 +213,20 @@
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
+                  xAxes: [{
+                    gridLines: {
+                      display:false
                     }
-                }]
-            }
+                  }],
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
+                      }
+                  }]
+              }
         }
     });
         new Chart($("#myChartprojectuv"), {
@@ -213,7 +234,6 @@
         data: {
             labels: <%= raw @user_dates.to_json %>,
             datasets: [{
-                label: 'Unique visitors',
                 data: <%= raw @graphuser.to_json %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -238,12 +258,20 @@
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
+                  xAxes: [{
+                    gridLines: {
+                      display:false
                     }
-                }]
-            }
+                  }],
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
+                      }
+                  }]
+              }
         }
     });
         new Chart($("#myChartprojectbr"), {
@@ -306,7 +334,6 @@
           data: {
               labels: <%= raw @custom_dates.to_json %>,
               datasets: [{
-                  label: 'Custom',
                   data: <%= raw @graphcustom.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
@@ -331,9 +358,17 @@
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }
@@ -346,7 +381,6 @@
           data: {
               labels: <%= raw @customevent_dates.to_json %>,
               datasets: [{
-                  label: 'Custom',
                   data: <%= raw @graphcustomevent.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
@@ -371,9 +405,17 @@
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }

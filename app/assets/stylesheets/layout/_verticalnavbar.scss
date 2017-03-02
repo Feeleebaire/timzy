@@ -20,25 +20,22 @@
 #sidebar-top{
   display:flex;
   flex-direction: column;
-  justify-content: space-between;
   flex: 0 0 50%;
+  .space-between-imgs{
+    margin-top : 40px;
+  }
 }
 
-
-#sidebar-top{
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 0 0 50%;
-}
 
 #sidebar-bottom{
-
+  .space-between-imgs{
+    margin-top : 40px;
+  }
 }
 
 #sidebar img{
   transition: 0.3s ease;
-  width: 80%;
+  width: 85%;
   height: auto;
 }
 

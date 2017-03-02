@@ -1,6 +1,3 @@
-$scale: 1.03;
-
-
 .card-img-top {
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
@@ -10,11 +7,10 @@ $scale: 1.03;
 }
 
 .card-top {
-  background-color:#F7F6F5;
   position: relative;
   cursor: pointer;
   transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
-  transition-delay: .15s;
+  transition-delay: 0s;
   border-radius: 7px;
   box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin-bottom: 50px;
@@ -22,13 +18,8 @@ $scale: 1.03;
 
 
 
-
-
-
-
-
     &:hover {
-      transform: scale($scale);
+      transform: scale(1.02);
 
 
 
@@ -93,38 +84,6 @@ hr {
 }
 
 
-
-
-
-.btn-create {
-  float: right;
-  // padding: 10px 23px;
-  border-radius: 4px;
-  background-color: #65AFFF;
-  color: white;
-  font-size: 24px;
-  font-weight: normal;
-  font-family : 'Heebo', sans-serif;
-  border: 2px solid #65AFFF;
-  box-shadow: 0 3px 0 #d7e4ed;
-  text-decoration: none;
-  font-size: 16px;
-  margin-top: 19px;
-}
-
-.btn-create:hover{
-  border-radius: 4px;
-  background-color: #4099FF;
-  color: white;
-  font-size: 16px;
-  font-weight: normal;
-  border: 2px solid #4099FF;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-
 hr.style18 {
   height: 3px;
   border-style: solid;
@@ -133,9 +92,14 @@ hr.style18 {
   border-radius: 20px;
 }
 
+// .team-container{
+//   margin: 30px;
+// }
+
 .top-teams {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
 }
 
@@ -155,27 +119,19 @@ hr.style18 {
 }
 
 .list-teams {
+
   background-color:#FFFFFF;
   position: relative;
   cursor: pointer;
   transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
-  transition-delay: .15s;
+  transition-delay: 0s;
   border-radius: 7px;
   margin-bottom: 0px;
   box-shadow:0 2px 2px rgba(0,0,0,0.16);
 
-
-
-
-
-
-
-
     &:hover {
-      transform: scale($scale);
+      transform: scale(1.005);
       text-decoration: none;
-
-
 
     &:after {
       position: absolute;

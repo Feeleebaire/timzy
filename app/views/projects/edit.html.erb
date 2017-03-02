@@ -1,4 +1,6 @@
-<%= link_to '<< Back to project timeline', team_path(@project.team) %>
+<%= link_to team_path(@project.team), class: "previous-button" do %>
+  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+<% end %>
 
 <div class="form-container">
   <h1>Update your project <%= @project_title %></h1>
