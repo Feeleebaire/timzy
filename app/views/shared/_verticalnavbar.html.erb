@@ -6,15 +6,11 @@
       <% end %>
 
       <%= link_to teams_path do %>
-         <%= image_tag "members.svg", class: "hover-icon", id: "members" %>
+         <%= image_tag "members.svg", class: "hover-icon space-between-imgs", id: "members" %>
       <% end %>
 
       <%= link_to activity_path do %>
-         <%= image_tag "Connections.svg", class: "hover-icon" %>
-      <% end %>
-
-      <%= link_to root_path do %>
-         <%= image_tag "dossier.svg", class: " hover-icon" %>
+         <%= image_tag "Connections.svg", class: " hover-icon space-between-imgs" %>
       <% end %>
   </div>
 
@@ -24,10 +20,10 @@
 
     <% if user_signed_in? %>
       <%= link_to edit_user_registration_path do %>
-        <div> <%= cl_image_tag current_user.photo, height: 80, width: 80, crop: :fill, class: "avatar-square" %> </div>
+        <div> <%= cl_image_tag current_user.photo, crop: :fill, class: "avatar-square" %> </div>
       <% end %>
       <%= link_to destroy_user_session_path, method: :delete do %>
-        <div> <%= image_tag "logout.svg" %> </div>
+        <div class= "space-between-imgs"> <%= image_tag "logout.svg" %> </div>
       <% end %>
     <% end %>
   </div>
