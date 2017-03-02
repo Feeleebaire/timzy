@@ -3,9 +3,12 @@
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
   <% end %>
 <!-- DESCRIPTION DU  PROJETS -->
-<span class= text-center>
-  <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button", class:"hidden" %>
-</span>
+<div class="project-header">
+  <div class= "cd-category-img cd-<%= @project.category.downcase %>"></div>
+  <span class= text-center>
+    <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button", class:"hidden" %>
+  </span>
+</div>
 <div class="show-container">
     <div class="project-photo-user project-presentation">
       <h3><%= cl_image_tag @project.user.photo, height: 65, width: 65, :class =>"img-circle" %> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></h3>
@@ -13,7 +16,6 @@
   </div>
 <div class="row">
   <div class="col-xs-12 col-md-6">
-      <div class= "cd-category-img cd-<%= @project.category.downcase %>"></div>
     <div class="project-presentation">
       <p><strong>Description:</strong> <%= @project.description %></p>
       <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
