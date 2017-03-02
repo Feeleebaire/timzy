@@ -52,7 +52,7 @@
           data: {
               labels: <%= raw @array_date_updated.to_json %>,
               datasets: [{
-                  label: 'Unique Visitors',
+                  label: "<%=@team.name%>'s visitors",
                   backgroundColor:'#00DDC2',
                   borderColor:'#00DDC2',
                   data: <%= raw @array_clean.to_json %>,
@@ -60,9 +60,7 @@
               }]
           },
           options: {
-                legend: {
-                  display: false
-                  },
+
                 responsive: true,
                 maintainAspectRatio: false,
             scales: {
