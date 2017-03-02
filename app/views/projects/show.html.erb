@@ -1,8 +1,8 @@
 <div class="container">
   <%= link_to '<< Back to timeline', team_path(@project.team) %>
 <!-- DESCRIPTION DU  PROJETS -->
-<span class= "text-center">
-  <h1><%= @project.title %><span class= "like-project"> <%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button" %></span></h1>
+<span class= text-center>
+  <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button", class:"hidden" %>
 </span>
 <div class="show-container">
     <div class="project-photo-user project-presentation">
@@ -14,7 +14,7 @@
       <div class= "cd-category-img cd-<%= @project.category.downcase %>"></div>
     <div class="project-presentation">
       <p><strong>Description:</strong> <%= @project.description %></p>
-      <p>  <strong>Start date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
+      <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
     </div>
   </div>
   <!-- PRESENTATION PERFORMANCES -->
