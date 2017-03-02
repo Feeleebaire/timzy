@@ -15,6 +15,6 @@ class Project < ApplicationRecord
   belongs_to :team
   has_many :comments, dependent: :destroy
   has_many :likes
-
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
 end

@@ -1,3 +1,14 @@
-<p><%= a.created_at.strftime('%-d %B %Y %H:%M:%S') %> @ <%= activity.trackable.team.name %> : </p>
-<p><%= activity.trackable.title %> was added by <%= activity.trackable.user.first_name %> </p>
+<%= link_to project_path(a.trackable_id) do  %>
+  <div class="feed-card">
+    <div class="feed-image">
+      <div class="feed-avatar"> <%= cl_image_tag activity.trackable.user.photo, height: 50, width: 50, crop: :fill, class: "avatar-rounded" %></div>
+    </div>
+    <div class="feed-content">
+      <div class="feed-context"><%= a.created_at.strftime('%-d %B %Y %H:%M:%S') %> @ <%= activity.trackable.team.name %> : </div>
+       <div class="feed-details"><%= activity.trackable.title %> was added by <%= activity.trackable.user.first_name %> </div>
+    </div>
+  </div>
+<% end %>
+ <hr>
+
 
