@@ -1,5 +1,6 @@
 <div class="container">
 <h1>My Profile</h1>
+<hr>
 <div class="profil-container">
   <div class="row">
     <div class="col-xs-12 col-md-6 ">
@@ -62,14 +63,13 @@
    <%= cl_image_tag team.photo, height: 130, width: 225, crop: :fill, :class =>"card-img-top";%>
    <% team.users.each do |user| %>
       <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
-   </li>
+    </li>
+    </div>
    </ul>
    <% end %>
    <% end %>
    <% end %>
    </div>
+   </div>
       </div>
-      </div>
-      </div>
-      </div>
- </div>
+
