@@ -7,7 +7,6 @@
 }
 
 .card-top {
-  background-color:#F7F6F5;
   position: relative;
   cursor: pointer;
   transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
@@ -16,10 +15,6 @@
   box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin-bottom: 50px;
   padding-bottom: 50px;
-
-
-
-
 
 
     &:hover {
@@ -118,26 +113,16 @@ hr.style18 {
 }
 
 .list-teams {
-  background-color:#F7F6F5;
-  position: relative;
+   position: relative;
   cursor: pointer;
   transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
   transition-delay: 0s;
   border-radius: 7px;
   margin-bottom: 0px;
 
-
-
-
-
-
-
-
     &:hover {
       transform: scale(1.005);
       text-decoration: none;
-
-
 
     &:after {
       position: absolute;
