@@ -8,11 +8,21 @@
 }
 
 .feed-card{
-  background-color: white;
+  // background-color: white;
   border-radius : 3px;
   padding : 10px;
   margin: 10px;
+  display: flex;
+  align-items: center;
+}
 
+.feed-image{
+
+}
+
+.feed-content{
+ flex: 0 0 85%;
+ margin-left:15px;
 }
 
 .feed-context{
@@ -20,5 +30,5 @@
 }
 
 .feed-details{
-  margin-left :5px;
+
 }
