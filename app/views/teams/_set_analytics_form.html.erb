@@ -1,9 +1,11 @@
 <%= simple_form_for( @team, url: save_analytics_team_path(@team) ) do |f| %>
-  <%= f.input :accountid, collection: @accounts.items %>
-  <div class="<%= 'hidden' if @props == [] %>">
+  <div class="form-inputs">
+    <%= f.input :accountid, collection: @accounts.items %>
+  </div>
+  <div class="form-inputs <%= 'hidden' if @props == [] %>">
     <%= f.input :webproprietyid, collection: @props %>
   </div>
-  <div class="<%= 'hidden' if @views == [] %>">
+  <div class="form-inputs <%= 'hidden' if @views == [] %>">
     <%= f.input :view_id, collection: @views %>
   </div>
 <% end %>

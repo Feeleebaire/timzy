@@ -1,12 +1,19 @@
-<h1>Setup your team</h1>
-  <div id="set-analytics-form">
-    <%= render 'set_analytics_form' %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class="analytics-form">
+        <h3>Setup your team analytics </h3>
+        <div id="set-analytics-form">
+          <%= render 'set_analytics_form' %>
+        </div>
+      </div>
+    </div>
   </div>
 
-<div id='ga-cta' class="<%= 'hidden' if @team.view_id == nil %>">
-  <%= link_to 'Add Teammates', new_team_teammate_path(@team), class: "btn-cta" %>
-  <%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
+  <div id='ga-cta' class="<%= 'hidden' if @team.view_id == nil %>">
+    <%= link_to 'Add Teammates', new_team_teammate_path(@team), class: "btn-cta" %>
+    <%= link_to 'Show website data', team_path(@team), class: "btn-cta" %>
+  </div>
 </div>
 
 <% content_for :after_js do %>
