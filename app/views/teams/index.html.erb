@@ -13,8 +13,8 @@
     <div class="card-team">
       <div class="col-xs-12 col-md-3">
         <div class="card-top">
-          <%= link_to "", team_path(team), class: "card-link" %>
-          <%= cl_image_tag team.photo, crop: :fill, :class =>"card-img-top";%>
+          <%= link_to team_path(team), class: "card-link" do %>
+          <%= cl_image_tag team.photo, height: 40, width: 40, crop: :fill, :class =>"card-img-top";%>
             <div class="card-block">
               <h3 class="card-title"><%= team.name %></h3>
               <div class="add-button">
@@ -24,11 +24,12 @@
               <ul class="list-inline card-teammates">
                 <li>
                   <% team.users.each do |user| %>
-                    <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
+                    <%= cl_image_tag user.photo, height: 40, width: 40, :class =>"img-circle" %>
                   <% end %>
                 </li>
               </ul>
             </div>
+          <%end%>
         </div>
       </div>
     </div>
