@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [ :show, :edit, :update, :destroy, :set_analytics, :save_analytics ]
   skip_after_action :verify_policy_scoped, only: :index
+  layout "team_timeline", only: [:show]
   def index
     @teams = current_user.teams
   end
