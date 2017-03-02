@@ -81,10 +81,27 @@
 }
 
 .form-look-edit {
-  background-color: white;
-  margin-top: 35px;
   padding: 10px 30px 20px 30px ;
-  border-radius: 4px;
   line-height: 25px;
   color: #4D5052;
 }
+
+.form-look-edit-padded {
+  padding: 10px 60px 20px 60px ;
+  line-height: 25px;
+  color: #4D5052;
+}
+
+.photo-profil{
+  height: 200px;
+  width: 200px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+
+}
+
+.profile-btn{
+  float: right;
+  // margin-right: 40px;
+}
+

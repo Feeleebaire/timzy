@@ -1,9 +1,20 @@
 body {
   background-color: white;
 }
+
+.standard-container{
+  margin: 40px 40px;
+}
+
+.standard-container a{
+  text-decoration: none;
+  color: #2B414D;
+}
+
 p {
  font-weight: 300;
 }
+
 .sidebar{
   margin-left: 70px;
   width: calc(100vw - 70px);
@@ -67,6 +78,10 @@ margin-top:40px;
   text-decoration: none;
 }
 
+a.btn-create{
+  text-decoration: none;
+  color:white;
+}
 
 .btn-create {
 
