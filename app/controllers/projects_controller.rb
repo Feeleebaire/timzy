@@ -27,11 +27,12 @@ class ProjectsController < ApplicationController
     @startdate = params[:startdate].blank? ? "#{@comparaisondate}" : params[:startdate]
     @enddate = params[:enddate].blank? ? "today" : params[:enddate]
 
+#OBJECTIF / GOALS
     if !@kpi.blank?
       if uri.path.blank?
-        @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:week")
+        @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:date")
       else
-        @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:week", filters: "ga:pagePath=@#{uri.path}")
+        @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:date", filters: "ga:pagePath=@#{uri.path}")
       end
       @arraycustom = @datacustom.rows
       @graphcustom = []
@@ -43,8 +44,6 @@ class ProjectsController < ApplicationController
       end
       @custom_dates = set_dates_for_graph(@arraycustom)
     end
-
-
     # SET EVENT KPI
     if uri.path.blank?
       @kpievent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:eventAction")
