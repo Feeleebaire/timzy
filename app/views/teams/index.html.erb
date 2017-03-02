@@ -8,33 +8,32 @@
   </div>
   <hr>
   <br>
+  <br>
 
-  <% @teams.each do |team| %>
-    <div class="card-team">
-      <div class="col-xs-12 col-md-3">
-        <div class="card-top">
-          <%= link_to team_path(team), class: "card-link" do %>
-          <%= cl_image_tag team.photo, height: 40, width: 40, crop: :fill, :class =>"card-img-top";%>
-            <div class="card-block">
-              <h3 class="card-title"><%= team.name %></h3>
-              <div class="add-button">
-                <%= link_to "", new_team_teammate_path(team), class:"fa fa-plus-circle fa-2x" %>
-              </div>
-              <hr>
-              <ul class="list-inline card-teammates">
-                <li>
-                  <% team.users.each do |user| %>
-                    <%= cl_image_tag user.photo, height: 40, width: 40, :class =>"img-circle" %>
-                  <% end %>
-                </li>
+ <div class="row">
+       <div class="col-xs-12">
+          <% @teams.each do |team| %>
+            <%= link_to team_path(team) do %>
+              <div class="list-teams">
+              <ul class= "list-inline">
+              <li>
+               <h3 class="card-title-1"><%= team.name %></h3>
+              <%= cl_image_tag team.photo, height: 130, width: 180, crop: :fill, :class =>"img-team";%>
+              <% team.users.each do |user| %>
+                 <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
+                 <div class="add-button">
+                 <%= link_to "", new_team_teammate_path(team), class:"fa fa-plus-circle fa-2x" %>
+                 </div>
+               </li>
               </ul>
-            </div>
-          <%end%>
-        </div>
+              <% end %>
+              </div>
+              <% end %>
+              <% end %>
+                 </div>
+              </div>
       </div>
-    </div>
-  <% end %>
-</div>
+
 
 
 
