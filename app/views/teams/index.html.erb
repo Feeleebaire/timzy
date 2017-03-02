@@ -1,39 +1,39 @@
 
-<div class="container">
-<hr>
-<div class="top-teams">
-<h1>My Teams</h1>
-<div class="btn">
- <%= link_to "Create a new Team", new_team_path, class:"btn-create"  %>
- </div>
- </div>
-<hr>
-<br>
-<% @teams.each do |team| %>
-<div class="card-team">
-<div class="col-xs-12 col-md-4">
-  <div class="card-top">
-    <%= link_to "", team_path(team), class: "card-link" %>
-    <%= cl_image_tag team.photo, height: 300, width: 350, crop: :fill, :class =>"card-img-top";%>
-      <div class="card-block">
-        <h3 class="card-title"><%= team.name %></h3>
-        <hr>
-        <ul class="list-inline card-teammates">
-          <li>
-            <% team.users.each do |user| %>
-              <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
-            <% end %>
-            <div class="add-button">
-              <%= link_to "", new_team_teammate_path(team), class:"fa fa-plus-circle fa-2x" %>
-            </div>
-          </li>
-        </ul>
+<div class="standard-container">
+  <div class="top-teams">
+    <h2>My Teams</h2>
+    <div class="btn">
+      <%= link_to "Create a new Team", new_team_path, class:"btn-create"  %>
    </div>
+  </div>
+  <hr>
+  <br>
+
+  <% @teams.each do |team| %>
+    <div class="card-team">
+      <div class="col-xs-12 col-md-3">
+        <div class="card-top">
+          <%= link_to "", team_path(team), class: "card-link" %>
+          <%= cl_image_tag team.photo, crop: :fill, :class =>"card-img-top";%>
+            <div class="card-block">
+              <h3 class="card-title"><%= team.name %></h3>
+              <div class="add-button">
+                <%= link_to "", new_team_teammate_path(team), class:"fa fa-plus-circle fa-2x" %>
+              </div>
+              <hr>
+              <ul class="list-inline card-teammates">
+                <li>
+                  <% team.users.each do |user| %>
+                    <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    <% end %>
-    </div>
+  <% end %>
+</div>
 
 
 

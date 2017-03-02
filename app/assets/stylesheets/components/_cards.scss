@@ -1,13 +1,22 @@
+
 .card-img-top {
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   box-shadow:0px 1px 1px -1px rgba(0,0,0,0.75);
+  height: 350px;
+  width: auto;
+}
+
+.card-block{
+  position: relative;
 }
 
 .card-top {
   position: relative;
+  display:flex;
+  flex-direction: column;
   cursor: pointer;
   transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
   transition-delay: 0s;
@@ -58,17 +67,6 @@
 
 }
 
-
-hr {
-  border: 0;
-  height: 1px;
-  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
-  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
-  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
-  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
-}
-
-
 .card-title {
   padding-left: 10px;
 }
@@ -83,20 +81,11 @@ hr {
   margin-bottom: 12px;
 }
 
-
-hr.style18 {
-  height: 3px;
-  border-style: solid;
-  border-color: #F7F6F5;
-  border-width: 1px 0 0 0;
-  border-radius: 20px;
-}
-
 // .team-container{
 //   margin: 30px;
 // }
 
-.top-teams {
+.top-teams{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,10 +98,6 @@ hr.style18 {
   align-items:  center;
 }
 
-.photo-profil {
-  margin-top: 60px;
-  margin-left: 130px;
-}
 
 .list-teams {
 
@@ -157,10 +142,6 @@ float: right;
 margin-right: 5px;
 }
 
-.col-xs-12 {
-  margin-bottom: 40px;
-}
-
 .add-button {
  z-index: 101;
   position: absolute;
@@ -170,7 +151,9 @@ margin-right: 5px;
 }
 
 .fa-plus-circle {
-  margin-left: 0x;
+  position: absolute;
+  top: 20px;
+  right: 15px;
   color: #2B414D;
 }
 

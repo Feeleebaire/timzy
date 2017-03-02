@@ -1,75 +1,44 @@
-<div class="container">
-<h1>My Profile</h1>
+<div class="standard-container">
+<h2>My Profile</h2>
 <hr>
-<div class="profil-container">
-  <div class="row">
-    <div class="col-xs-12 col-md-6 ">
-      <div class="form-look-edit">
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= f.error_notification %>
+  <div class="profil-container">
+    <div class="row">
 
-          <div class="form-inputs">
-          <%= f.input :first_name %>
-          <%= f.input :last_name %>
-          <%= f.input :role %>
-          <%= f.input :email, required: true %>
-          <%= f.input :photo %>
+       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <div class="col-xs-12 col-md-2 form-look-edit ">
+                  <%= cl_image_tag @user.photo, crop: :fill, class: "photo-profil"%>
+                  <h4><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h4>
 
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-            <% end %>
+              </div>
+              <div class="col-xs-12 col-md-5 form-look-edit-padded ">
+                <%= f.input :first_name %>
+                <%= f.input :last_name %>
+                <%= f.input :role %>
+                <%= f.input :email, required: true %>
+                <%= f.input :photo %>
 
-            <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-            <%= f.input :password_confirmation, required: false %>
-            <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-          </div>
+              </div>
+              <div class="col-xs-12 col-md-5 form-look-edit-padded">
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                <% end %>
 
-          <div class="form-actions">
-            <%= f.button :submit, "Update", class: "btn-form" %>
+                <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+                <%= f.input :password_confirmation, required: false %>
+                <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+                <div class="profile-btn">
+                    <%= f.button :submit, "Update", class: "btn-form" %>
+                </div>
+              </div>
           </div>
         <% end %>
-        </div>
-        </div>
-        <div class="col-xs-12 col-md-6">
-        <div class="photo-profil">
-        <%= cl_image_tag @user.photo, height: 300, width: 300, crop: :fill, :class =>"card-img-top";%>
-
-        <div class="info">
-          <h4><%= @user.first_name.capitalize %></h4>
-          <h4><%= @user.last_name.capitalize %></h4>
-          <p><%= @user.email %></p>
-          <p><%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-        </div>
-        </div>
-
-
-
     </div>
-    </div>
-   </div>
-   <hr>
-   <div class="row">
-   <h2>My Teams</h2>
-   <br>
-   <br>
-   <div class="col-xs-12">
+      <br>
+      <br>
 
-   <% @user.teams.each do |team| %>
-   <%= link_to team_path(team) do %>
-   <ul class= "list-inline">
-   <div class="list-teams">
-   <li>
-    <h3 class="card-title-1"><%= team.name %></h3>
-   <%= cl_image_tag team.photo, height: 130, width: 225, crop: :fill, :class =>"card-img-top";%>
-   <% team.users.each do |user| %>
-      <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
-    </li>
-    </div>
-   </ul>
-   <% end %>
-   <% end %>
-   <% end %>
-   </div>
-   </div>
-      </div>
+  </div>
+</div>
+
 
