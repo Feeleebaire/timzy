@@ -1,9 +1,6 @@
 .project-search-to-right {
   float: right;
 }
-.project-presentation {
-  padding: 10px;
-}
 
 .project-perf {
   background: white;
@@ -15,7 +12,15 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: 100;
   color: #CCCCCC;
-  font-size: 20px;
+  font-size: 15px;
+}
+
+.show-container {
+  padding-top: 55px;
+}
+
+.border-line-left {
+  border-left: 1px solid rgba(192,192,191,0.3);
 }
 
 .create-comment {

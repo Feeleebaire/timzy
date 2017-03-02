@@ -10,29 +10,27 @@
   </span>
 </div>
 <div class="show-container">
-    <div class="project-photo-user project-presentation">
-      <h3><%= cl_image_tag @project.user.photo, height: 65, width: 65, :class =>"img-circle" %> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></h3>
-    </div>
-  </div>
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="project-presentation">
+      <h3 class="text-center">Details</h3>
+        <p><%= cl_image_tag @project.user.photo, height: 50, width: 50, class: "img-comment"%> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></p>
       <p><strong>Description:</strong> <%= @project.description %></p>
       <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
     </div>
   </div>
   <!-- PRESENTATION PERFORMANCES -->
-  <div class="col-xs-12 col-md-6 text-center">
+  <div class="col-xs-12 col-md-6 text-center border-line-left">
     <div class="project-presentation">
       <div class="perf-prez"></div>
-        <% unless @perfproject.blank? %>
-          <p>Performances:</p>
+
+          <h3 class="text-center">Performances</h3>
           <span class = "chiffre-perf"><p><%= @perfproject %>%</p></span>
-        <% end %>
+
       </div>
     </div>
   </div>
-<br>
+</div>
   <!-- LES POLICIES SUR LE PROJETS -->
     <% if policy(@project).update? %>
       <%= link_to edit_project_path(@project), class: "project-actions" do %>
@@ -145,7 +143,6 @@
           data: {
               labels: <%= raw @session_dates.to_json %>,
               datasets: [{
-                  label: 'Sessions',
                   data: <%= raw @graphsession.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
@@ -170,9 +167,17 @@
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }
@@ -184,7 +189,6 @@
         data: {
             labels: <%= raw @pv_dates.to_json %>,
             datasets: [{
-                label: 'Page Views',
                 data: <%= raw @graphpv.to_json %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -209,12 +213,20 @@
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
+                  xAxes: [{
+                    gridLines: {
+                      display:false
                     }
-                }]
-            }
+                  }],
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
+                      }
+                  }]
+              }
         }
     });
         new Chart($("#myChartprojectuv"), {
@@ -222,7 +234,6 @@
         data: {
             labels: <%= raw @user_dates.to_json %>,
             datasets: [{
-                label: 'Unique visitors',
                 data: <%= raw @graphuser.to_json %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -247,12 +258,20 @@
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
+                  xAxes: [{
+                    gridLines: {
+                      display:false
                     }
-                }]
-            }
+                  }],
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
+                      }
+                  }]
+              }
         }
     });
         new Chart($("#myChartprojectbr"), {
@@ -315,7 +334,6 @@
           data: {
               labels: <%= raw @custom_dates.to_json %>,
               datasets: [{
-                  label: 'Custom',
                   data: <%= raw @graphcustom.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
@@ -340,9 +358,17 @@
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }
@@ -355,7 +381,6 @@
           data: {
               labels: <%= raw @customevent_dates.to_json %>,
               datasets: [{
-                  label: 'Custom',
                   data: <%= raw @graphcustomevent.to_json %>,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
@@ -380,9 +405,17 @@
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }
