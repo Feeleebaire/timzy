@@ -3,10 +3,10 @@
   <div class="section-first">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-7 col-lg-6">
+        <div class="col-xs-12 col-md-8 ">
           <div class="banner-title">
             <h1>Timzy</h1>
-            <p>Amazing tool for all:
+            <p>Amazing traffic tracking tool for:
             <span class="text-typed typed"></span></p>
           </div>
         <% if !user_signed_in? %>
@@ -24,7 +24,7 @@
         <% end %>
         </div>
       <br>
-        <div class="col-xs-12 col-md-7 col-lg-6">
+        <div class="col-xs-12 col-md-4 ">
           <div class="clock">
             <div class="hour"></div>
             <div class="second"></div>
@@ -35,42 +35,63 @@
     </div>
   </div>
 </div>
-<div class="explain-content">
-  <div class="container">
+
+<div class="container">
+  <div class="explain-content">
     <div class="title-content text-center">
-      <h2> Projects warehousing</h2>
+        <h2> Track your project's impacts </h2>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <div class="illu-explain" id= "logowahou">
-        </div>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="text-explain">
-          <p>test</p>
-        </div>
+    <div class="explain-content-block">
+      <div class ="illu-explain"><%= image_tag "logo_wahou.svg" %> </div>
+      <div class="text-explain">
+            The best lessons come from experience and that's why you should always keep track of your website's projects and their impacts on your traffic. 'Know what? With Timzy, that's easy ! Every time a project is deployed, you just have to create a small card to make it history and start tracking related data based on the KPI you've set on Google Analytics.
+            It's simple, and it's super fast !
       </div>
     </div>
   </div>
 </div>
-<div class="who-content">
+
+  <div class="who-content">
+    <div class="container ">
+      <div class="title-content text-center">
+          <h2> Boost your team communication </h2>
+      </div>
+      <div class="who-content-block">
+        <div class="who-text-explain">
+            Everyone has so much to do, it's hard to document and share every action ! Fortunately, Timzy is organized in teams : you can invite your colleagues so everyone can be aware of the actions that have been led on your website, learn from them and leave some comments for you to learn too.
+        </div>
+        <div class ="illu-explain"><%= image_tag "team_home.png" %> </div>
+     </div>
+  </div>
+</div>
+
+<div class="cta-banner">
   <div class="container">
     <div class="title-content text-center">
-      <h2>Team communication </h2>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <div class="text-explain">
-          <p>Test</p>
-        </div>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="illu-explain" id= "team_home" >
-        </div>
+       <h2>Start the magic !</h2>
+        <% if !user_signed_in? %>
+            <%= link_to new_user_registration_path do %>
+              <div class="btn-cta-home">Sign up now</div>
+            <%end%>
+          <% elsif user_signed_in? && current_user.teams.blank? %>
+              <%= link_to new_team_path do %>
+                <div class="btn-cta-home">Create your first team !</div>
+              <%end%>
+            <% else %>
+              <%= link_to teams_path do %>
+                <div class="btn-cta-home">Work with your teams</div>
+              <%end%>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
+
+
+
+
+
+
+
 <!-- Typed form JS -->
 <%= content_for(:after_js) do %>
 
