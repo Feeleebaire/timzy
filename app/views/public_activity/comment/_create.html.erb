@@ -1,4 +1,4 @@
-<%= link_to project_path(a.trackable.project.id) do  %>
+<%= link_to project_path(a.trackable.project.id, :anchor => 'comments') do  %>
   <div class="feed-card">
     <div class="feed-image">
       <div class="feed-avatar"> <%= cl_image_tag activity.trackable.user.photo, height: 50, width: 50, crop: :fill, class: "avatar-rounded" %></div>
