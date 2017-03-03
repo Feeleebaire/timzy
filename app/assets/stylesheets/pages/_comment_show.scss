@@ -1,0 +1,24 @@
+.comment-card{
+  // background-color: white;
+  border-radius : 3px;
+  display: flex;
+  margin: 20px 0;
+  align-items: center;
+}
+
+.comment-context{
+  color: #2B414D;
+  i{
+    margin-right: 5px;
+  }
+}
+.comment-content{
+  color: #2B414D;
+ flex: 0 0 85%;
+ margin-left:15px;
+}
+
+.btn-comment-project{
+  float:right;
+}
+
