@@ -6,12 +6,15 @@ new Chart($("#myChartprojectcustomgoal"), {
           data: {
               labels: <%= raw @custom_dates.to_json %>,
               datasets: [{
-                  label: 'Custom',
                   data: <%= raw @graphcustom.to_json %>,
-                  backgroundColor:
-                      'rgba(101,175,255,0.4)',
-                  borderColor:
-                      'rgba(101,175,255,1)',
+                  backgroundColor: [
+                      'rgba(0,221,194,0.4)',
+
+                  ],
+                  borderColor: [
+                      'rgba(0,221,194,1)',
+
+                  ],
                   borderWidth: 1
               }]
           },
