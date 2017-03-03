@@ -6,15 +6,30 @@
 <div class="project-header">
   <div class= "cd-category-img cd-<%= @project.category.downcase %>"></div>
   <span class= text-center>
-    <h1><%= @project.title %></h1><%= link_to "Like", vote_project_path(@project), method: 'post', remote: true, id: "like-button", class:"hidden" %>
+    <h1><%= @project.title %></h1>
   </span>
 </div>
 <div class="show-container">
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="project-presentation">
-      <h3 class="text-center">Details</h3>
-        <p><%= cl_image_tag @project.user.photo, height: 50, width: 50, class: "img-comment"%> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></p>
+      <h3 class="text-center light">Details</h3>
+ <!-- LES POLICIES SUR LE PROJETS -->
+      <div class="text-center">
+        <% if policy(@project).update? %>
+          <%= link_to edit_project_path(@project), class: "project-actions" do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+        |
+        <% if policy(@project).destroy? %>
+          <%= link_to project_path(@project), method: "delete", class: "project-actions" do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+<!-- END OF POLICIES -->
+      <p><%= cl_image_tag @project.user.photo, height: 50, width: 50, class: "avatar-rounded"%> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> - <%= @project.user.role %></span></p>
       <p><strong>Description:</strong> <%= @project.description %></p>
       <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
     </div>
@@ -24,37 +39,14 @@
     <div class="project-presentation">
       <div class="perf-prez"></div>
 
-          <h3 class="text-center">Performances</h3>
+          <h3 class="text-center light"">Performances</h3>
           <span class = "chiffre-perf"><p><%= @perfproject %>%</p></span>
 
       </div>
     </div>
   </div>
 </div>
-  <!-- LES POLICIES SUR LE PROJETS -->
-  <div>
-    <% if policy(@project).update? %>
-      <%= link_to edit_project_path(@project), class: "project-actions" do %>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      <% end %>
-    <% end %>
-    |
-    <% if policy(@project).destroy? %>
-      <%= link_to project_path(@project), method: "delete", class: "project-actions" do %>
-        <i class="fa fa-trash" aria-hidden="true"></i>
-      <% end %>
-    <% end %>
-    <div class="project-search-to-right">
-      <div class="form-inline">
-         <!--    Search bar -->
-            <%= form_tag(project_path(@project), :method => "get") do %>
-                <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control search-message search-bar" %>
-                <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control search-message search-bar" %>
-              <%= submit_tag "Filter", :name => nil, :class => "search-submit-btn" %>
-            <% end %>
-      </div>
-    </div>
-  </div>
+
   <hr>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
 <div class="<%= 'hidden' if @kpi.blank? %>">
@@ -84,10 +76,10 @@
   </div>
 </div>
 <!-- LES CHARTS LINES BASICS METRIC DU PROJETS -->
-<h2>Basics metrics</h2>
+<h3 class="light">Basics metrics</h3>
 <div class="chart-project-detail">
   <div class="text-center">
-    <h3>Sessions</h3>
+    <h3 >Sessions</h3>
   </div>
   <canvas id="myChartprojectsession"></canvas>
 </div>
@@ -112,26 +104,32 @@
  <!-- LES CHARTS DONUTS BASICS METRIC DU PROJETS -->
 <div class="row">
   <div class="col-xs-12 col-md-6">
+    <div class="text-center">
+      <h3>Bounce rate</h3>
+    </div>
     <div class="chart-bouncerate">
       <canvas id="myChartprojectbr"></canvas>
     </div>
   </div>
   <div class="col-xs-12 col-md-6">
+    <div class="text-center">
+      <h3>New vs known visitors</h3>
+    </div>
     <div class="chart-newvsold">
       <canvas id="myChartprojectnv"></canvas>
     </div>
   </div>
 </div>
-  <hr>
-  <!-- LES COMMENTAIRES SUR LE PROJETS -->
-  <h4>Comments about project: <%= @project.title %></h4>
-  <div id="comments">
-    <% @project.comments.each do |comment| %>
-      <%= render 'comments/show', comment: comment %>
-    <% end %>
-  </div>
-
-
+<br>
+<hr>
+<!-- LES COMMENTAIRES SUR LE PROJETS -->
+<h3 class="text-center light"">Comments about <%= @project.title %></h3>
+<div id="comments">
+  <% @project.comments.each do |comment| %>
+    <%= render 'comments/show', comment: comment %>
+  <% end %>
+</div>
+<br>
 <%= render 'comments/form', project: @project, comment: @comment %>
 
 </div>
@@ -147,22 +145,10 @@
               labels: <%= raw @session_dates.to_json %>,
               datasets: [{
                   data: <%= raw @graphsession.to_json %>,
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255,99,132,1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
+                  backgroundColor:
+                      'rgba(0,221,194,0.4)',
+                  borderColor:
+                      'rgba(0,221,194,1)',
                   borderWidth: 1
               }]
           },
@@ -196,22 +182,10 @@
             labels: <%= raw @pv_dates.to_json %>,
             datasets: [{
                 data: <%= raw @graphpv.to_json %>,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                 backgroundColor:
+                      'rgba(244,204,59,0.4)',
+                  borderColor:
+                      'rgba(244,204,59,1)',
                 borderWidth: 1
             }]
         },
@@ -244,22 +218,10 @@
             labels: <%= raw @user_dates.to_json %>,
             datasets: [{
                 data: <%= raw @graphuser.to_json %>,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                 backgroundColor:
+                      'rgba(101,175,255,0.4)',
+                  borderColor:
+                      'rgba(101,175,255,1)',
                 borderWidth: 1
             }]
         },
@@ -294,15 +256,10 @@
                 label: 'Bounce Rate',
                 data: <%= raw @data_br.to_json %>,
                 backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-                hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
+                    'rgba(244,204,59,1)',
+                    'rgba(0, 221, 194, 1)',
+                ],
+                hoverBackgroundColor: 'rgba(0,190,173,1)'
             }]
         },
         options: {
@@ -321,15 +278,10 @@
                 label: 'Bounce Rate',
                 data: <%= raw @data_nv.to_json %>,
                 backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-                hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
+                      'rgba(244,204,59,1)',
+                      'rgba(0, 221, 194, 1)',
+                  ],
+                hoverBackgroundColor: 'rgba(0,190,173,1)'
             }]
         },
         options: {
