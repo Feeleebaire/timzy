@@ -27,11 +27,11 @@
            <h3 class="title-2"><%= team.name %></h3>
        <hr class="style-1">
          </div>
-        <% team.users.each do |user| %>
            <div class="avatar-teams">
+        <% team.users.each do |user| %>
              <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
-           </div>
           <% end %>
+           </div>
            <div class="add-button">
             <%= link_to "", new_team_teammate_path(team), class:"fa fa-plus-circle fa-2x" %>
           </div>
