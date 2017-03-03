@@ -7,7 +7,6 @@
       <div class="feed-context"> <i class="fa fa-calendar"> </i> <%= a.created_at.strftime('%-d %B %Y %H:%M:%S') %> <strong>@ <%= activity.trackable.project.team.name %></strong> : </div>
       <div class="feed-details"><%= activity.trackable.user.first_name %> reacted to <%= activity.trackable.project.title%> : "<%= activity.trackable.content%>" </div>
     </div>
-  </div>
 <% end %>
 <hr>
 
