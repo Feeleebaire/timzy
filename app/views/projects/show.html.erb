@@ -17,6 +17,7 @@
         <p><%= cl_image_tag @project.user.photo, height: 50, width: 50, class: "img-comment"%> <%= @project.user.first_name %> <%= @project.user.last_name %><span class = "owner"> <%= @project.user.role %></span></p>
       <p><strong>Description:</strong> <%= @project.description %></p>
       <p><strong>Deployment date:</strong> <%= @project.start_date.strftime("%b %d, %Y") %>
+      <p><strong>End date:</strong> <%= @project.end_date.strftime("%b %d, %Y") %>
     </div>
   </div>
   <!-- PRESENTATION PERFORMANCES -->

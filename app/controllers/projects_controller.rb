@@ -7,15 +7,47 @@ class ProjectsController < ApplicationController
     @comment = Comment.new
     authorize(@project)
     uri = URI::parse(@project.url_targeted)
-    @startdate = params[:startdate].blank? ? "30daysAgo" : params[:startdate]
-    @enddate = params[:enddate].blank? ? "yesterday" : params[:enddate]
     @ga = GoogleApi::Analytics.new(@project.team.admin)
     @service = @ga.service
     # SET GOALS KPI
     @kpigoal = @service.list_goals("#{@project.team.accountid}","#{@project.team.webproprietyid}", "#{@project.team.view_id}")
     @kpi = params[:kpi].blank? ? @project.kpi : params[:kpi]
-
-
+    ##PERFORMANCE SHOW ##
+   if !@kpi.blank?
+    if params[:startdate] && params[:enddate]
+      @differencetemps = (params[:enddate].to_date - params[:startdate].to_date).round
+      @centereddate = (params[:enddate].to_date - @differencetemps/2).strftime("%Y-%m-%0e")
+      @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{params[:startdate].to_date}", "#{@centereddate}", "ga:goal#{@kpi}completions")
+      @endprojectperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@centereddate}", "#{params[:enddate].to_date}", "ga:goal#{@kpi}completions")
+    else
+      @goodstartdate = @project.start_date.to_date
+      if Date.today < @project.end_date
+        @difenddate = params[:enddate].blank? ? Date.today : params[:enddate]
+      else
+        @difenddate = params[:enddate].blank? ? @project.end_date : params[:enddate]
+      end
+      @differencetemps = (@difenddate.to_date - @project.start_date.to_date).round
+      @comparaisondate = (@project.start_date.to_date - @differencetemps).strftime("%Y-%m-%0e")
+      #date de début de projet
+      @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@comparaisondate}", "#{@goodstartdate}", "ga:goal#{@kpi}completions")
+      #date d'aujourd'hui
+      if Date.today < @project.end_date
+        @perfenddate = params[:enddate].blank? ? "today" : params[:enddate]
+      else
+        @perfenddate = params[:enddate].blank? ? @project.end_date.to_date : params[:enddate]
+      end
+      @centereddate = @perfenddate.to_date - @differencetemps
+      @endprojectperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@centereddate}", "#{@perfenddate}", "ga:goal#{@kpi}completions")
+    end
+    @perfproject = (((@endprojectperf.rows.first.first.to_i - @startdateperf.rows.first.first.to_i ).fdiv(@startdateperf.rows.first.first.to_i)) * 100).round(2)
+    end
+#OBJECTIF / GOALS
+    @startdate = params[:startdate].blank? ? "#{@comparaisondate}" : params[:startdate]
+    if Date.today < @project.end_date
+      @enddate = params[:enddate].blank? ? Date.today : params[:enddate]
+    else
+      @enddate = params[:enddate].blank? ? @project.end_date.to_date : params[:enddate]
+    end
     if !@kpi.blank?
       if uri.path.blank?
         @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:date")
@@ -32,8 +64,6 @@ class ProjectsController < ApplicationController
       end
       @custom_dates = set_dates_for_graph(@arraycustom)
     end
-
-
     # SET EVENT KPI
     if uri.path.blank?
       @kpievent = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:totalEvents", dimensions: "ga:eventAction")
@@ -108,18 +138,6 @@ class ProjectsController < ApplicationController
 
     @data_nv = [ @datanv.rows.first.first.to_f, 100 - @datanv.rows.first.first.to_f ]
 
-    ##PERFORMANCE SHOW ##
-   if !@kpi.blank?
-    @goodstartdate = @project.start_date.strftime("%Y-%m-%0e")
-    @differencetemps = (Date.today - @project.start_date.to_date).round
-    @comparaisondate = (@project.start_date.to_date - @differencetemps).strftime("%Y-%m-%0e")
-    @differencetempsok = @differencetemps.to_s
-    #date de début de projet
-    @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@comparaisondate}", "#{@goodstartdate}", "ga:goal#{@kpi}completions")
-    #date d'aujourd'hui
-    @todayperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@differencetempsok}daysAgo", "today", "ga:goal#{@kpi}completions")
-    @perfproject = (((@todayperf.rows.first.first.to_i - @startdateperf.rows.first.first.to_i ).fdiv(@startdateperf.rows.first.first.to_i)) * 100).round(2)
-    end
   end
 #POPIN CREATION DE PROJECT REMPLACE CE CODE
   # def new

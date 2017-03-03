@@ -9,6 +9,7 @@ class Project < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :start_date, presence: true
+  validates :end_date, presence: true
   validates :category, presence: true
   #associations
   belongs_to :user
