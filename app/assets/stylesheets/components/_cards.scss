@@ -108,8 +108,9 @@
   transition: .2s cubic-bezier(.5, 0, .1, 1) transform;
   transition-delay: 0s;
   border-radius: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 15px;
   box-shadow:0 2px 2px rgba(0,0,0,0.16);
+  display: flex;
 
     &:hover {
       transform: scale(1.007);
@@ -138,18 +139,16 @@
   color: #2B414D;
 }
 
-.card-title-1 {
-float: right;
-margin-right: 5px;
-
-}
 
 .add-button {
  z-index: 101;
-  position: absolute;
-  text-decoration: none;
-  top: 5px;
-  right: 5px;
+ text-decoration: none;
+ top: 5px;
+ right: 5px;
+}
+
+.add-button:hover {
+  cursor: pointer;
 }
 
 
@@ -186,5 +185,28 @@ margin-right: 5px;
   position: relative;
 }
 
+.card-items {
+  display: flex;
+  flex-direction: column;
+}
 
+.avatar-teams {
+  margin-bottom: -10px;
+  margin-left: 35px;
+
+}
+
+.title-2 h3{
+
+  margin-left: 12px;
+  margin-top: 7px;
+  font-weight: normal;
+
+}
+
+hr.style-1{
+  margin-top: -5px;
+  margin-bottom: 16px;
+  margin-right: -10px;
+}
 

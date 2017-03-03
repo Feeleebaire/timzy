@@ -1,4 +1,9 @@
 
+
+
+
+
+
 <div class="standard-container">
   <div class="top-teams">
     <h2>My Teams</h2>
@@ -10,29 +15,33 @@
   <br>
   <br>
 
- <div class="row">
-       <div class="col-xs-12">
-          <% @teams.each do |team| %>
-            <%= link_to team_path(team) do %>
-              <div class="list-teams">
-              <ul class= "list-inline">
-              <li>
-               <h3 class="card-title-1"><%= team.name %></h3>
-              <%= cl_image_tag team.photo, height: 130, width: 180, crop: :fill, :class =>"img-team";%>
-              <% team.users.each do |user| %>
-                 <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
-                 <div class="add-button">
-                 <%= link_to "", new_team_teammate_path(team), class:"fa fa-plus-circle fa-2x" %>
-                 </div>
-               </li>
-              </ul>
-              <% end %>
-              </div>
-              <% end %>
-              <% end %>
-                 </div>
-              </div>
+
+
+  <% @teams.each do |team| %>
+    <%= link_to team_path(team) do %>
+     <div class="list-teams">
+       <div class="team-image">
+        <%= cl_image_tag team.photo, height: 135, width: 180, crop: :fill, :class =>"img-team";%>
       </div>
+        <div class="card-items">
+         <div class="title-2">
+           <h3 class="title-2"><%= team.name %></h3>
+       <hr class="style-1">
+         </div>
+        <% team.users.each do |user| %>
+           <div class="avatar-teams">
+             <%= cl_image_tag user.photo, height: 65, width: 65, :class =>"img-circle" %>
+           </div>
+          <% end %>
+           <div class="add-button">
+            <%= link_to "", new_team_teammate_path(team), class:"fa fa-plus-circle fa-2x" %>
+          </div>
+         </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
 
 
 
