@@ -44,24 +44,54 @@
 }
 
 .explain-content{
-  height: 350px;
+  height: 400px;
   background-color: white;
 }
+
+.explain-content-block, .who-content-block{
+  display: flex;
+  align-items: center;
+}
+
 .illu-explain{
   height: 220px;
+  width: 50%
 }
+
+.text-explain{
+  font-size: 20px;
+  color: #2B414D;
+  padding : 40px 60px 0 20px;
+  font-weight: lighter;
+  line-height: 48px;
+}
+
+
+.who-text-explain{
+  font-size: 20px;
+  color: #2B414D;
+  padding : 40px 40px 0px 20px;
+  font-weight: lighter;
+  line-height: 48px;
+}
+
 .who-content{
-  height: 300px;
+  height: 400px;
   background-color: #F7F6F5;
 }
 
-#logowahou{
- background: asset-url("logo_wahou.svg") no-repeat center;
+.cta-banner{
+  background-color: white;
+  height: 250px;
+  h2{
+  padding-top: 20px;
+  color:white;
+  }
+
 }
 
-
 .title-content h2{
-  padding: 20px;
+  padding: 40px 20px 0 20px;
   color: #2B414D;
   text-align: center;
   font-weight: 900;
@@ -70,3 +100,5 @@
 #team_home{
  background: asset-url("team_home.svg") no-repeat center;
 }
+
+

@@ -156,7 +156,7 @@ class ProjectsController < ApplicationController
     @project.team = @team
     authorize(@project)
     if @project.save
-      redirect_to team_path(@team) , notice: 'Your project was successfully created.'
+      redirect_to team_path(@team)
     else
       @ga = GoogleApi::Analytics.new(@team.admin)
       @service = @ga.service
