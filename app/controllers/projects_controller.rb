@@ -15,19 +15,28 @@ class ProjectsController < ApplicationController
     ##PERFORMANCE SHOW ##
    if !@kpi.blank?
     @goodstartdate = @project.start_date.strftime("%Y-%m-%0e")
-    @differencetemps = (Date.today - @project.start_date.to_date).round
+    if Date.today < @project.end_date
+      @difenddate = params[:enddate].blank? ? Date.today : params[:enddate]
+    else
+      @difenddate = params[:enddate].blank? ? @project.end_date : params[:enddate]
+    end
+    @differencetemps = (@difenddate.to_date - @project.start_date.to_date).round
     @comparaisondate = (@project.start_date.to_date - @differencetemps).strftime("%Y-%m-%0e")
-    @differencetempsok = @differencetemps.to_s
     #date de début de projet
     @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@comparaisondate}", "#{@goodstartdate}", "ga:goal#{@kpi}completions")
     #date d'aujourd'hui
-    @todayperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@differencetempsok}daysAgo", "today", "ga:goal#{@kpi}completions")
-    @perfproject = (((@todayperf.rows.first.first.to_i - @startdateperf.rows.first.first.to_i ).fdiv(@startdateperf.rows.first.first.to_i)) * 100).round(2)
+    if Date.today < @project.end_date
+      @perfenddate = params[:enddate].blank? ? "today" : params[:enddate]
+    else
+      @perfenddate = params[:enddate].blank? ? @project.end_date.to_date : params[:enddate]
     end
+    @centereddate = @perfenddate.to_date - @differencetemps
+    @endprojectperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@centereddate}", "#{@perfenddate}", "ga:goal#{@kpi}completions")
+    @perfproject = (((@endprojectperf.rows.first.first.to_i - @startdateperf.rows.first.first.to_i ).fdiv(@startdateperf.rows.first.first.to_i)) * 100).round(2)
+    end
+#OBJECTIF / GOALS
     @startdate = params[:startdate].blank? ? "#{@comparaisondate}" : params[:startdate]
     @enddate = params[:enddate].blank? ? "today" : params[:enddate]
-
-#OBJECTIF / GOALS
     if !@kpi.blank?
       if uri.path.blank?
         @datacustom = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@startdate}", "#{@enddate}", "ga:goal#{@kpi}completions", dimensions: "ga:date")
