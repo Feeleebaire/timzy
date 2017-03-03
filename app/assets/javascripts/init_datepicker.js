@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('.date').datepicker({
       format: 'yyyy-mm-dd',
-      orientation: "bottom auto",
+      orientation: "auto",
       autoclose: true,
       todayHighlight: true,
   });
