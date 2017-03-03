@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
     @kpi = params[:kpi].blank? ? @project.kpi : params[:kpi]
     ##PERFORMANCE SHOW ##
    if !@kpi.blank?
-    if params[:startdate] && params[:enddate]
+    if !params[:startdate].blank? && !params[:enddate].blank?
       @differencetemps = (params[:enddate].to_date - params[:startdate].to_date).round
       @centereddate = (params[:enddate].to_date - @differencetemps/2).strftime("%Y-%m-%0e")
       @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{params[:startdate].to_date}", "#{@centereddate}", "ga:goal#{@kpi}completions")
