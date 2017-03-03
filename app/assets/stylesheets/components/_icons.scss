@@ -45,3 +45,8 @@
     -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
+
+#wahou {
+  background: asset-url("wahou.svg") no-repeat center;
+  padding: 100px;
+}

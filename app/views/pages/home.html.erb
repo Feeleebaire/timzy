@@ -67,7 +67,7 @@
 
 <div class="cta-banner">
   <div class="container">
-    <div class="title-content text-center">
+    <div class="title-content text-center" id= "wahou">
        <h2>Start the magic !</h2>
         <% if !user_signed_in? %>
             <%= link_to new_user_registration_path do %>
@@ -86,19 +86,13 @@
     </div>
   </div>
 
-
-
-
-
-
-
 <!-- Typed form JS -->
 <%= content_for(:after_js) do %>
 
   <script>
   $(document).ready(function(){
       $(".typed").typed({
-        strings: ["DEVELOPERS", "MARKETERS", "FOUNDERS", "GEEKS", "GROWTH HACKERS"],
+        strings: ["DEVELOPERS", "MARKETERS", "FOUNDERS", "GEEKS", "TEAMS"],
         startDelay: 2000,
         typeSpeed: 60,
         backSpeed: 90,
