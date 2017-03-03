@@ -49,6 +49,16 @@
 </div>
 
   <hr>
+ <div class="project-search-to-right">
+    <div class="form-inline">
+        <!--    Search bar -->
+      <%= form_tag(project_path(@project), :method => "get") do %>
+        <%= text_field_tag :startdate, params[:startdate], placeholder: "Start date",  class: "date form-control search-message search-bar" %>
+        <%= text_field_tag :enddate, params[:enddate], placeholder: "End date",  class: "date form-control search-message search-bar" %>
+        <%= submit_tag "Filter", :name => nil, :class => "search-submit-btn" %>
+      <% end %>
+    </div>
+  </div>
   <!-- LA CHART CUSTOM METRIC DU PROJETS GOAL  -->
 <div class="<%= 'hidden' if @kpi.blank? %>">
   <h2>Goals metrics</h2>
