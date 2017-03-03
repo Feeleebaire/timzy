@@ -31,9 +31,17 @@ new Chart($("#myChartprojectcustomgoal"), {
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }
@@ -72,9 +80,17 @@ new Chart($("#myChartprojectcustomevent"), {
               responsive: true,
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                    gridLines: {
+                      display:false
+                    }
+                  }],
                   yAxes: [{
                       ticks: {
                           beginAtZero:true
+                      },
+                      gridLines: {
+                        display:false
                       }
                   }]
               }

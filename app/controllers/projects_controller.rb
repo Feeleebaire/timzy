@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
       @startdateperf = @service.get_ga_data("ga:#{@project.team.view_id}", "#{@comparaisondate}", "#{@goodstartdate}", "ga:goal#{@kpi}completions")
       #date d'aujourd'hui
       if Date.today < @project.end_date
-        @perfenddate = params[:enddate].blank? ? "today" : params[:enddate]
+        @perfenddate = params[:enddate].blank? ? Date.today : params[:enddate]
       else
         @perfenddate = params[:enddate].blank? ? @project.end_date.to_date : params[:enddate]
       end
